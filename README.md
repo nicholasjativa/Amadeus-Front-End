@@ -24,3 +24,8 @@ receives a text message, the Amadeus Android app will be listening for this even
 
 ## Screenshots
 
+Login screen:
+![Login Screen](http://i63.tinypic.com/2i7lk6f.png "Login Screen")
+
+Main view:
+![Main View](http://i63.tinypic.com/ehde04.png "Main View")
