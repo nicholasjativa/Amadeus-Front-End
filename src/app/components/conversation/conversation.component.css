@@ -1,0 +1,7 @@
+:host::-webkit-scrollbar {
+    display: none;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}

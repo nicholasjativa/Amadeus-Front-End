@@ -1,0 +1,12 @@
+.settings-btn-wrapper {
+    height: 54px;
+    padding: 2px 0 0 5px;
+}
+
+.settings-btn {
+    border-radius: 15px;
+}
+
+.settings-btn img {
+    height: 40px;
+}

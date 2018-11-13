@@ -1,0 +1,58 @@
+form {
+    display: inline;
+}
+
+.header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #d6d6d6;
+    color: #827d7a;
+    height: 40px;
+    padding: 16px 20px 0;
+}
+
+.title-details {
+    color: #0083f1;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+}
+
+.title-details:hover {
+    text-decoration: underline;
+}
+
+.title-messages {
+    display: none;
+    color: #3d80fd;
+    float: left;
+    font-weight: bold;
+}
+
+.title-name {
+    background-color: transparent;
+    border: none;
+    color: #404040;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    .header {
+        text-align: center;
+    }
+
+    .title-messages {
+        display: initial;
+    }
+    
+    .title-name {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .title-to {
+        display: none;
+    }
+}

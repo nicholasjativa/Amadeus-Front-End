@@ -1,0 +1,5 @@
+<div class="emoji-container" [hidden]="!emoji.showPicker">
+  <a *ngFor="let emoji of emojiList" (click)="handleEmojiClick(emoji)">
+    <span class="emoji">{{ emoji }}</span>
+  </a>
+</div>

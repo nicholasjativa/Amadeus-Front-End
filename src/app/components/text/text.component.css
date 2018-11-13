@@ -1,0 +1,57 @@
+.datetime-container {
+    text-align: center;
+}
+
+.date {
+    color: #78787E;
+    font-weight: bold;
+}
+
+.time {
+    color: #78787E;
+}
+
+.received-bubble {
+    background-color: #e4e4ea;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    text-align-last: left;
+    padding: 10px 10px 10px 15px;
+}
+
+.sent-bubble {
+    background-color: rgb(21, 108, 213);
+    border-radius: 20px;
+    color: #fff;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    text-align-last: left;
+    padding: 10px 10px 10px 15px;
+}
+
+.received-text-container {
+    margin: 5px 0;
+    text-align: left;    
+}
+
+.sent-text-container {
+    margin: 5px 0;
+    text-align: right;    
+}
+
+.status-container {
+    color: #78787E;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    .received-bubble, .sent-bubble {
+        max-width: 80%;
+    } 
+}

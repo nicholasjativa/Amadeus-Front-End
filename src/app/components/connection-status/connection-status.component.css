@@ -1,0 +1,24 @@
+.container {
+    background-color: #e74a3f;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.icon {
+    float: right;
+}
+
+.icon:hover {
+    text-decoration: underline;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    .container {
+        font-size: 16px;
+    }
+}

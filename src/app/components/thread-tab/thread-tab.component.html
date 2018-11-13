@@ -1,0 +1,10 @@
+<div class="thread-tab" fxLayout="row" *ngIf="conversationInfo.name || conversationInfo.address">
+  <div class="icon"></div>
+  <div class="details" fxFlex>
+    <span class="name">{{ conversationInfo.name ? conversationInfo.name : conversationInfo.address  }}</span>
+    <span class="time">{{ conversationInfo.timestamp }}</span>
+    <div class="message">{{ conversationInfo.body }}</div>
+  </div>
+</div>
+<div class="empty-thread-tab" fxLayout="row" *ngIf="!conversationInfo.name && !conversationInfo.address">
+</div>

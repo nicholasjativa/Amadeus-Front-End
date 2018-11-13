@@ -1,0 +1,97 @@
+div {
+    color: #434343;
+}
+
+
+img {
+    border-radius: 10px;
+}
+
+input {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.container {
+    background-color: white;
+    background-image: url("../../../assets/img/blurbackground.png");
+    background-size: cover; 
+    position: relative;
+}
+
+.learn-more {
+    color: #58a6eb;
+    font-weight: bold;
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 5px;
+    bottom: 0;
+    box-shadow: 1px 1px 10px 5px #6b6d6f;
+    height: 900px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 700px;
+    vertical-align: middle;
+}
+
+.login-form {
+    border: 2px solid #cdcdcd;
+    border-radius: 10px;
+    height: 100px;
+
+}
+
+.login-form {
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.login-form .form-field {
+    font-weight: bolder;
+    padding: 15px;
+    text-align: center;
+}
+
+.login-row:first-child {
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.logo-row{
+    height: 100px;
+    margin: 50px 0;
+}
+
+.sign-in {
+    background: transparent;
+    border: transparent;
+    color: #58a6eb;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.sign-in:active {
+    color: #2d567b;
+}
+
+
+.subtitle {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    .login-container {
+        height: 100%;
+        width: 100%;
+    }
+}

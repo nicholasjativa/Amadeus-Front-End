@@ -1,0 +1,8 @@
+<div class="header" *ngIf="conversationInfo">
+  <a class="title-messages" (click)="sidebarService.showSidebar()"> Messages </a>
+  <span class="title-to">To:</span>
+  <form [formGroup]="nameForm">
+    <input class="title-name" #nameInput formControlName="address" (blur)="setNewConversationInfo()">
+  </form>
+  <a class="title-details">Details</a>
+</div>

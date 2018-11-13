@@ -1,0 +1,8 @@
+<div class="container" style="height: 100%; overflow-y: scroll; padding: 5px 10px;" #container 
+    [scrollTop]="container.scrollHeight">
+    <amadeus-text 
+        *ngFor="let text of texts; let i = index;"
+        [shouldDisplayTime]="checkIfShouldDisplayTime(texts[i-1], texts[i])"
+        [shouldShowDelivered]="checkIfShouldShowDelivered(text)" 
+        [textInfo]="text"></amadeus-text>
+</div>

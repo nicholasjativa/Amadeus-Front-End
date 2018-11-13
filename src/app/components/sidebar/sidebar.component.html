@@ -1,0 +1,8 @@
+<div fxFill class="bar">
+  <amadeus-searchbar></amadeus-searchbar>
+  <amadeus-thread-tab 
+  *ngFor="let conversation of conversations" 
+  [class.active]="conversation === selectedConversation"
+  [conversationInfo]="conversation"
+  (click)="handleConversationClick(conversation)"></amadeus-thread-tab>
+</div>

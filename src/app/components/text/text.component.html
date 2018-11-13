@@ -1,0 +1,15 @@
+<div class="datetime-container" *ngIf="shouldDisplayTime">
+  <span class="date">{{ now == date ? 'Today' : date }}</span>
+  <span class="time">{{time}}</span>
+</div>
+<div [ngClass]="{'sent-text-container': textInfo.fromPhoneNumber === 'USER_PHONE_NUMBER', 'received-text-container': textInfo.fromPhoneNumber !== 'USER_PHONE_NUMBER'}">
+  <div [ngClass]="{'sent-bubble': textInfo.fromPhoneNumber === 'USER_PHONE_NUMBER', 'received-bubble': textInfo.fromPhoneNumber !== 'USER_PHONE_NUMBER'}">
+    {{textInfo.textMessageBody}}
+  </div>
+</div>
+<div class="status-container" *ngIf="textInfo.status == 'pending' && textInfo.fromPhoneNumber == 'USER_PHONE_NUMBER'">
+  Sending..
+</div>
+<div class="status-container" *ngIf="textInfo.status == 'gcm_success' && shouldShowDelivered">
+  Delivered
+</div>

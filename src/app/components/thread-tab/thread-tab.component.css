@@ -1,0 +1,57 @@
+:host.active .thread-tab, :host.active .name{
+    background-color: rgb(21, 108, 213);
+    color: #fff;
+}
+
+/* consolidate TODO*/
+:host.active .empty-thread-tab, :host.active .name{
+    background-color: rgb(21, 108, 213);
+    color: #fff;
+}
+
+.details {
+    overflow: hidden;
+}
+
+
+.empty-thread-tab {
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    color: #757474;
+    height: 100px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.icon {
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    height: 100%;
+    margin-right: 10px;
+    width: 80px;
+}
+
+.message {
+    padding-top: 5px;
+}
+
+.name {
+    color: #464545;
+    font-weight: bolder;
+}
+
+
+.thread-tab {
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    color: #757474;
+    cursor: pointer;
+    height: 100px;
+    padding: 10px;
+}
+
+
+.time {
+    float: right;
+}

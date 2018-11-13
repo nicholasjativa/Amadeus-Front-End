@@ -1,0 +1,3 @@
+ng build --target=production --output-hashing=all 
+ng build --target=production --output-hashing=all 
+

@@ -1,0 +1,39 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+:host {
+    border-right: 1px solid #dddddd;
+    overflow-y: hidden;
+    width: 400px;
+}
+
+
+
+.bar {
+    overflow-y: scroll;
+}
+
+div {
+    background-color: #f1f1f1;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    :host, .bar {
+        display: none;
+        width: 0;
+    }
+
+    :host.show-mobile {
+        height: 100%;
+        display: block;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+    }
+
+    :host.show-mobile .bar {
+        display: block;
+    }
+}
