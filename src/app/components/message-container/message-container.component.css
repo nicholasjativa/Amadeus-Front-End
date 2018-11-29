@@ -1,7 +1,26 @@
+:host {
+
+}
+
+amadeus-conversation {
+    overflow-y: scroll;
+}
+
 amadeus-message-container-header {
-    width: 96%;
+    flex-basis: 96%;
+}
+
+amadeus-response-area {
+    flex-basis: 100%;
 }
 
 amadeus-settings-button {
-    width: 4%;
+    flex-basis: 3%;
+}
+
+.wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

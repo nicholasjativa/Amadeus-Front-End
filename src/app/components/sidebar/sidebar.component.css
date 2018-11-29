@@ -8,14 +8,12 @@
     width: 400px;
 }
 
-
-
 .bar {
-    overflow-y: scroll;
-}
-
-div {
     background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 /* Smartphones (portrait) ----------- */

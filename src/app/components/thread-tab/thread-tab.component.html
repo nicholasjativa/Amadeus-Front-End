@@ -1,4 +1,4 @@
-<div class="thread-tab" fxLayout="row" *ngIf="conversationInfo.name || conversationInfo.address">
+<div class="thread-tab" *ngIf="conversationInfo.name || conversationInfo.address">
   <div class="icon"></div>
   <div class="details" fxFlex>
     <span class="name">{{ conversationInfo.name ? conversationInfo.name : conversationInfo.address  }}</span>
