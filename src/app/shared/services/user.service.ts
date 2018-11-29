@@ -13,7 +13,7 @@ export class UserService {
   constructor(private auth: AuthService, private http: HttpClient) {
   }
 
-  login(credentials) {
+  public login(credentials): Observable<any> {
     return this.http.post(`${environment.API_URL}/users/login`, { user: credentials }, { withCredentials: true })
       .map((data: HttpResponse<any>) => {
         this.isAuthenticatedSubject.next(true);
@@ -21,12 +21,12 @@ export class UserService {
       });
   }
 
-  getUserInfo() {
+  public getUserInfo(): Observable<any> {
     return this.http.get(`${environment.API_URL}/users/user`);
   }
 
   // TODO: rename
-  populate(): void {
+  public populate(): void {
     if (this.auth.getCookie()) {
       this.getUserInfo().subscribe(
         (data) => this.setAuth(data['user']),
@@ -37,12 +37,12 @@ export class UserService {
     }
   }
 
-  purgeAuth(): void {
+  public purgeAuth(): void {
     this.auth.destroyCookie();
     this.isAuthenticatedSubject.next(false);
   }
 
-  setAuth(user: any): void {
+  public setAuth(user: any): void {
     this.isAuthenticatedSubject.next(true);
   }
 

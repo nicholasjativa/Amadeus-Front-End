@@ -15,22 +15,22 @@ export class SidebarService {
   public selectedConversationObserver: Observer<any>;
 
   constructor(
-              private conversationService: ConversationService,
-              private http: HttpClient,
-              private socketService: WebsocketService) {
+    private conversationService: ConversationService,
+    private http: HttpClient,
+    private socketService: WebsocketService) {
 
-      this.selectedConversationObservable = new Observable(observer => {
-        this.selectedConversationObserver = observer;
-      }).share();
+    this.selectedConversationObservable = new Observable(observer => {
+      this.selectedConversationObserver = observer;
+    }).share();
   }
 
-  createConversation() {
+  public createConversation(): void {
     const newConversation: any = { name: 'New Message', number: '' };
     this.conversations.push(newConversation);
     this.setSelectedConversation(newConversation);
   }
 
-  getConversationsList() {
+  public getConversationsList(): Observable<any> {
     return this.http.get(`${environment.API_URL}/snippets`)
       .map((conversations: any[]) => {
         this.setTimeStrings(conversations);
@@ -39,11 +39,11 @@ export class SidebarService {
       });
   }
 
-  listenForSnippetUpdates() {
+  public listenForSnippetUpdates(): Observable<any> {
     return this.socketService.onUpdateSnippetSidebar();
   }
 
-  private setTimeStrings(conversations: any[]) {
+  private setTimeStrings(conversations: any[]): any[] {
     let now: Date = new Date();
     let temp: Date = new Date();
     let temp1: Date = new Date();
@@ -66,7 +66,7 @@ export class SidebarService {
     return conversations;
   }
 
-  setSelectedConversation(conversation: any) {
+  public setSelectedConversation(conversation: any): void {
     if (this.show) {
       this.show = false;
     }
@@ -76,7 +76,7 @@ export class SidebarService {
     }
   }
 
-  showSidebar() {
+  public showSidebar(): void {
     this.show = true;
   }
 

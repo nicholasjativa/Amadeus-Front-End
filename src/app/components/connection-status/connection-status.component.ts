@@ -17,10 +17,10 @@ export class ConnectionStatusComponent implements OnInit {
       .subscribe(connected => this.disconnected = !connected);
    }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
-  handleCloseClick(): void {
+  public handleCloseClick(): void {
     this.disconnected = false;
   }
 

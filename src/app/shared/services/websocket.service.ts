@@ -81,7 +81,7 @@ export class WebsocketService {
   }
 
   // TODO modify this to handle ACK messages
-  public sendText(data) {
+  public sendText(data): Observable<any> {
     this.socket.emit("relayDataForTextMessageCreation", data);
     return new Observable<any>(observer => {
       this.socket.on("sendToAndroidSuccessful", () => {

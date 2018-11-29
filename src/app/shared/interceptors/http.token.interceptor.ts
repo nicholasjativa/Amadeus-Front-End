@@ -8,16 +8,16 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headersConfig = {
+    const headersConfig: any = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
 
-    const token = this.auth.getCookie();
+    const token: string = this.auth.getCookie();
 
     if (token) {
       headersConfig['Authorization'] = `Token ${token}`;
-      const authReq = req.clone({
+      const authReq: any = req.clone({
         setHeaders: headersConfig,
         withCredentials: true
       });

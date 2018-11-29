@@ -14,15 +14,15 @@ export class EmojiSelectorService {
     });
   }
 
-  hideEmojiPicker() {
+  public hideEmojiPicker(): void {
     this.showPicker = false;
   }
 
-  showEmojiPicker() {
+  public showEmojiPicker(): void {
     this.showPicker = true;
   }
 
-  toggleEmojiPicker() {
+  public toggleEmojiPicker(): void {
     this.showPicker = !this.showPicker;
   }
 

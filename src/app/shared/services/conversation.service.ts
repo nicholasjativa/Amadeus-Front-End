@@ -16,29 +16,29 @@ export class ConversationService {
     this.socketService.initSocket();
   }
 
-  getConversationMessages(phone_num_clean: number) {
+  public getConversationMessages(phone_num_clean: number) {
     return this.http.post(`${environment.API_URL}/texts/getConversationMessages`, {
       phone_num_clean
     });
   }
 
-  listenForMessageFromAndroid() {
+  public listenForMessageFromAndroid() {
     return this.socketService.onReceivedMessageFromAndroid().share();
   }
 
-  listenForOwnMessageSentOnAndroid() {
+  public listenForOwnMessageSentOnAndroid() {
     return this.socketService.onOwnMessageSentOnAndroid();
   }
 
-  listenForOutgoingMessageAcknowledgement() {
+  public listenForOutgoingMessageAcknowledgement() {
     return this.socketService.onSendOutgoingMessageUpstreamToWebsocketWithInitialState();
   }
 
-  listenForSendToAndroidSuccessful() {
+  public listenForSendToAndroidSuccessful() {
     return this.socketService.onSendToAndroidSuccessful();
   }
 
-  sendMessageToServer(toPhoneNumber, textMessageBody) {
+  public sendMessageToServer(toPhoneNumber, textMessageBody): void {
     const data = {
       fromPhoneNumber: 'USER_PHONE_NUMBER', // todo: this should be abstracted out somewhere
       toPhoneNumber,
