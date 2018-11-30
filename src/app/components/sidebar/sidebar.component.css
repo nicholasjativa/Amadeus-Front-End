@@ -4,6 +4,7 @@
 
 :host {
     border-right: 1px solid #dddddd;
+    min-width: 400px;
     overflow-y: hidden;
     width: 400px;
 }

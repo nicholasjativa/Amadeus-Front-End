@@ -3,24 +3,27 @@
 }
 
 amadeus-conversation {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
     overflow-y: scroll;
 }
 
 amadeus-message-container-header {
-    flex-basis: 96%;
+    width: 100%;
 }
 
 amadeus-response-area {
-    flex-basis: 100%;
+    width: 100%;
 }
 
 amadeus-settings-button {
-    flex-basis: 3%;
 }
 
 .wrapper {
-    align-items: flex-start;
+    align-content: flex-start;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    height: 100%;
 }
