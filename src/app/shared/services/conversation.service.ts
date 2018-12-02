@@ -3,6 +3,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 import { WebsocketService } from './websocket.service';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { share } from 'rxjs/operators';
 
 @Injectable()
 export class ConversationService {
@@ -23,7 +24,7 @@ export class ConversationService {
   }
 
   public listenForMessageFromAndroid() {
-    return this.socketService.onReceivedMessageFromAndroid().share();
+    return this.socketService.onReceivedMessageFromAndroid().pipe(share());
   }
 
   public listenForOwnMessageSentOnAndroid() {

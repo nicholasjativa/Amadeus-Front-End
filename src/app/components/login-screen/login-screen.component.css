@@ -2,6 +2,9 @@ div {
     color: #434343;
 }
 
+form {
+    width: 100%;
+}
 
 img {
     border-radius: 10px;
@@ -11,13 +14,22 @@ input {
     background: transparent;
     border: none;
     font-size: 16px;
+    height: 100%;
+}
+
+.button-wrapper {
+    text-align: center;
 }
 
 .container {
+    align-items: center;
     background-color: white;
     background-image: url("../../../assets/img/blurbackground.png");
-    background-size: cover; 
-    position: relative;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
 }
 
 .learn-more {
@@ -26,43 +38,40 @@ input {
 }
 
 .login-container {
-    background-color: white;
-    border-radius: 5px;
-    bottom: 0;
-    box-shadow: 1px 1px 10px 5px #6b6d6f;
-    height: 900px;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 700px;
-    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 70%;
 }
 
-.login-form {
+.login-fields {
     border: 2px solid #cdcdcd;
     border-radius: 10px;
-    height: 100px;
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.login-form {
+.login-fields .field-name {
+    flex-basis: 30%;
+    padding: 15px 20px;
+}
+
+.login-fields .field {
+    flex-basis: 50%;
+    flex-grow: 1;
+    padding: 5px 0;
+}
+
+.login-fields .divider {
     border-bottom: 2px solid #cdcdcd;
 }
 
-.login-form .form-field {
-    font-weight: bolder;
-    padding: 15px;
-    text-align: center;
-}
-
-.login-row:first-child {
-    border-bottom: 2px solid #cdcdcd;
-}
-
-.logo-row{
-    height: 100px;
+.logo-row {
     margin: 50px 0;
 }
 
@@ -71,7 +80,6 @@ input {
     border: transparent;
     color: #58a6eb;
     font-size: 36px;
-    margin-top: 20px;
 }
 
 .sign-in:active {
@@ -80,12 +88,21 @@ input {
 
 
 .subtitle {
-    margin: 20px 0;
     text-align: center;
 }
 
 .title {
     font-size: 48px;
+}
+
+.wrapper {
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 5px #6b6d6f;
+    height: 80%;
+    max-width: 50%;
+    padding: 10px;
 }
 
 /* Smartphones (portrait) ----------- */

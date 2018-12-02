@@ -1,62 +1,49 @@
-<div class="container" fxFill>
-  <div class="login-container">
-    <div fxLayout="column" fxFlex="50" fxFlex.xs="100" fxLayoutAlign="start center" style="margin: 0 auto">
+<div class="container">
+  <div class="wrapper">
 
-
-      <div fxLayout="row" class="logo-row" fxLayoutAlign="center center">
+    <div class="login-container">
+      
+      <div class="logo-row">
         <img src="assets/img/amadeuslogo.jpg" height="95px" width="95px">
       </div>
 
 
-      <div fxLayout="row" class="title" fxLayoutAlign="center center">
+      <div class="title">
         Amadeus
       </div>
 
 
-      <div fxLayout="row" class="subtitle" fxLayoutAlign="center center">
-        <div fxLayout="column" fxFlex="100">
-          Amadeus messages can be sent between Android phones and the browser.
-          <br>
-          <br>
-          <a class="learn-more" routerLink="learn-more">Learn more about Amadeus</a>
-        </div>
+      <div class="subtitle">
+        Amadeus messages can be sent between Android phones and the browser.
+        <br>
+        <br>
+        <a class="learn-more" routerLink="learn-more">Learn more about Amadeus</a>
       </div>
 
 
-      <div fxLayout="row" style="width: 100%;">
-        <div fxLayout="column" fxFlex="100" class="login-form">
 
-          <form [formGroup]="authForm" (ngSubmit)="handleSubmit()">
-            <div fxLayout="row" class="login-row">
-              <div fxLayout="column" fxFlex="40" class="form-field">
-                Amadeus ID
-              </div>
-              <div fxLayout="column" fxFlex="60" fxLayoutAlign="center center">
-                <input formControlName="emailAddress" type="text"/>
-              </div>
-            </div>  
+      <form [formGroup]="authForm" (ngSubmit)="handleSubmit()">
 
+        <ul class="login-fields">
 
-            <div fxLayout="row" class="login-row">
-              <div fxLayout="column" fxFlex="40" class="form-field">
-                Password
-              </div>
-              <div fxLayout="column" fxFlex="60" fxLayoutAlign="center center">
-                <input formControlName="password" type="password">
-              </div>
-            </div>
+          <li class="field-name divider">Amadeus ID</li>
+          <li class="field divider">
+            <input formControlName="emailAddress" type="text" />
+          </li>
 
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <button class="sign-in" type="submit">Sign In</button>
-            </div>
-          </form>
+          <li class="field-name">Password</li>
+          <li class="field">
+            <input formControlName="password" type="password">
+          </li>
 
+        </ul>
 
-
+        <div class="button-wrapper">
+          <button class="sign-in" type="submit">Sign In</button>
         </div>
-      </div>
 
-
+      </form>
     </div>
+
   </div>
 </div>
