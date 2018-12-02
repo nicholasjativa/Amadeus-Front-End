@@ -30,6 +30,10 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { SidebarService } from './shared/services/sidebar.service';
 import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
 import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user';
+import { StoreModule } from '@ngrx/store';
+import { AmadeusReducers } from './store/reducers/root';
 
 
 @NgModule({
@@ -54,7 +58,9 @@ import { SettingsButtonComponent } from './components/settings-button/settings-b
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RoutingModule
+    RoutingModule,
+    StoreModule.forRoot(AmadeusReducers),
+    EffectsModule.forRoot([UserEffects])
   ],
   providers: [
     {

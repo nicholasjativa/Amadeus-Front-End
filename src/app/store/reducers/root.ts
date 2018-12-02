@@ -1,10 +1,10 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
-import { MessagesState, messagesReducer } from './messages.reducer';
+import { MessagesState, messagesReducer } from './messages';
 
 export interface AmadeusState {
     messages: MessagesState
 }
 
-export const reducers: ActionReducerMap<AmadeusState> = {
+export const AmadeusReducers: ActionReducerMap<AmadeusState> = {
     messages: messagesReducer
 };

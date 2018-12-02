@@ -13,7 +13,7 @@ export class WebsocketService {
   public initSocket(): void {
     this.socket = SocketIOClient(environment.WS_URL);
     this.socket.on('connect', () => {
-      this.socket.send("message", "hey");
+
       console.log("Initializing Knightmare Frame control system..");
     });
 

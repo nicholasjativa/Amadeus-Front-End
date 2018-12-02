@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { MessageActionTypes } from '../action-types/messages.action-types';
+import { MessageActionTypes } from '../action-types/messages';
 
 export interface MessagesState {
     conversations: any[][],
@@ -8,7 +8,7 @@ export interface MessagesState {
     loaded: boolean,
     loading: boolean,
     sidebar: []
-};
+}
 
 export const initialState: MessagesState = {
     conversations: [],
@@ -19,16 +19,16 @@ export const initialState: MessagesState = {
     sidebar: []
 };
 
-export function messagesReducer(state: MessagesState = initialState, action) {
+export function messagesReducer(state: MessagesState = initialState, action): MessagesState {
 
     switch(action.type) {
         
         case MessageActionTypes.LOAD_MESSAGES: {
 
-            const conversationId: string = action.payload;
+            const currentConversationId: string = action.payload;
             const loading: boolean = true;
 
-            return { ...state, conversationId, loading };
+            return { ...state, currentConversationId, loading };
         }
 
         case MessageActionTypes.LOAD_MESSAGES_SUCCESS: {
@@ -42,7 +42,6 @@ export function messagesReducer(state: MessagesState = initialState, action) {
         }
 
         default:
-
             return state;
     }
 };

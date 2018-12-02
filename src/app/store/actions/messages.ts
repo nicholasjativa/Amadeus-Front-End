@@ -1,19 +1,19 @@
 import { Action } from '@ngrx/store';
-import { MessageActionTypes } from '../action-types/messages.action-types';
+import { MessageActionTypes } from '../action-types/messages';
 
-export class LoadMessagesByIdAction implements Action {
+export class LoadMessagesById implements Action {
     public readonly type: string = MessageActionTypes.LOAD_MESSAGES;
 
     constructor(payload: string) {
     }
 } 
 
-export class LoadMessagesByIdSuccessAction implements Action {
+export class LoadMessagesByIdSuccess implements Action {
     public readonly type: string = MessageActionTypes.LOAD_MESSAGES_SUCCESS;
 
 }
 
-export class LoadMessagesByIdErrorAction implements Action {
+export class LoadMessagesByIdError implements Action {
     public readonly type: string = MessageActionTypes.LOAD_MESSAGES_ERROR;
 
 }

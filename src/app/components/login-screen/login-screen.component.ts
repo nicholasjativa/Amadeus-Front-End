@@ -9,27 +9,24 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./login-screen.component.css']
 })
 export class LoginScreenComponent implements OnInit {
-  authForm: FormGroup;
+  public authForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
     this.authForm = this.fb.group({
-      'emailAddress': ['', Validators.required],
-      'password': ['', Validators.required]
+      emailAddress: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  ngOnInit() {  
+  public ngOnInit(): void {  
   }
 
-  handleSubmit() {
-    const credentials = this.authForm.value;
-    this.userService.login(credentials).subscribe(data => {
-      if (data['user']) {
-        this.router.navigateByUrl('/home');
-      }
-    });
+  public handleSignIn(): void {
+
+    const emailAddress: string = this.authForm.value.emailAddress;
+    const password: string = this.authForm.value.password;
+
+    this.userService.signIn(emailAddress, password);
   }
-
-
-
+  
 }
