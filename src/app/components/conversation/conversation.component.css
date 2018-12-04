@@ -8,5 +8,6 @@
 
 .text-messages-container {
     height: 100%;
+    overflow-y: scroll;
     padding: 5px 10px;
 }

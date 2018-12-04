@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ConversationService } from '../../shared/services/conversation.service';
-import { SidebarService } from '../../shared/services/sidebar.service';
+import { ThreadsService } from '../../shared/services/threads.service';
+import { Store } from '@ngrx/store';
+import { AmadeusState } from '../../store/reducers/root';
+import { Thread } from '../../models/thread';
 
 @Component({
   selector: 'amadeus-sidebar',
@@ -8,46 +11,37 @@ import { SidebarService } from '../../shared/services/sidebar.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  public selectedConversation;
-  public conversations: any[];
+  public selectedThread;
+  @Input() public threads: Thread[];
 
-  constructor(private cs: ConversationService, private sidebarService: SidebarService) {
-    this.sidebarService.selectedConversationObservable
+  constructor(private cs: ConversationService,
+              private threadsService: ThreadsService) {
+    this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
-        this.selectedConversation = conversation;
+        this.selectedThread = conversation;
       });
-    this.getConversationsList();
     this.updateSidebar();
   }
 
-  ngOnInit() {
-  }
-
-  getConversationsList(): void {
-    this.sidebarService.getConversationsList()
-      .subscribe((conversations: any[]) => {
-        this.conversations = conversations;
-        this.sidebarService.setSelectedConversation(conversations[0]);
-      });
-
+  public ngOnInit(): void {
   }
 
   handleConversationClick(conversation): void {
-    this.sidebarService.setSelectedConversation(conversation);
+    this.threadsService.setSelectedConversation(conversation);
   }
 
   updateSidebar(): void {
-    this.sidebarService.listenForSnippetUpdates()
+    this.threadsService.listenForSnippetUpdates()
       .subscribe(message => {
-        for (let i = 0; i < this.conversations.length; i++) {
-          if (message.address == this.conversations[i].address) {
-            this.conversations[i].body = message.body;
-            this.conversations[i].timestamp = new Date(parseInt(message.timestamp)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        for (let i = 0; i < this.threads.length; i++) {
+          if (message.address == this.threads[i].address) {
+            this.threads[i].body = message.body;
+            this.threads[i].timestamp = new Date(parseInt(message.timestamp)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             return;
-          } 
+          }
         }
         // snippet does not exist
-        this.conversations.push(message);
+        this.threads.push(message);
       });
   }
 

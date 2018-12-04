@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SidebarService } from './sidebar.service';
+import { ThreadsService } from './threads.service';
 
-describe('SidebarService', () => {
+describe('ThreadsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SidebarService]
+      providers: [ThreadsService]
     });
   });
 
-  it('should be created', inject([SidebarService], (service: SidebarService) => {
+  it('should be created', inject([ThreadsService], (service: ThreadsService) => {
     expect(service).toBeTruthy();
   }));
 });

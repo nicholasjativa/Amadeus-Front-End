@@ -27,13 +27,14 @@ import { EmojiSelectorService } from './shared/services/emoji-selector.service';
 import { UserService } from './shared/services/user.service';
 import { WebsocketService } from './shared/services/websocket.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { SidebarService } from './shared/services/sidebar.service';
+import { ThreadsService } from './shared/services/threads.service';
 import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
 import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user';
 import { StoreModule } from '@ngrx/store';
 import { AmadeusReducers } from './store/reducers/root';
+import { ThreadsEffects } from './store/effects/threads';
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import { AmadeusReducers } from './store/reducers/root';
     ReactiveFormsModule,
     RoutingModule,
     StoreModule.forRoot(AmadeusReducers),
-    EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([ThreadsEffects, UserEffects])
   ],
   providers: [
     {
@@ -74,7 +75,7 @@ import { AmadeusReducers } from './store/reducers/root';
     EmojiSelectorService,
     UserService,
     WebsocketService,
-    SidebarService
+    ThreadsService
   ],
   bootstrap: [AppComponent]
 })

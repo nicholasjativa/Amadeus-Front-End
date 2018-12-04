@@ -7,7 +7,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import { WebsocketService } from './websocket.service';
 
 @Injectable()
-export class SidebarService {
+export class ThreadsService {
   public conversations: any[];
   public show: boolean = false;
   private selectedConversation: any;
@@ -30,13 +30,8 @@ export class SidebarService {
     this.setSelectedConversation(newConversation);
   }
 
-  public getConversationsList(): Observable<any> {
-    return this.http.get(`${environment.API_URL}/snippets`)
-      .map((conversations: any[]) => {
-        this.setTimeStrings(conversations);
-        this.conversations = conversations;
-        return conversations;
-      });
+  public getThreads(): Observable<any> {
+    return this.http.get(`${environment.API_URL}/snippets`);
   }
 
   public listenForSnippetUpdates(): Observable<any> {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ConversationService } from '../../shared/services/conversation.service';
-import { SidebarService } from '../../shared/services/sidebar.service';
+import { ThreadsService } from '../../shared/services/threads.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,12 +13,12 @@ export class MessageContainerHeaderComponent implements OnInit {
   public conversationInfo: any;
   public nameForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private sidebarService: SidebarService) {
+  constructor(private fb: FormBuilder, private threadsService: ThreadsService) {
     this.createForm();
   }
 
   ngOnInit() {
-    this.sidebarService.selectedConversationObservable.
+    this.threadsService.selectedConversationObservable.
       subscribe(conversationInfo => {
         this.conversationInfo = conversationInfo;
         if (!this.conversationInfo.id && !this.conversationInfo.address) {
@@ -56,12 +56,12 @@ export class MessageContainerHeaderComponent implements OnInit {
       toPhoneNumber: address
     };
 
-    for (let i = 0; i < this.sidebarService.conversations.length; i++) {
-      if (this.sidebarService.conversations[i] == this.conversationInfo) {
-        this.sidebarService.conversations[i] = conversationInfo;
+    for (let i = 0; i < this.threadsService.conversations.length; i++) {
+      if (this.threadsService.conversations[i] == this.conversationInfo) {
+        this.threadsService.conversations[i] = conversationInfo;
       }
     }
-    this.sidebarService.selectedConversationObserver.next(conversationInfo);
+    this.threadsService.selectedConversationObserver.next(conversationInfo);
   }
 
 

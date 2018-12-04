@@ -4,7 +4,7 @@ import { WebsocketService } from '../../shared/services/websocket.service';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../shared/services/user.service';
-import { SidebarService } from '../../shared/services/sidebar.service';
+import { ThreadsService } from '../../shared/services/threads.service';
 @Component({
   selector: 'amadeus-conversation',
   templateUrl: './conversation.component.html',
@@ -16,9 +16,9 @@ export class ConversationComponent implements OnInit {
   notificationSound;
   texts: any[];
 
-  constructor(private cs: ConversationService, private sidebarService: SidebarService, private user: UserService) {
+  constructor(private cs: ConversationService, private threadsService: ThreadsService, private user: UserService) {
     this.notificationSound = new Audio('assets/audio/quite-impressed.mp3');
-    this.sidebarService.selectedConversationObservable
+    this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
         const phone_num_clean: number = conversation.address; // TODO use phone_num_clean in obj
         this.currentConversation = conversation;

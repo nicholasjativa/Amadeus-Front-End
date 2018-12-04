@@ -1,5 +1,5 @@
 <div class="header">
-  <a class="title-messages" (click)="sidebarService.showSidebar()"> Messages </a>
+  <a class="title-messages" (click)="threadsService.showSidebar()"> Messages </a>
   <span class="title-to">To:</span>
   <form [formGroup]="nameForm">
     <input class="title-name" #nameInput formControlName="address" (blur)="setNewConversationInfo()">

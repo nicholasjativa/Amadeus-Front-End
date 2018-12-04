@@ -41,11 +41,9 @@ export class UserEffects {
         .ofType<any>(UserActionTypes.SIGN_IN_SUCCESS)
         .map(action => action.payload)
         .switchMap((user: User) => {
-            
+
             this.router.navigateByUrl('/home');
             return [];
         });
-
-
 
 }

@@ -46,7 +46,7 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  public setAuth(user: any): void {console.log('um??')
+  public setAuth(user: any): void {
     this.isAuthenticatedSubject.next(true);
   }
 

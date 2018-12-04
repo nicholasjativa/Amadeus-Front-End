@@ -1,19 +1,19 @@
 import { Action } from '@ngrx/store';
 import { MessageActionTypes } from '../action-types/messages';
 
-export class LoadMessagesById implements Action {
-    public readonly type: string = MessageActionTypes.LOAD_MESSAGES;
+export class LoadMessagesbyPhoneNumber implements Action {
+    public readonly type: string = MessageActionTypes.LOAD_MESSAGES_BY_PHONE_NUMBER;
 
     constructor(payload: string) {
     }
 } 
 
-export class LoadMessagesByIdSuccess implements Action {
-    public readonly type: string = MessageActionTypes.LOAD_MESSAGES_SUCCESS;
+export class LoadMessagesbyPhoneNumberSuccess implements Action {
+    public readonly type: string = MessageActionTypes.LOAD_MESSAGES_BY_PHONE_NUMBER_SUCCESS;
 
 }
 
-export class LoadMessagesByIdError implements Action {
-    public readonly type: string = MessageActionTypes.LOAD_MESSAGES_ERROR;
+export class LoadMessagesbyPhoneNumberError implements Action {
+    public readonly type: string = MessageActionTypes.LOAD_MESSAGES_BY_PHONE_NUMBER_ERROR;
 
 }

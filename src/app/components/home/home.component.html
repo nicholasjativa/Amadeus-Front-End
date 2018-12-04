@@ -1,6 +1,8 @@
 <div class="container">
     <amadeus-sidebar 
-    [class.show-mobile]="sidebarService.show">
+    [class.show-mobile]="threadsService.show"
+    [threads]="threads"
+    >
     </amadeus-sidebar>
     <amadeus-message-container></amadeus-message-container>
 </div>
