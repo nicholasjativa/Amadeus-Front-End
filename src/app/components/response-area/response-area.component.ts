@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ConversationService } from '../../shared/services/conversation.service';
+import { MessagesService } from '../../shared/services/messages.service';
 import { ConversationComponent } from '../conversation/conversation.component';
 import { EmojiSelectorService } from '../../shared/services/emoji-selector.service';
 import { ViewChild } from '@angular/core';
@@ -21,7 +21,7 @@ export class ResponseAreaComponent implements OnInit {
   public readonly: boolean;
   public toPhoneNumber: string;
 
-  constructor(private cs: ConversationService, private threadsService: ThreadsService, private emoji: EmojiSelectorService) {
+  constructor(private cs: MessagesService, private threadsService: ThreadsService, private emoji: EmojiSelectorService) {
     this.threadsService.selectedConversationObservable
       .subscribe(conversation => this.toPhoneNumber = conversation.address);
   }

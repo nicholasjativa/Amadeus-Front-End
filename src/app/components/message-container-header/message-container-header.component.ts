@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ConversationService } from '../../shared/services/conversation.service';
+import { MessagesService } from '../../shared/services/messages.service';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ConversationService } from '../../shared/services/conversation.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { MessagesService } from '../../shared/services/messages.service';
 import { WebsocketService } from '../../shared/services/websocket.service';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../shared/services/user.service';
 import { ThreadsService } from '../../shared/services/threads.service';
+import { Message } from '../../models/message';
 @Component({
   selector: 'amadeus-conversation',
   templateUrl: './conversation.component.html',
@@ -14,19 +15,15 @@ export class ConversationComponent implements OnInit {
   currentConversation;
   ioConnection;
   notificationSound;
-  texts: any[];
+  @Input() public messages: Message[];
 
-  constructor(private cs: ConversationService, private threadsService: ThreadsService, private user: UserService) {
+  constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService) {
     this.notificationSound = new Audio('assets/audio/quite-impressed.mp3');
     this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
-        const phone_num_clean: number = conversation.address; // TODO use phone_num_clean in obj
+        const phone_num_clean: string = conversation.address; // TODO use phone_num_clean in obj
         this.currentConversation = conversation;
         
-        this.cs.getConversationMessages(phone_num_clean)
-          .subscribe((texts: any[]) => {
-            this.texts = texts;
-          });
       });
     this.cs.listenForMessageFromAndroid()
       .subscribe(text => {

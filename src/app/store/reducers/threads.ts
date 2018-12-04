@@ -4,14 +4,14 @@ import { Thread } from '../../models/thread';
 
 export interface ThreadsState {
     threads: Thread[],
-    currentlySelectedThreadId: string,
+    currentlySelectedThread: Thread,
     loaded: boolean,
     loading: boolean
 }
 
 export const initialState: ThreadsState = {
     threads: [],
-    currentlySelectedThreadId: "",
+    currentlySelectedThread: undefined,
     loaded: false,
     loading: false
 };
@@ -31,5 +31,9 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
 
             return { ...state, threads, loaded: true, loading: false }
         }
+
+        default:
+            
+            return state;
     }
 }

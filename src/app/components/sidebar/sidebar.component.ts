@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ConversationService } from '../../shared/services/conversation.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MessagesService } from '../../shared/services/messages.service';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { Store } from '@ngrx/store';
 import { AmadeusState } from '../../store/reducers/root';
@@ -13,8 +13,9 @@ import { Thread } from '../../models/thread';
 export class SidebarComponent implements OnInit {
   public selectedThread;
   @Input() public threads: Thread[];
+  @Output() public load: EventEmitter<Thread> = new EventEmitter<Thread>();
 
-  constructor(private cs: ConversationService,
+  constructor(private cs: MessagesService,
               private threadsService: ThreadsService) {
     this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
@@ -24,10 +25,6 @@ export class SidebarComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-  }
-
-  handleConversationClick(conversation): void {
-    this.threadsService.setSelectedConversation(conversation);
   }
 
   updateSidebar(): void {

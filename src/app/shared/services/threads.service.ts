@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpResponse, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
-import { ConversationService } from './conversation.service';
+import { MessagesService } from './messages.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { WebsocketService } from './websocket.service';
 
@@ -15,7 +15,7 @@ export class ThreadsService {
   public selectedConversationObserver: Observer<any>;
 
   constructor(
-    private conversationService: ConversationService,
+    private conversationService: MessagesService,
     private http: HttpClient,
     private socketService: WebsocketService) {
 

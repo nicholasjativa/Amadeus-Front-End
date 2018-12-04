@@ -12,7 +12,6 @@ import { ConversationComponent } from './components/conversation/conversation.co
 import { EmojiPickerComponent } from './components/emoji-picker/emoji-picker.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
-import { MessageContainerComponent } from './components/message-container/message-container.component';
 import { MessageContainerHeaderComponent } from './components/message-container-header/message-container-header.component';
 import { ResponseAreaComponent } from './components/response-area/response-area.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -22,7 +21,7 @@ import { ThreadTabComponent } from './components/thread-tab/thread-tab.component
 
 import { AuthGuard } from './shared/services/auth.guard';
 import { AuthService } from './shared/services/auth.service';
-import { ConversationService } from './shared/services/conversation.service';
+import { MessagesService } from './shared/services/messages.service';
 import { EmojiSelectorService } from './shared/services/emoji-selector.service';
 import { UserService } from './shared/services/user.service';
 import { WebsocketService } from './shared/services/websocket.service';
@@ -35,6 +34,7 @@ import { UserEffects } from './store/effects/user';
 import { StoreModule } from '@ngrx/store';
 import { AmadeusReducers } from './store/reducers/root';
 import { ThreadsEffects } from './store/effects/threads';
+import { MessagesEffects } from './store/effects/messages';
 
 
 @NgModule({
@@ -42,7 +42,6 @@ import { ThreadsEffects } from './store/effects/threads';
     AppComponent,
     SidebarComponent,
     ThreadTabComponent,
-    MessageContainerComponent,
     MessageContainerHeaderComponent,
     ResponseAreaComponent,
     ConversationComponent,
@@ -61,7 +60,7 @@ import { ThreadsEffects } from './store/effects/threads';
     ReactiveFormsModule,
     RoutingModule,
     StoreModule.forRoot(AmadeusReducers),
-    EffectsModule.forRoot([ThreadsEffects, UserEffects])
+    EffectsModule.forRoot([ThreadsEffects, UserEffects, MessagesEffects])
   ],
   providers: [
     {
@@ -71,7 +70,7 @@ import { ThreadsEffects } from './store/effects/threads';
     },
     AuthGuard,
     AuthService,
-    ConversationService,
+    MessagesService,
     EmojiSelectorService,
     UserService,
     WebsocketService,

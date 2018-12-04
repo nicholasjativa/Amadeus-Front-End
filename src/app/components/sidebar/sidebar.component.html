@@ -4,5 +4,5 @@
   *ngFor="let thread of threads" 
   [class.active]="true"
   [conversationInfo]="thread"
-  (click)="handleConversationClick(conversation)"></amadeus-thread-tab>
+  (click)="load.emit(thread)"></amadeus-thread-tab>
 </div>

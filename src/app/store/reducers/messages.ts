@@ -1,10 +1,11 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { MessageActionTypes } from '../action-types/messages';
+import { Message } from '../../models/message';
 
 export interface MessagesState {
     conversations: any[][],
-    currentlySelectedConversation: any[],
-    currentlySelectedConversationId: string,
+    currentlySelectedConversation: Message[],
+    currentlySelectedConversationPhoneNumber: string,
     loaded: boolean,
     loading: boolean
 }
@@ -12,7 +13,7 @@ export interface MessagesState {
 export const initialState: MessagesState = {
     conversations: [],
     currentlySelectedConversation: [],
-    currentlySelectedConversationId: "",
+    currentlySelectedConversationPhoneNumber: "",
     loaded: false,
     loading: false
 };
@@ -21,17 +22,17 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
 
     switch(action.type) {
         
-        case MessageActionTypes.LOAD_MESSAGES: {
+        case MessageActionTypes.LOAD_MESSAGES_BY_THREAD: {
 
-            const currentlySelectedConversationId: string = action.payload;
+            const currentlySelectedConversationPhoneNumber: string = action.payload.address;
             const loading: boolean = true;
 
-            return { ...state, currentlySelectedConversationId, loading };
+            return { ...state, currentlySelectedConversationPhoneNumber, loading };
         }
 
-        case MessageActionTypes.LOAD_MESSAGES_SUCCESS: {
+        case MessageActionTypes.LOAD_MESSAGES_BY_THREAD_SUCCESS: {
 
-            const currentlySelectedConversation: any[] = action.payload;
+            const currentlySelectedConversation: Message[] = action.payload;
             const conversations: any[][] = [ ...state.conversations, currentlySelectedConversation ];
             const loading: boolean = false;
             const loaded: boolean = true;
@@ -43,8 +44,3 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
             return state;
     }
 };
-
-export const getConversations: Function = (state: MessagesState): any[] => state.conversations;
-export const getCurrentConversation: Function = (state: MessagesState): any[] => state.currentlySelectedConversation;
-export const getLoaded: Function = (state: MessagesState): boolean => state.loaded;
-export const getLoading: Function = (state: MessagesState): boolean => state.loading;

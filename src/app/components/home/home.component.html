@@ -1,8 +1,11 @@
 <div class="container">
-    <amadeus-sidebar 
-    [class.show-mobile]="threadsService.show"
-    [threads]="threads"
-    >
+    <amadeus-sidebar [class.show-mobile]="threadsService.show" [threads]="threads" (load)="loadMessages($event)">
     </amadeus-sidebar>
-    <amadeus-message-container></amadeus-message-container>
+    <div class="message-container">
+        <amadeus-message-container-header></amadeus-message-container-header>
+        <!-- <amadeus-settings-button></amadeus-settings-button> -->
+        <amadeus-conversation></amadeus-conversation>
+        <amadeus-connection-status></amadeus-connection-status>
+        <amadeus-response-area></amadeus-response-area>
+    </div>
 </div>

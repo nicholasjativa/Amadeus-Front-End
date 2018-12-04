@@ -6,18 +6,18 @@ import { HttpClient } from '@angular/common/http';
 import { share } from 'rxjs/operators';
 
 @Injectable()
-export class ConversationService {
+export class MessagesService {
   public textsMessagesObserver: Observer<any>;
   public textsMessagesObservable: Observable<any>;
 
   constructor(private http: HttpClient , private socketService: WebsocketService) {
-    this.textsMessagesObservable = new Observable(observer => {
+    this.textsMessagesObservable = new Observable(observer => {``
       this.textsMessagesObserver = observer;
     });
     this.socketService.initSocket();
   }
 
-  public getConversationMessages(phone_num_clean: number) {
+  public getMessages(phone_num_clean: string): Observable<any> {
     return this.http.post(`${environment.API_URL}/texts/getConversationMessages`, {
       phone_num_clean
     });
