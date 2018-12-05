@@ -1,15 +1,15 @@
 <div class="datetime-container" *ngIf="shouldDisplayTime">
-  <span class="date">{{ now == date ? 'Today' : date }}</span>
+  <span class="date">{{ now == date ? 'Today' : date }} </span>
   <span class="time">{{time}}</span>
 </div>
-<div [ngClass]="{'sent-text-container': textInfo.fromPhoneNumber === 'USER_PHONE_NUMBER', 'received-text-container': textInfo.fromPhoneNumber !== 'USER_PHONE_NUMBER'}">
-  <div [ngClass]="{'sent-bubble': textInfo.fromPhoneNumber === 'USER_PHONE_NUMBER', 'received-bubble': textInfo.fromPhoneNumber !== 'USER_PHONE_NUMBER'}">
-    {{textInfo.textMessageBody}}
+<div [ngClass]="{'sent-text-container': message.fromPhoneNumber === userPhoneNumber, 'received-text-container': message.fromPhoneNumber !== userPhoneNumber }">
+  <div [ngClass]="{'sent-bubble': message.fromPhoneNumber === userPhoneNumber, 'received-bubble': message.fromPhoneNumber !== userPhoneNumber }">
+    {{message.textMessageBody}}
   </div>
 </div>
-<div class="status-container" *ngIf="textInfo.status == 'pending' && textInfo.fromPhoneNumber == 'USER_PHONE_NUMBER'">
+<div class="status-container" *ngIf="message.status == 'pending' && message.fromPhoneNumber == userPhoneNumber ">
   Sending..
 </div>
-<div class="status-container" *ngIf="textInfo.status == 'gcm_success' && shouldShowDelivered">
+<div class="status-container" *ngIf="message.status == 'gcm_success' && shouldShowDelivered">
   Delivered
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { Store, select } from '@ngrx/store';
-import { AmadeusState, selectThreadsState, selectMessagesState } from '../../store/reducers/root';
+import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState } from '../../store/reducers/root';
 import * as ThreadsActions from '../../store/actions/threads';
 import * as MessagesActions from '../../store/actions/messages';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { ThreadsState } from '../../store/reducers/threads';
 import { MessagesState } from '../../store/reducers/messages';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
+import { UserState } from '../../store/reducers/user';
 
 @Component({
   selector: 'amadeus-home',
@@ -17,17 +18,20 @@ import { Conversation } from '../../models/conversation';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public threads: Thread[];
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";
   public messages: Message[];
+  public threads: Thread[];
+  public userPhoneNumber: string;
   private getThreadsState: Observable<ThreadsState>;
   private getMessagesState: Observable<MessagesState>;
+  private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
     this.getMessagesState = this.store.pipe(select(selectMessagesState));
+    this.getUserState = this.store.pipe(select(selectUserState));
   }
 
   public ngOnInit(): void {
@@ -45,6 +49,10 @@ export class HomeComponent implements OnInit {
       this.conversation = state.currentlySelectedConversation;
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
       this.messages = state.currentlySelectedConversation.messages;
+    });
+    this.getUserState.subscribe(state => {
+
+      this.userPhoneNumber = "6313360360"; // TODO state.user.phoneNumber;
     });
   }
 

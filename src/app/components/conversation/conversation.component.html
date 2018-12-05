@@ -4,5 +4,6 @@
         *ngFor="let message of messages; let i = index;"
         [shouldDisplayTime]="checkIfShouldDisplayTime(messages[i-1], messages[i])"
         [shouldShowDelivered]="checkIfShouldShowDelivered(messages)" 
-        [textInfo]="message"></amadeus-text>
+        [message]="message"
+        [userPhoneNumber]="userPhoneNumber"></amadeus-text>
 </div>

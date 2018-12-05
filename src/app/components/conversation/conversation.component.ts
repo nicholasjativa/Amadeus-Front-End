@@ -15,6 +15,7 @@ export class ConversationComponent implements OnInit {
   currentConversation;
   ioConnection;
   @Input() public messages: Message[];
+  @Input() public userPhoneNumber: string;
 
   constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService) {
     this.threadsService.selectedConversationObservable
