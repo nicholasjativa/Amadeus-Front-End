@@ -1,18 +1,24 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { MessageActionTypes } from '../action-types/messages';
 import { Message } from '../../models/message';
+import { Conversation } from '../../models/conversation';
+import { Conversations } from '../../models/conversations';
 
 export interface MessagesState {
-    conversations: any[][],
-    currentlySelectedConversation: Message[],
+    conversations: Conversations,
+    currentlySelectedConversation: Conversation,
     currentlySelectedConversationPhoneNumber: string,
     loaded: boolean,
     loading: boolean
 }
 
 export const initialState: MessagesState = {
-    conversations: [],
-    currentlySelectedConversation: [],
+    conversations: {},
+    currentlySelectedConversation: {
+        name: "",
+        address: "",
+        messages: []
+    },
     currentlySelectedConversationPhoneNumber: "",
     loaded: false,
     loading: false
@@ -32,12 +38,13 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
 
         case MessageActionTypes.LOAD_MESSAGES_BY_THREAD_SUCCESS: {
 
-            const currentlySelectedConversation: Message[] = action.payload;
-            const conversations: any[][] = [ ...state.conversations, currentlySelectedConversation ];
-            const loading: boolean = false;
-            const loaded: boolean = true;
+            const conversation: Conversation = action.payload;
+            const currentlySelectedConversation: Conversation = conversation;
+            const phoneNumber: string = conversation.address;
+            let conversations: Conversations = { ...state.conversations };
+            conversations[phoneNumber] = conversation;
 
-            return { ...state, conversations, currentlySelectedConversation, loading, loaded };
+            return { ...state, conversations, currentlySelectedConversation };
         }
 
         default:

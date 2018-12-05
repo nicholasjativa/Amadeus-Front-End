@@ -1,8 +1,8 @@
-<div class="thread-tab" *ngIf="conversationInfo.name || conversationInfo.address">
+<div class="thread-tab" *ngIf="thread.name || thread.address">
   <div class="icon"></div>
   <div class="details">
-    <span class="name">{{ conversationInfo.name ? conversationInfo.name : conversationInfo.address  }}</span>
-    <span class="time">{{ conversationInfo.timestamp }}</span>
-    <div class="message">{{ conversationInfo.body }}</div>
+    <span class="name">{{ thread.name }}</span>
+    <span class="time">{{ thread.timestamp }}</span>
+    <div class="message">{{ thread.body }}</div>
   </div>
 </div>

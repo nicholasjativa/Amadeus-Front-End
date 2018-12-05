@@ -2,7 +2,7 @@
     display: none;
 }
 
-.container::-webkit-scrollbar {
+.text-messages-container::-webkit-scrollbar {
     display: none;
 }
 

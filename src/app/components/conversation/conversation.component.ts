@@ -14,11 +14,9 @@ import { Message } from '../../models/message';
 export class ConversationComponent implements OnInit {
   currentConversation;
   ioConnection;
-  notificationSound;
   @Input() public messages: Message[];
 
   constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService) {
-    this.notificationSound = new Audio('assets/audio/quite-impressed.mp3');
     this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
         const phone_num_clean: string = conversation.address; // TODO use phone_num_clean in obj
@@ -28,32 +26,32 @@ export class ConversationComponent implements OnInit {
     this.cs.listenForMessageFromAndroid()
       .subscribe(text => {
         if (this.currentConversation.address == text.fromPhoneNumber) {
-          this.notificationSound.play();
-          this.texts.push(text);
+          // this.notificationSound.play();
+          this.messages.push(text);
         }
       });
     this.cs.listenForOwnMessageSentOnAndroid()
       .subscribe(text => {
         if (text.toPhoneNumber === this.currentConversation.address) {
-          this.texts.push(text);
+          this.messages.push(text);
         }
       });
     this.cs.listenForOutgoingMessageAcknowledgement()
       .subscribe(text => {
-        this.texts.push(text);
+        this.messages.push(text);
       });
     this.cs.listenForSendToAndroidSuccessful()
       .subscribe(text => {
-        for (let i = 0; i < this.texts.length; i++) {
-          if (this.texts[i].amadeusId == text.amadeusId) {
-            this.texts[i].status = "gcm_success";
+        for (let i = 0; i < this.messages.length; i++) {
+          if (this.messages[i].amadeusId == text.amadeusId) {
+            this.messages[i].status = "gcm_success";
           }
         }
       });
     this.cs.textsMessagesObservable.subscribe(text => {
       let mytext = text;
       mytext.phoneNumber = 'USER_PHONE_NUMBER';
-      this.texts.push(mytext);
+      this.messages.push(mytext);
     });
   }
 

@@ -7,6 +7,7 @@ import * as MessageActions from '../actions/messages';
 import { MessagesService } from '../../shared/services/messages.service';
 import { Thread } from '../../models/thread';
 import { Message } from '../../models/message';
+import { Conversation } from '../../models/conversation';
 
 
 @Injectable()
@@ -27,6 +28,6 @@ export class MessagesEffects {
             const phoneNumber: string = thread.address;
 
             return this.messagesService.getMessages(phoneNumber)
-                .map((messages: Message[]) => new MessageActions.LoadMessagesByThreadSuccess(messages));
+                .map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation));
         });
 }

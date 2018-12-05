@@ -2,7 +2,7 @@
   <amadeus-searchbar></amadeus-searchbar>
   <amadeus-thread-tab 
   *ngFor="let thread of threads" 
-  [class.active]="true"
-  [conversationInfo]="thread"
+  [class.active]="thread.address === currentlySelectedConversationPhoneNumber"
+  [thread]="thread"
   (click)="load.emit(thread)"></amadeus-thread-tab>
 </div>

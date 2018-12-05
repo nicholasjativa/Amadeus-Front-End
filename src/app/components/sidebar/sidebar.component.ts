@@ -12,6 +12,7 @@ import { Thread } from '../../models/thread';
 })
 export class SidebarComponent implements OnInit {
   public selectedThread;
+  @Input() public currentlySelectedConversationPhoneNumber: string;
   @Input() public threads: Thread[];
   @Output() public load: EventEmitter<Thread> = new EventEmitter<Thread>();
 

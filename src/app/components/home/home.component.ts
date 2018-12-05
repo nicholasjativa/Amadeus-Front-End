@@ -9,6 +9,7 @@ import { Thread } from '../../models/thread';
 import { ThreadsState } from '../../store/reducers/threads';
 import { MessagesState } from '../../store/reducers/messages';
 import { Message } from '../../models/message';
+import { Conversation } from '../../models/conversation';
 
 @Component({
   selector: 'amadeus-home',
@@ -16,10 +17,13 @@ import { Message } from '../../models/message';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public threads: Thread[];
+  public conversation: Conversation;
+  public currentlySelectedConversationPhoneNumber: string = "";
+  public messages: Message[];
   private getThreadsState: Observable<ThreadsState>;
   private getMessagesState: Observable<MessagesState>;
-  public threads: Thread[];
-  public messages: Message[]; 
+  private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
@@ -31,14 +35,20 @@ export class HomeComponent implements OnInit {
     this.getThreadsState.subscribe(state => {
 
       this.threads = state.threads;
+      if (this.threads.length) {
+        const mostRecentThread: Thread = this.threads[0];
+        this.store.dispatch(new MessagesActions.LoadMessagesByThread(mostRecentThread));
+      }
     });
     this.getMessagesState.subscribe(state => {
-
-      this.messages = state.currentlySelectedConversation;
+      
+      this.conversation = state.currentlySelectedConversation;
+      this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
+      this.messages = state.currentlySelectedConversation.messages;
     });
   }
 
-  public loadMessages(thread: string): void {
+  public loadMessages(thread: Thread): void {
     this.store.dispatch(new MessagesActions.LoadMessagesByThread(thread));
   }
 

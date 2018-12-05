@@ -29,6 +29,7 @@
     background-color: #fff;
     border-radius: 50%;
     display: inline-block;
+    flex-shrink: 0;
     height: 100%;
     margin-right: 10px;
     width: 80px;
@@ -42,7 +43,6 @@
     color: #464545;
     font-weight: bolder;
 }
-
 
 .thread-tab {
     box-sizing: border-box;
