@@ -22,7 +22,8 @@ export function userReducer(state: UserState = initialState, action): UserState 
                 isAuthenticated: true,
                 user: {
                     emailAddress: action.payload.emailAddress,
-                    id: action.payload.id
+                    id: action.payload.id,
+                    phoneNumber: '6313360360' // TODO this needs to come from the login endpoint
                 }
             }
         }
