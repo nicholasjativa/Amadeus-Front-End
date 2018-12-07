@@ -14,7 +14,6 @@ export class WebsocketService {
     this.socket = SocketIOClient(environment.WS_URL);
     this.socket.on('connect', () => {
 
-      console.log("Initializing Knightmare Frame control system..");
     });
 
     this.onMessage().subscribe(data => console.log(data));
