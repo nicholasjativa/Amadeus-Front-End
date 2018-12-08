@@ -7,7 +7,7 @@ import { Thread } from '../../models/thread';
   styleUrls: ['./thread-tab.component.css']
 })
 export class ThreadTabComponent implements OnInit {
-  @Input() thread: Thread;
+  @Input() public thread: Thread;
 
   constructor() { 
   }
