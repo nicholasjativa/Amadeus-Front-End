@@ -6,7 +6,9 @@
         (load)="loadMessages($event)">
     </amadeus-sidebar>
     <div class="message-container">
-        <amadeus-message-container-header></amadeus-message-container-header>
+        <amadeus-message-container-header
+            [headerInfo]="conversation">
+        </amadeus-message-container-header>
         <!-- <amadeus-settings-button></amadeus-settings-button> -->
         <amadeus-conversation 
         [messages]="messages"
