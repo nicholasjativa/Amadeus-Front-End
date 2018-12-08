@@ -35,6 +35,7 @@ import { StoreModule } from '@ngrx/store';
 import { AmadeusReducers } from './store/reducers/root';
 import { ThreadsEffects } from './store/effects/threads';
 import { MessagesEffects } from './store/effects/messages';
+import { AppEffects } from './store/effects/app';
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import { MessagesEffects } from './store/effects/messages';
     ReactiveFormsModule,
     RoutingModule,
     StoreModule.forRoot(AmadeusReducers),
-    EffectsModule.forRoot([ThreadsEffects, UserEffects, MessagesEffects])
+    EffectsModule.forRoot([ThreadsEffects, UserEffects, MessagesEffects, AppEffects])
   ],
   providers: [
     {

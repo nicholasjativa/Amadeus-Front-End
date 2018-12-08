@@ -16,7 +16,7 @@ export function appReducer(state: AppState = initialState, action) {
 
     switch (action.type) {
 
-        case AppActionTypes.WEBSOCKET_CONNECTION_OPEN_SUCCESS: {
+        case AppActionTypes.OPEN_WEBSOCKET_CONNECTION_SUCCESS: {
 
             const socket: SocketIOClient.Socket = action.payload.socket;
 

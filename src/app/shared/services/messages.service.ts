@@ -14,7 +14,6 @@ export class MessagesService {
     this.textsMessagesObservable = new Observable(observer => {``
       this.textsMessagesObserver = observer;
     });
-    this.socketService.initSocket();
   }
 
   public getMessages(phone_num_clean: string): Observable<any> {

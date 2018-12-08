@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState } from '../../store/reducers/root';
 import * as ThreadsActions from '../../store/actions/threads';
 import * as MessagesActions from '../../store/actions/messages';
+import * as AppActions from '../../store/actions/app';
 import { Observable } from 'rxjs';
 import { Thread } from '../../models/thread';
 import { ThreadsState } from '../../store/reducers/threads';
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
     this.getMessagesState = this.store.pipe(select(selectMessagesState));
     this.getUserState = this.store.pipe(select(selectUserState));
+    this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }
 
   public ngOnInit(): void {
@@ -52,7 +54,7 @@ export class HomeComponent implements OnInit {
     });
     this.getUserState.subscribe(state => {
 
-      this.userPhoneNumber = "6313360360"; // TODO state.user.phoneNumber;
+      this.userPhoneNumber = state.user.phoneNumber;
     });
   }
 

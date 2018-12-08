@@ -1,14 +1,14 @@
 import { Action } from '@ngrx/store';
 import { AppActionTypes } from '../action-types/app';
 
-export class WebSocketConnectionOpen implements Action {
-    public readonly type: string = AppActionTypes.WEBSOCKET_CONNECTION_OPEN;
+export class OpenWebSocketConnection implements Action {
+    public readonly type: string = AppActionTypes.OPEN_WEBSOCKET_CONNECTION;
 }
 
-export class WebSocketConnectionOpenSuccess implements Action {
-    public readonly type: string = AppActionTypes.WEBSOCKET_CONNECTION_OPEN_SUCCESS;
+export class OpenWebSocketConnectionSuccess implements Action {
+    public readonly type: string = AppActionTypes.OPEN_WEBSOCKET_CONNECTION_SUCCESS;
 }
 
-export class WebSocketConnectionOpenError implements Action {
-    public readonly type: string = AppActionTypes.WEBSOCKET_CONNECTION_OPEN_ERROR;
+export class OpenWebSocketConnectionError implements Action {
+    public readonly type: string = AppActionTypes.OPEN_WEBSOCKET_CONNECTION_ERROR;
 }

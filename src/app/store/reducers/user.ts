@@ -3,12 +3,12 @@ import { User } from '../../models/user';
 
 export interface UserState {
     isAuthenticated: boolean;
-    user: User | null;
+    user: User;
 }
 
 export const initialState: UserState = {
     isAuthenticated: false,
-    user: null
+    user: { id: undefined, emailAddress: "", phoneNumber: "" }
 };
 
 export function userReducer(state: UserState = initialState, action): UserState {
