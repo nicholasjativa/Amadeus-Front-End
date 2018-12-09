@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewChecked } from '@angular/core';
 import { MessagesService } from '../../shared/services/messages.service';
 import { WebsocketService } from '../../shared/services/websocket.service';
 import { Observer } from 'rxjs/Observer';
@@ -11,13 +11,14 @@ import { Message } from '../../models/message';
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.css']
 })
-export class ConversationComponent implements OnInit {
+export class ConversationComponent implements OnInit, AfterViewChecked {
   currentConversation;
   ioConnection;
   @Input() public messages: Message[];
   @Input() public userPhoneNumber: string;
+  @ViewChild('container') public conversationEl: ElementRef; 
 
-  constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService) {
+  constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService, private renderer: Renderer2) {
     this.threadsService.selectedConversationObservable
       .subscribe(conversation => {
         const phone_num_clean: string = conversation.address; // TODO use phone_num_clean in obj
@@ -56,8 +57,11 @@ export class ConversationComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+  }
 
+  public ngAfterViewChecked(): void {
+    this.renderer.setProperty(this.conversationEl.nativeElement, 'scrollTop', this.conversationEl.nativeElement.scrollHeight);
   }
 
   checkIfShouldShowDelivered(message): boolean {

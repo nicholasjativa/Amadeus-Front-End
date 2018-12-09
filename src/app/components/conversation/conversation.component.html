@@ -1,5 +1,4 @@
-<div class="text-messages-container" #container 
-    [scrollTop]="container.scrollHeight">
+<div class="text-messages-container" #container>
     <amadeus-text 
         *ngFor="let message of messages; let i = index;"
         [shouldDisplayTime]="checkIfShouldDisplayTime(messages[i-1], messages[i])"
