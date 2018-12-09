@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { WebsocketService } from '../../shared/services/websocket.service';
 
 @Component({
@@ -7,21 +7,12 @@ import { WebsocketService } from '../../shared/services/websocket.service';
   styleUrls: ['./connection-status.component.css']
 })
 export class ConnectionStatusComponent implements OnInit {
-  public disconnected: boolean = false;
-  public hide: boolean = true;
+  @Input() public connected: boolean;
 
-  constructor(private ws: WebsocketService) {
-    this.ws.onSocketDisconnect()
-      .subscribe(disconnected => this.disconnected = disconnected);
-    this.ws.onSocketConnect()
-      .subscribe(connected => this.disconnected = !connected);
-   }
-
-  public ngOnInit(): void {
+  constructor() {
   }
 
-  public handleCloseClick(): void {
-    this.disconnected = false;
+  public ngOnInit(): void {
   }
 
 }

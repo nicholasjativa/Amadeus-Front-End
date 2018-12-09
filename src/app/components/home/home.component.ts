@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { Store, select } from '@ngrx/store';
-import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState } from '../../store/reducers/root';
+import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState, selectAppState } from '../../store/reducers/root';
 import * as ThreadsActions from '../../store/actions/threads';
 import * as MessagesActions from '../../store/actions/messages';
 import * as AppActions from '../../store/actions/app';
@@ -12,6 +12,7 @@ import { MessagesState } from '../../store/reducers/messages';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { UserState } from '../../store/reducers/user';
+import { AppState } from '../../store/reducers/app';
 
 @Component({
   selector: 'amadeus-home',
@@ -22,14 +23,17 @@ export class HomeComponent implements OnInit {
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";
   public messages: Message[];
+  public socketConnected: boolean;
   public threads: Thread[];
   public userPhoneNumber: string;
+  private getAppState: Observable<AppState>;
   private getThreadsState: Observable<ThreadsState>;
   private getMessagesState: Observable<MessagesState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
+    this.getAppState = this.store.pipe(select(selectAppState));
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
     this.getMessagesState = this.store.pipe(select(selectMessagesState));
     this.getUserState = this.store.pipe(select(selectUserState));
@@ -38,6 +42,9 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(new ThreadsActions.LoadAllThreads());
+    this.getAppState.subscribe(state => {
+      this.socketConnected = state.socketConnected;
+    });
     this.getThreadsState.subscribe(state => {
 
       this.threads = state.threads;
@@ -53,7 +60,6 @@ export class HomeComponent implements OnInit {
       this.messages = state.currentlySelectedConversation.messages;
     });
     this.getUserState.subscribe(state => {
-
       this.userPhoneNumber = state.user.phoneNumber;
     });
   }

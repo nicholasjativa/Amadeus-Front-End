@@ -1,4 +1,4 @@
-<div class="container" *ngIf="disconnected">
+<div class="container" *ngIf="!connected">
   <span>Connection lost.. Attempting to reconnect</span>
   <span class="icon" (click)="handleCloseClick()">X</span>
 </div>

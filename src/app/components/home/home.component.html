@@ -6,15 +6,13 @@
         (load)="loadMessages($event)">
     </amadeus-sidebar>
     <div class="message-container">
-        <amadeus-message-container-header
-            [headerInfo]="conversation">
-        </amadeus-message-container-header>
+        <amadeus-message-container-header [headerInfo]="conversation"></amadeus-message-container-header>
         <!-- <amadeus-settings-button></amadeus-settings-button> -->
         <amadeus-conversation 
         [messages]="messages"
         [userPhoneNumber]="userPhoneNumber">
         </amadeus-conversation>
-        <amadeus-connection-status></amadeus-connection-status>
+        <amadeus-connection-status [connected]="socketConnected"></amadeus-connection-status>
         <amadeus-response-area></amadeus-response-area>
     </div>
 </div>

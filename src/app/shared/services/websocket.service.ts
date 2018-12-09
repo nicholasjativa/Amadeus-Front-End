@@ -3,18 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import * as SocketIOClient from 'socket.io-client';
+import { Store } from '@ngrx/store';
+import { AmadeusState } from '../../store/reducers/root';
+import { OpenWebSocketConnectionSuccess, OpenWebSocketConnectionError } from '../../store/actions/app';
 
 @Injectable()
 export class WebsocketService {
   private socket: SocketIOClient.Socket;
 
-  constructor() {}
+  constructor(private store: Store<AmadeusState>) {}
 
   public initSocket(): void {
     this.socket = SocketIOClient(environment.WS_URL);
-    this.socket.on('connect', () => {
 
-    });
+    this.socket.on('connect', () => this.store.dispatch(new OpenWebSocketConnectionSuccess()));
+    this.socket.on('connect_error', () => this.store.dispatch(new OpenWebSocketConnectionError()));
 
     this.onMessage().subscribe(data => console.log(data));
   }
@@ -54,12 +57,6 @@ export class WebsocketService {
       this.socket.on("sendToAndroidSuccessful", (message) => {
         observer.next(message);
       })
-    });
-  }
-
-  public onSocketDisconnect(): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      this.socket.on("disconnect", () => observer.next(true));
     });
   }
 

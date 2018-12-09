@@ -9,7 +9,7 @@ export interface AppState {
 export const initialState: AppState = {
     socket: undefined,
     socketConnecting: false,
-    socketConnected: true
+    socketConnected: false
 }
 
 export function appReducer(state: AppState = initialState, action) {
@@ -18,9 +18,18 @@ export function appReducer(state: AppState = initialState, action) {
 
         case AppActionTypes.OPEN_WEBSOCKET_CONNECTION_SUCCESS: {
 
-            const socket: SocketIOClient.Socket = action.payload.socket;
+            // const socket: SocketIOClient.Socket = action.payload.socket;
 
-            return { ...state, socket }
+            return { ...state, socketConnecting: false, socketConnected: true }
         }
+
+        case AppActionTypes.OPEN_WEBSOCKET_CONNECTION_ERROR: {
+
+            return { ...state, socketConnecting: false, socketConnected: false }
+        }
+
+        default:
+
+            return state;
     }
 }
