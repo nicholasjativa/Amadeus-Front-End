@@ -42,7 +42,8 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
             let pos = threads.findIndex((thread: Thread) => thread.address === preview.address);
 
             if (pos > -1) {
-                threads.splice(pos, 1, preview);
+                threads.splice(pos, 1);
+                threads.unshift(preview);
             } else {
                 threads.unshift(preview);
             }
