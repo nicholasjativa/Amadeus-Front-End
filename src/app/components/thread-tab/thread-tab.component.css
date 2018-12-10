@@ -1,6 +1,11 @@
 :host.active .thread-tab, :host.active .name{
     background-color: rgb(21, 108, 213);
-    color: #fff;
+    color: #979ca8;
+}
+
+:host.active .icon {
+    background-color: #ffffff;
+    color: #979ca8;
 }
 
 /* consolidate TODO*/
