@@ -26,19 +26,19 @@ export class WebsocketService {
     this.socket.on('message', (data) => console.log(data));
 
     this.socket.on('receivedMessageFromAndroid', (message: AndroidMessage) =>
-      new ReceivedAndroidMessage(message));
+      this.store.dispatch(new ReceivedAndroidMessage(message)));
     
     this.socket.on('ownMessageSentOnAndroid', (message) => null);
     
     this.socket.on('sendOutgoingMessageUpstreamToWebsocketWithInitialState', (message: AmadeusMessageStatus) =>
-      new ReceivedAmadeusMessageStatus(message));
+      this.store.dispatch(new ReceivedAmadeusMessageStatus(message)));
 
     this.socket.on('sendToAndroidSuccessful', (message: AmadeusMessageStatus) =>
-      new AndroidReceivedAmadeusMessage(message));
+      this.store.dispatch(new AndroidReceivedAmadeusMessage(message)));
     
     // TODO this may or may not need to have its own websocket message
     this.socket.on('updateSnippetSidebar', (message: Thread) =>
-      new ReceivedThreadMessage(message));
+      this.store.dispatch(new ReceivedThreadMessage(message)));
   }
 
 }
