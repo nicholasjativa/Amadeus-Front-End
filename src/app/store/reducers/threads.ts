@@ -32,6 +32,24 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
             return { ...state, threads, loaded: true, loading: false }
         }
 
+        case ThreadsActionTypes.RECEIVED_THREAD_MESSAGE: {
+            // this case may not be needed, depending on whether we let
+            // other actions (which give us this info) perform the updating of the sidebar
+
+            const preview: Thread = action.payload;
+            // we may want to use an object for state.threads for easier access
+            let threads = state.threads;
+            let pos = threads.findIndex((thread: Thread) => thread.address === preview.address);
+
+            if (pos > -1) {
+                threads.splice(pos, 1, preview);
+            } else {
+                threads.unshift(preview);
+            }
+
+            return { ...state, threads };
+        }
+
         default:
             
             return state;

@@ -32,19 +32,14 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
     //       this.messages.push(text);
     //     }
     //   });
-    this.cs.listenForSendToAndroidSuccessful()
-      .subscribe(text => {
-        for (let i = 0; i < this.messages.length; i++) {
-          if (this.messages[i].amadeusId == text.amadeusId) {
-            this.messages[i].status = "gcm_success";
-          }
-        }
-      });
-    this.cs.textsMessagesObservable.subscribe(text => {
-      let mytext = text;
-      mytext.phoneNumber = 'USER_PHONE_NUMBER';
-      this.messages.push(mytext);
-    });
+    // this.cs.listenForSendToAndroidSuccessful()
+    //   .subscribe(text => {
+    //     for (let i = 0; i < this.messages.length; i++) {
+    //       if (this.messages[i].amadeusId == text.amadeusId) {
+    //         this.messages[i].status = "gcm_success";
+    //       }
+    //     }
+    //   });
   }
 
   public ngOnInit(): void {
