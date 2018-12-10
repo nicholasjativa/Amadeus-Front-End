@@ -1,5 +1,5 @@
 <div class="thread-tab">
-  <div class="icon"></div>
+  <div class="icon"> {{ thread ? thread.name[0] : "" }}</div>
   <div class="details">
     <span class="name">{{ thread.name }}</span>
     <span class="time">{{ thread.timestamp }}</span>

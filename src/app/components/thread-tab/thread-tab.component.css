@@ -26,12 +26,17 @@
 }
 
 .icon {
-    background-color: #fff;
+    background-color: #979ca8;
     border-radius: 50%;
+    color: #ffffff;
     display: inline-block;
     flex-shrink: 0;
     height: 80px;
+    line-height: 85px;
     margin-right: 10px;
+    font-size: 50px;
+    text-align: center;
+    text-transform: capitalize;
     width: 80px;
 }
 

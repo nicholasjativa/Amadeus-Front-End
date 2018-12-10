@@ -9,7 +9,7 @@ import { Thread } from '../../models/thread';
 export class ThreadTabComponent implements OnInit {
   @Input() public thread: Thread;
 
-  constructor() { 
+  constructor() {
   }
 
   public ngOnInit(): void {
