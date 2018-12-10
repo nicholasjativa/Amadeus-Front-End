@@ -3,4 +3,5 @@ export interface Thread {
     body: string;
     name: string;
     timestamp: string;
+    timeString: string;
 }

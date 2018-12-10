@@ -83,13 +83,13 @@ const addTimeString = (threads: Thread[]) => {
         const date: Date = new Date(timestamp);
 
         if (now.toDateString() === date.toDateString()) {
-            thread['timeString'] = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            thread.timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         } else if (yesterday.toDateString() === date.toDateString()) {
-            thread['timeString'] = 'Yesterday';
+            thread.timeString = 'Yesterday';
         } else if (oneWeekAgo.getTime() > date.getTime()) {
-            thread['timeString'] = date.toLocaleDateString([], { month: '2-digit', day: '2-digit', year: '2-digit' });
+            thread.timeString = date.toLocaleDateString([], { month: '2-digit', day: '2-digit', year: '2-digit' });
         } else {
-            thread['timeString'] = date.toLocaleDateString([], { weekday: 'long' });
+            thread.timeString = date.toLocaleDateString([], { weekday: 'long' });
         }
     });
 }
