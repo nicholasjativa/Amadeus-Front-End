@@ -22,22 +22,6 @@ export class MessagesService {
     });
   }
 
-  public listenForMessageFromAndroid() {
-    return this.socketService.onReceivedMessageFromAndroid().pipe(share());
-  }
-
-  public listenForOwnMessageSentOnAndroid() {
-    return this.socketService.onOwnMessageSentOnAndroid();
-  }
-
-  public listenForOutgoingMessageAcknowledgement() {
-    return this.socketService.onSendOutgoingMessageUpstreamToWebsocketWithInitialState();
-  }
-
-  public listenForSendToAndroidSuccessful() {
-    return this.socketService.onSendToAndroidSuccessful();
-  }
-
   public sendMessageToServer(toPhoneNumber, textMessageBody): void {
     const data = {
       fromPhoneNumber: 'USER_PHONE_NUMBER', // todo: this should be abstracted out somewhere

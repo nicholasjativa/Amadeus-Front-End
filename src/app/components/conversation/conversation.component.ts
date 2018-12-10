@@ -25,13 +25,7 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
         this.currentConversation = conversation;
         
       });
-    this.cs.listenForMessageFromAndroid()
-      .subscribe(text => {
-        if (this.currentConversation.address == text.fromPhoneNumber) {
-          // this.notificationSound.play();
-          this.messages.push(text);
-        }
-      });
+  
     this.cs.listenForOwnMessageSentOnAndroid()
       .subscribe(text => {
         if (text.toPhoneNumber === this.currentConversation.address) {

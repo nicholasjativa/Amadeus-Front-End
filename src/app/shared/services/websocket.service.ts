@@ -6,6 +6,8 @@ import * as SocketIOClient from 'socket.io-client';
 import { Store } from '@ngrx/store';
 import { AmadeusState } from '../../store/reducers/root';
 import { OpenWebSocketConnectionSuccess, OpenWebSocketConnectionError } from '../../store/actions/app';
+import { AndroidMessage } from '../../models/androidMessage';
+import { ReceivedAndroidMessage } from '../../store/actions/androidMessages';
 
 @Injectable()
 export class WebsocketService {
@@ -19,61 +21,18 @@ export class WebsocketService {
     this.socket.on('connect', () => this.store.dispatch(new OpenWebSocketConnectionSuccess()));
     this.socket.on('connect_error', () => this.store.dispatch(new OpenWebSocketConnectionError()));
 
-    this.onMessage().subscribe(data => console.log(data));
-  }
+    this.socket.on('message', (data) => console.log(data));
 
-  public onMessage(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on('message', (data) => observer.next(data));
-    });
-  }
+    this.socket.on('receivedMessageFromAndroid', (message: AndroidMessage) => 
+      new ReceivedAndroidMessage(message));
+    
+    this.socket.on('ownMessageSentOnAndroid', (message) => null);
+    
+    this.socket.on('sendOutgoingMessageUpstreamToWebsocketWithInitialState', (message) => null);
 
-  public onOwnMessageSentOnAndroid(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("ownMessageSentOnAndroid", (message) => observer.next(message));
-    });
-  }
+    this.socket.on('sendToAndroidSuccessful', (message) => null);
 
-  public onReceivedMessageFromAndroid(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("receivedMessageFromAndroid", (message) => observer.next(message));
-    });
-  }
-
-  public onSendInitialMessages(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("sendInitialMessages", (messages) => observer.next(messages));
-    });
-  }
-
-  public onSendOutgoingMessageUpstreamToWebsocketWithInitialState(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("sendOutgoingMessageUpstreamToWebsocketWithInitialState", (message) => observer.next(message));
-    });
-  }
-
-  public onSendToAndroidSuccessful(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("sendToAndroidSuccessful", (message) => {
-        observer.next(message);
-      })
-    });
-  }
-
-  public onSocketConnect(): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      this.socket.on('connect', () => observer.next(true));
-    });
-  }
-
-  public onUpdateSnippetSidebar(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on("updateSnippetSidebar", (message) => observer.next(message));
-    });
-  }
-
-  public send(message): void {
-    this.socket.emit("message", message);
+    this.socket.on('updateSnippetSidebar', (message) => null);
   }
 
   // TODO modify this to handle ACK messages

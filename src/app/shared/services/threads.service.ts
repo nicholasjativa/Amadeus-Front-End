@@ -34,10 +34,6 @@ export class ThreadsService {
     return this.http.get(`${environment.API_URL}/snippets`);
   }
 
-  public listenForSnippetUpdates(): Observable<any> {
-    return this.socketService.onUpdateSnippetSidebar();
-  }
-
   private setTimeStrings(conversations: any[]): any[] {
     let now: Date = new Date();
     let temp: Date = new Date();
