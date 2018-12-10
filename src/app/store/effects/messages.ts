@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { MessageActionTypes } from '../action-types/messages';
@@ -8,6 +8,7 @@ import { MessagesService } from '../../shared/services/messages.service';
 import { Thread } from '../../models/thread';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -21,13 +22,15 @@ export class MessagesEffects {
 
     @Effect()
     public loadMessagesByThread: Observable<Action> = this.actions$
-        .ofType<any>(MessageActionTypes.LOAD_MESSAGES_BY_THREAD)
-        .map(action => action.payload)
-        .switchMap((thread: Thread) => {
+        .pipe(
+            ofType<any>(MessageActionTypes.LOAD_MESSAGES_BY_THREAD),
+            map(action => action.payload),
+            switchMap((thread: Thread) => {
             
-            const phoneNumber: string = thread.address;
-
-            return this.messagesService.getMessages(phoneNumber)
-                .map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation));
-        });
+                const phoneNumber: string = thread.address;
+    
+                return this.messagesService.getMessages(phoneNumber)
+                    .map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation));
+            })
+        );
 }

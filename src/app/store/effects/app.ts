@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AppActionTypes } from '../action-types/app';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { WebsocketService } from '../../shared/services/websocket.service';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -17,10 +18,12 @@ export class AppEffects {
 
     @Effect()
     public openWebSocketConnection: Observable<Action> = this.actions$
-        .ofType<any>(AppActionTypes.OPEN_WEBSOCKET_CONNECTION)
-        .switchMap(() => {
-            
-            this.wss.initSocket();
-            return [];
-        });
+        .pipe(
+            ofType<any>(AppActionTypes.OPEN_WEBSOCKET_CONNECTION),
+            switchMap(() => {
+
+                this.wss.initSocket();
+                return [];
+            })
+        );
 }

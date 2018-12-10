@@ -21,29 +21,33 @@ export class UserEffects {
 
     @Effect()
     public signIn: Observable<Action> = this.actions$
-        .ofType<any>(UserActionTypes.SIGN_IN)
-        .map(action => action.payload)
-        .switchMap(({ emailAddress, password }) => {
+        .pipe(
+            ofType<any>(UserActionTypes.SIGN_IN),
+            map(action => action.payload),
+            switchMap(({ emailAddress, password }) => {
 
-            return this.userService.login(emailAddress, password)
-                .map((user: User) => {
-                    
-                    return new UserActions.UserSignInSuccess(user);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    return [new UserActions.UserSignInError({})];
-                });
-        });
+                return this.userService.login(emailAddress, password)
+                    .map((user: User) => {
+
+                        return new UserActions.UserSignInSuccess(user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        return [new UserActions.UserSignInError({})];
+                    });
+            })
+        );
 
     @Effect()
     public signInSuccess: Observable<Action> = this.actions$
-        .ofType<any>(UserActionTypes.SIGN_IN_SUCCESS)
-        .map(action => action.payload)
-        .switchMap((user: User) => {
+        .pipe(
+            ofType<any>(UserActionTypes.SIGN_IN_SUCCESS),
+            map(action => action.payload),
+            switchMap((user: User) => {
 
-            this.router.navigateByUrl('/home');
-            return [];
-        });
+                this.router.navigateByUrl('/home');
+                return [];
+            })
+        );
 
 }
