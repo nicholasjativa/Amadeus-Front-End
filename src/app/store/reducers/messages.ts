@@ -3,6 +3,8 @@ import { MessageActionTypes } from '../action-types/messages';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { Conversations } from '../../models/conversations';
+import { AndroidMessagesActionTypes } from '../action-types/androidMessages';
+import { AndroidMessage } from '../../models/androidMessage';
 
 export interface MessagesState {
     conversations: Conversations,
@@ -45,6 +47,23 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
             conversations[phoneNumber] = conversation;
 
             return { ...state, conversations, currentlySelectedConversation };
+        }
+
+        case AndroidMessagesActionTypes.RECEIVED_ANDROID_MESSAGE: {
+
+            const androidMessage: AndroidMessage = action.payload;
+            const messagePhoneNumber: string = androidMessage.fromPhoneNumber;
+
+            if (state.currentlySelectedConversationPhoneNumber === messagePhoneNumber) {
+
+                let currentlySelectedConversation = state.currentlySelectedConversation;
+                let currentMessages = state.currentlySelectedConversation.messages;
+                currentlySelectedConversation.messages = [ ...currentMessages, androidMessage ];
+                
+                return { ...state, currentlySelectedConversation }
+            }
+
+            return state;
         }
 
         default:
