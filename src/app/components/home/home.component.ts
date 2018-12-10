@@ -22,7 +22,7 @@ import { AppState } from '../../store/reducers/app';
 export class HomeComponent implements OnInit {
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";
-  public messages: Message[];
+  public messages: any[];
   public socketConnected: boolean;
   public threads: Thread[];
   public userPhoneNumber: string;
@@ -48,9 +48,9 @@ export class HomeComponent implements OnInit {
     this.getThreadsState.subscribe(state => {
 
       this.threads = state.threads;
-      if (this.threads.length) {
+      if (this.threads.length && !state.currentlySelectedThread) {
         const mostRecentThread: Thread = this.threads[0];
-        this.store.dispatch(new MessagesActions.LoadMessagesByThread(mostRecentThread));
+        this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(mostRecentThread));
       }
     });
     this.getMessagesState.subscribe(state => {

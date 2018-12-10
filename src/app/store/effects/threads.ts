@@ -4,6 +4,7 @@ import { ThreadsActionTypes } from '../action-types/threads';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ThreadsService } from '../../shared/services/threads.service';
+import * as MessagesActions from '../actions/messages';
 import * as ThreadsActions from '../actions/threads';
 import { Thread } from '../../models/thread';
 
@@ -30,5 +31,14 @@ export class ThreadsEffects {
 
                     return [new ThreadsActions.LoadAllThreadsError(error)]
                 });
+        });
+    
+    @Effect()
+    public setCurrentlySelectedThread: Observable<Action> = this.actions$
+        .ofType<any>(ThreadsActionTypes.SET_CURRENTLY_SELECTED_THREAD)
+        .map(action => action.payload)
+        .switchMap((thread: Thread) => {
+            
+            return [new MessagesActions.LoadMessagesByThread(thread)];
         });
 }

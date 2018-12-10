@@ -26,3 +26,10 @@ export class ReceivedThreadMessage implements Action {
     constructor(public payload: Thread) {
     }
 }
+
+export class SetCurrentlySelectedThread implements Action {
+    public readonly type: string = ThreadsActionTypes.SET_CURRENTLY_SELECTED_THREAD;
+
+    constructor(public payload: Thread) {
+    }
+}

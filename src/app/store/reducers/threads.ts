@@ -50,6 +50,14 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
             return { ...state, threads };
         }
 
+        case ThreadsActionTypes.SET_CURRENTLY_SELECTED_THREAD: {
+
+            const thread: Thread = action.payload;
+            const currentlySelectedThread: Thread = thread;
+            
+            return { ...state, currentlySelectedThread };
+        }
+
         default:
             
             return state;
