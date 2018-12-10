@@ -26,16 +26,12 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
         
       });
   
-    this.cs.listenForOwnMessageSentOnAndroid()
-      .subscribe(text => {
-        if (text.toPhoneNumber === this.currentConversation.address) {
-          this.messages.push(text);
-        }
-      });
-    this.cs.listenForOutgoingMessageAcknowledgement()
-      .subscribe(text => {
-        this.messages.push(text);
-      });
+    // this.cs.listenForOwnMessageSentOnAndroid()
+    //   .subscribe(text => {
+    //     if (text.toPhoneNumber === this.currentConversation.address) {
+    //       this.messages.push(text);
+    //     }
+    //   });
     this.cs.listenForSendToAndroidSuccessful()
       .subscribe(text => {
         for (let i = 0; i < this.messages.length; i++) {

@@ -5,6 +5,7 @@ import { Conversation } from '../../models/conversation';
 import { Conversations } from '../../models/conversations';
 import { AndroidMessagesActionTypes } from '../action-types/androidMessages';
 import { AndroidMessage } from '../../models/androidMessage';
+import { AmadeusMessageStatus } from '../../models/amadeusMessageStatus';
 
 export interface MessagesState {
     conversations: Conversations,
@@ -55,12 +56,31 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
             const messagePhoneNumber: string = androidMessage.fromPhoneNumber;
 
             if (state.currentlySelectedConversationPhoneNumber === messagePhoneNumber) {
-
+                // TODO add additional logic to add the incoming message to a conversation
+                // in the conversations array IF that message is already cached (exists in the arr)
                 let currentlySelectedConversation = state.currentlySelectedConversation;
                 let currentMessages = state.currentlySelectedConversation.messages;
                 currentlySelectedConversation.messages = [ ...currentMessages, androidMessage ];
                 
-                return { ...state, currentlySelectedConversation }
+                return { ...state, currentlySelectedConversation };
+            }
+
+            return state;
+        }
+
+        case AndroidMessagesActionTypes.RECEIVED_AMADEUS_MESSAGE_STATUS: {
+
+            const amadeusMessage: AmadeusMessageStatus = action.payload;
+            const messagePhoneNumber: string = amadeusMessage.fromPhoneNumber;
+
+            if (state.currentlySelectedConversationPhoneNumber === messagePhoneNumber) {
+                // TODO add additional logic to add the incoming message to a conversation
+                // in the conversations array IF that message is already cached (exists in the arr)
+                let currentlySelectedConversation = state.currentlySelectedConversation;
+                let currentMessages = state.currentlySelectedConversation.messages;
+                currentlySelectedConversation.messages = [ ...currentMessages, amadeusMessage ];
+
+                return { ...state, currentlySelectedConversation };
             }
 
             return state;
