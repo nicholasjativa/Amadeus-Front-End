@@ -4,5 +4,5 @@
   *ngFor="let thread of threads" 
   [class.active]="thread.address === currentlySelectedConversationPhoneNumber"
   [thread]="thread"
-  (click)="load.emit(thread)"></amadeus-thread-tab>
+  (click)="setThreadAsSelected.emit(thread)"></amadeus-thread-tab>
 </div>

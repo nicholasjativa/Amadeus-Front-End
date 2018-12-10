@@ -64,8 +64,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public loadMessages(thread: Thread): void {
-    this.store.dispatch(new MessagesActions.LoadMessagesByThread(thread));
+  public setCurrentlySelectedThread(thread: Thread): void {
+    this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(thread));
   }
 
 }

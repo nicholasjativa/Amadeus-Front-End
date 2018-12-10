@@ -3,7 +3,7 @@
         [class.show-mobile]="threadsService.show"
         [currentlySelectedConversationPhoneNumber]="currentlySelectedConversationPhoneNumber"
         [threads]="threads" 
-        (load)="loadMessages($event)">
+        (setThreadAsSelected)="setCurrentlySelectedThread($event)">
     </amadeus-sidebar>
     <div class="message-container">
         <amadeus-message-container-header [headerInfo]="conversation"></amadeus-message-container-header>
