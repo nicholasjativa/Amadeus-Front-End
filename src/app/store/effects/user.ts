@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { UserActionTypes } from '../action-types/user';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { UserService } from '../../shared/services/user.service';
 import * as UserActions from '../actions/user';
 import { User } from '../../models/user';
@@ -27,14 +27,17 @@ export class UserEffects {
             switchMap(({ emailAddress, password }) => {
 
                 return this.userService.login(emailAddress, password)
-                    .map((user: User) => {
+                    .pipe(
+                        map((user: User) => {
 
-                        return new UserActions.UserSignInSuccess(user);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        return [new UserActions.UserSignInError({})];
-                    });
+                            return new UserActions.UserSignInSuccess(user);
+                        }),
+                        catchError((error) => {
+                            console.log(error);
+                            return [new UserActions.UserSignInError({})];
+                        })
+                    );
+                    
             })
         );
 

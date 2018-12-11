@@ -7,7 +7,7 @@ import { ThreadsService } from '../../shared/services/threads.service';
 import * as MessagesActions from '../actions/messages';
 import * as ThreadsActions from '../actions/threads';
 import { Thread } from '../../models/thread';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ThreadsEffects {
@@ -25,14 +25,17 @@ export class ThreadsEffects {
             switchMap(() => {
 
                 return this.threads.getThreads()
-                    .map((threads: Thread[]) => {
+                    .pipe(
+                        map((threads: Thread[]) => {
 
-                        return new ThreadsActions.LoadAllThreadsSuccess(threads);
-                    })
-                    .catch((error) => {
-
-                        return [new ThreadsActions.LoadAllThreadsError(error)]
-                    });
+                            return new ThreadsActions.LoadAllThreadsSuccess(threads);
+                        }),
+                        catchError((error) => {
+    
+                            return [new ThreadsActions.LoadAllThreadsError(error)]
+                        })
+                    );
+                    
             })
         );
 

@@ -30,7 +30,9 @@ export class MessagesEffects {
                 const phoneNumber: string = thread.address;
     
                 return this.messagesService.getMessages(phoneNumber)
-                    .map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation));
+                    .pipe(
+                        map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation))
+                    );
             })
         );
 }

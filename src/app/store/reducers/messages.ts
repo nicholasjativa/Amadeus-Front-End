@@ -40,7 +40,7 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
         }
 
         case MessageActionTypes.LOAD_MESSAGES_BY_THREAD_SUCCESS: {
-
+            
             const conversation: Conversation = action.payload;
             const currentlySelectedConversation: Conversation = conversation;
             const phoneNumber: string = conversation.address;
