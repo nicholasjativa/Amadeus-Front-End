@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { AmadeusMessage } from '../../models/amadeusMessage';
 
 @Injectable()
 export class MessagesService {
@@ -15,16 +16,8 @@ export class MessagesService {
     });
   }
 
-  public sendMessageToServer(toPhoneNumber, textMessageBody): void {
-    const data = {
-      fromPhoneNumber: '63133600360', // todo: this should be abstracted out somewhere
-      toPhoneNumber,
-      textMessageBody
-    };
+  public sendMessageToServer(message: AmadeusMessage): Observable<any> {
     
-    this.http.post(`${environment.API_URL}/texts/send-to-device`, data)
-      .subscribe(response => {
-        console.log(response);
-      });
+    return this.http.post(`${environment.API_URL}/texts/send-to-device`, message);
   }
 }

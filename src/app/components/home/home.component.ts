@@ -5,6 +5,7 @@ import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState,
 import * as ThreadsActions from '../../store/actions/threads';
 import * as MessagesActions from '../../store/actions/messages';
 import * as AppActions from '../../store/actions/app';
+import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
 import { Thread } from '../../models/thread';
 import { ThreadsState } from '../../store/reducers/threads';
@@ -13,6 +14,7 @@ import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { UserState } from '../../store/reducers/user';
 import { AppState } from '../../store/reducers/app';
+import { AmadeusMessage } from '../../models/amadeusMessage';
 
 @Component({
   selector: 'amadeus-home',
@@ -64,8 +66,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public sendMessage(message): void {
-    // this.cs.sendMessageToServer(this.toPhoneNumber, this.message);
+  public sendMessage(body: string): void {
+    const message: AmadeusMessage = {
+      fromPhoneNumber: this.userPhoneNumber,
+      textMessageBody: body,
+      toPhoneNumber: this.currentlySelectedConversationPhoneNumber
+    };
+
+    this.store.dispatch(new AndroidMessagesActions.SendAmadeusMessage(message));
   }
 
   public setCurrentlySelectedThread(thread: Thread): void {
