@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { MessagesService } from '../../shared/services/messages.service';
-import { ConversationComponent } from '../conversation/conversation.component';
 import { EmojiSelectorService } from '../../shared/services/emoji-selector.service';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { ThreadsService } from '../../shared/services/threads.service';
 
 @Component({
   selector: 'amadeus-response-area',
@@ -21,9 +18,8 @@ export class ResponseAreaComponent implements OnInit {
   public readonly: boolean;
   public toPhoneNumber: string;
 
-  constructor(private cs: MessagesService, private threadsService: ThreadsService, private emoji: EmojiSelectorService) {
-    this.threadsService.selectedConversationObservable
-      .subscribe(conversation => this.toPhoneNumber = conversation.address);
+  constructor(private cs: MessagesService, private emoji: EmojiSelectorService) {
+
   }
 
   ngOnInit() {

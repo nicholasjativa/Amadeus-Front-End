@@ -14,8 +14,7 @@ export class SearchbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleCreateNewConversationClick() {
-    this.threadsService.createConversation();
+  public handleCreateNewConversationClick(): void {
   }
 
 }

@@ -1,19 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
-import { WebsocketService } from './websocket.service';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { share } from 'rxjs/operators';
 
 @Injectable()
 export class MessagesService {
-  public textsMessagesObserver: Observer<any>;
-  public textsMessagesObservable: Observable<any>;
 
-  constructor(private http: HttpClient , private socketService: WebsocketService) {
-    this.textsMessagesObservable = new Observable(observer => {``
-      this.textsMessagesObserver = observer;
-    });
+  constructor(private http: HttpClient) {
   }
 
   public getMessages(phone_num_clean: string): Observable<any> {
@@ -24,7 +17,7 @@ export class MessagesService {
 
   public sendMessageToServer(toPhoneNumber, textMessageBody): void {
     const data = {
-      fromPhoneNumber: 'USER_PHONE_NUMBER', // todo: this should be abstracted out somewhere
+      fromPhoneNumber: '63133600360', // todo: this should be abstracted out somewhere
       toPhoneNumber,
       textMessageBody
     };

@@ -1,11 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewChecked } from '@angular/core';
 import { MessagesService } from '../../shared/services/messages.service';
-import { WebsocketService } from '../../shared/services/websocket.service';
-import { Observer } from 'rxjs/Observer';
-import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../shared/services/user.service';
-import { ThreadsService } from '../../shared/services/threads.service';
 import { Message } from '../../models/message';
+
 @Component({
   selector: 'amadeus-conversation',
   templateUrl: './conversation.component.html',
@@ -18,13 +15,7 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
   @Input() public userPhoneNumber: string;
   @ViewChild('container') public conversationEl: ElementRef; 
 
-  constructor(private cs: MessagesService, private threadsService: ThreadsService, private user: UserService, private renderer: Renderer2) {
-    this.threadsService.selectedConversationObservable
-      .subscribe(conversation => {
-        const phone_num_clean: string = conversation.address; // TODO use phone_num_clean in obj
-        this.currentConversation = conversation;
-        
-      });
+  constructor(private cs: MessagesService, private user: UserService, private renderer: Renderer2) {
   
     // this.cs.listenForOwnMessageSentOnAndroid()
     //   .subscribe(text => {
@@ -49,11 +40,11 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
     this.renderer.setProperty(this.conversationEl.nativeElement, 'scrollTop', this.conversationEl.nativeElement.scrollHeight);
   }
 
-  checkIfShouldShowDelivered(message): boolean {
+  public checkIfShouldShowDelivered(message): boolean {
     return parseInt(message.timestamp) + 10000 > Date.now() && message.fromPhoneNumber === 'USER_PHONE_NUMBER';
   }
 
-  checkIfShouldDisplayTime(previous, next): boolean {
+  public checkIfShouldDisplayTime(previous, next): boolean {
     if (previous === undefined) {
       return true;
     }
