@@ -1,8 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MessagesService } from '../../shared/services/messages.service';
-import { ThreadsService } from '../../shared/services/threads.service';
-import { Store } from '@ngrx/store';
-import { AmadeusState } from '../../store/reducers/root';
 import { Thread } from '../../models/thread';
 
 @Component({
