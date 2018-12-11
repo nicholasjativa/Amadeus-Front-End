@@ -1,6 +1,6 @@
 <div class="container">
     <amadeus-sidebar 
-        [class.show-mobile]="threadsService.show"
+        [class.show-mobile]="false"
         [currentlySelectedConversationPhoneNumber]="currentlySelectedConversationPhoneNumber"
         [threads]="threads" 
         (setThreadAsSelected)="setCurrentlySelectedThread($event)">
