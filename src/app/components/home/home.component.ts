@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getMessagesState.subscribe(state => {
-      
+
       this.conversation = state.currentlySelectedConversation;
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
       this.messages = state.currentlySelectedConversation.messages;
@@ -62,6 +62,10 @@ export class HomeComponent implements OnInit {
     this.getUserState.subscribe(state => {
       this.userPhoneNumber = state.user.phoneNumber;
     });
+  }
+
+  public sendMessage(message): void {
+    // this.cs.sendMessageToServer(this.toPhoneNumber, this.message);
   }
 
   public setCurrentlySelectedThread(thread: Thread): void {

@@ -13,6 +13,6 @@
         [userPhoneNumber]="userPhoneNumber">
         </amadeus-conversation>
         <amadeus-connection-status [connected]="socketConnected"></amadeus-connection-status>
-        <amadeus-response-area></amadeus-response-area>
+        <amadeus-response-area (sendMessage)="sendMessage($event)"></amadeus-response-area>
     </div>
 </div>
