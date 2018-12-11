@@ -69,9 +69,9 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
         }
 
         case AndroidMessagesActionTypes.RECEIVED_AMADEUS_MESSAGE_STATUS: {
-
+            
             const amadeusMessage: AmadeusMessageStatus = action.payload;
-            const messagePhoneNumber: string = amadeusMessage.fromPhoneNumber;
+            const messagePhoneNumber: string = amadeusMessage.toPhoneNumber;
 
             if (state.currentlySelectedConversationPhoneNumber === messagePhoneNumber) {
                 // TODO add additional logic to add the incoming message to a conversation
