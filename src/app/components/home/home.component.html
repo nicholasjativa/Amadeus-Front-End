@@ -1,12 +1,15 @@
 <div class="container">
     <amadeus-sidebar 
-        [class.show-mobile]="false"
+        [class.hide]="!showSidebarOnMobile"
+        (click)="toggleSidebar()"
         [currentlySelectedConversationPhoneNumber]="currentlySelectedConversationPhoneNumber"
         [threads]="threads" 
         (setThreadAsSelected)="setCurrentlySelectedThread($event)">
     </amadeus-sidebar>
     <div class="message-container">
-        <amadeus-message-container-header [headerInfo]="conversation"></amadeus-message-container-header>
+        <amadeus-message-container-header [headerInfo]="conversation">
+            <a class="title-messages" (click)="toggleSidebar()">Messages </a>
+        </amadeus-message-container-header>
         <!-- <amadeus-settings-button></amadeus-settings-button> -->
         <amadeus-conversation 
         [messages]="messages"

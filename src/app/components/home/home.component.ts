@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   private getMessagesState: Observable<MessagesState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
+  private showSidebarOnMobile: boolean = true;
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
@@ -79,5 +80,9 @@ export class HomeComponent implements OnInit {
   public setCurrentlySelectedThread(thread: Thread): void {
     this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(thread));
   }
+
+  public toggleSidebar(): void {
+    this.showSidebarOnMobile = !this.showSidebarOnMobile;
+  } 
 
 }

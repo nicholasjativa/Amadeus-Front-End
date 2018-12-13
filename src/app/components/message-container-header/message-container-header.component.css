@@ -1,5 +1,13 @@
+:host ::ng-deep a.title-messages {
+    display: none;
+}
+
 form {
     display: inline;
+}
+
+input.messages-sidebar-toggle {
+    display: none;
 }
 
 .header {
@@ -21,13 +29,6 @@ form {
     text-decoration: underline;
 }
 
-.title-messages {
-    display: none;
-    color: #3d80fd;
-    float: left;
-    font-weight: bold;
-}
-
 .title-name {
     background-color: transparent;
     border: none;
@@ -43,8 +44,11 @@ form {
         text-align: center;
     }
 
-    .title-messages {
+    :host ::ng-deep a.title-messages {
+        color: #3d80fd;
         display: initial;
+        float: left;
+        font-weight: bold;
     }
     
     .title-name {

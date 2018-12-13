@@ -1,8 +1,8 @@
 <div class="header">
-  <a class="title-messages"> Messages </a>
+  <ng-content></ng-content>
   <span class="title-to">To:</span>
   <!-- <form [formGroup]="nameForm"> -->
-    <input class="title-name" #nameInput [value]="headerInfo.name" disabled>
+  <input class="title-name" #nameInput [value]="headerInfo.name" disabled>
   <!-- </form> -->
   <a class="title-details">Details</a>
 </div>
