@@ -4,9 +4,7 @@
     id="textbox" 
     #input
     placeholder="Amadeus" 
-    [readonly]="readonly"
     [(ngModel)]="message"
-    (click)="handleClick()"
     (keydown)="handleKeydown($event)"
     (ngModelChange)="handleTextChange($event)">
     <div class="upload-btn-wrapper">
@@ -18,4 +16,7 @@
     <button class="emoji-picker-launcher" (click)="togglePicker($event)">😃</button>
     <span style="color:#d1d1d1" *ngIf="characterCount">{{characterCount}}/160</span>
 </div>
-<amadeus-emoji-picker ></amadeus-emoji-picker>
+<amadeus-emoji-picker
+    [class.show]="this.showEmojiPicker"
+    (emojiSelected)="handleEmojiHasBeenSelected($event);togglePicker()">
+</amadeus-emoji-picker>

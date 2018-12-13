@@ -1,3 +1,11 @@
+amadeus-emoji-picker {
+    display: none;
+}
+
+amadeus-emoji-picker.show {
+    display: block;
+}
+
 input {
     font-size: 15px;
     display: block;

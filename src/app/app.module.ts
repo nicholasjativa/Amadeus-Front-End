@@ -22,7 +22,6 @@ import { ThreadTabComponent } from './components/thread-tab/thread-tab.component
 import { AuthGuard } from './shared/services/auth.guard';
 import { AuthService } from './shared/services/auth.service';
 import { MessagesService } from './shared/services/messages.service';
-import { EmojiSelectorService } from './shared/services/emoji-selector.service';
 import { UserService } from './shared/services/user.service';
 import { WebsocketService } from './shared/services/websocket.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
@@ -73,7 +72,6 @@ import { AndroidMessagesEffects } from './store/effects/androidMessages';
     AuthGuard,
     AuthService,
     MessagesService,
-    EmojiSelectorService,
     UserService,
     WebsocketService,
     ThreadsService

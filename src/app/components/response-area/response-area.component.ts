@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { EmojiSelectorService } from '../../shared/services/emoji-selector.service';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 
@@ -13,23 +12,19 @@ export class ResponseAreaComponent implements OnInit {
   @Output() public sendMessage: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('input') public input: ElementRef;
   public characterCount: number = 0;
-  public message: string;
+  public message: string = "";
   public showEmojiPicker: boolean = false;
   public readonly: boolean;
 
-  constructor(private emoji: EmojiSelectorService) {
+  constructor() {
 
   }
 
-  ngOnInit() {
-    this.emoji.selectedEmoji$.subscribe(emoji => {
-      this.input.nativeElement.focus();
-      this.message = this.message.concat(emoji);
-    });
+  public ngOnInit(): void {
   }
 
-  handleClick() {
-    this.readonly = false;
+  public handleEmojiHasBeenSelected(emoji: string) {
+    this.message = this.message + emoji;
   }
 
   public handleKeydown($event: KeyboardEvent): void {
@@ -49,13 +44,9 @@ export class ResponseAreaComponent implements OnInit {
     }
   }
 
-  togglePicker($event: Event) {
-    $event.preventDefault();
-    $event.stopPropagation();
+  public togglePicker(): void {
 
-    this.readonly = true;
-    this.emoji.toggleEmojiPicker();
-    this.input.nativeElement.focus();
+    this.showEmojiPicker = !this.showEmojiPicker;
   }
 
 }

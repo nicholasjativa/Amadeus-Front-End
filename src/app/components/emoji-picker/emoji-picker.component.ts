@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EmojiSelectorService } from '../../shared/services/emoji-selector.service';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ElementRef, HostListener } from '@angular/core';
 
 
@@ -9,31 +8,18 @@ import { ElementRef, HostListener } from '@angular/core';
   styleUrls: ['./emoji-picker.component.css']
 })
 export class EmojiPickerComponent implements OnInit {
-  public emojiList: any[];
+  @Output() public emojiSelected: EventEmitter<string> = new EventEmitter<string>();
+  public emojiList: string[];
 
-  /*@HostListener('document:click', ['$event'])
-  clickout(event) {
-    if (this.elementRef.nativeElement.contains(event.target)) {
-      console.log('clicked inside');
-    } else {
-      
-      //this.emoji.hideEmojiPicker();
-    }
-  }*/
-
-  constructor(private elementRef: ElementRef, public emoji: EmojiSelectorService) {
+  constructor(private elementRef: ElementRef) {
     this.createEmojiList();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
   createEmojiList() {
     this.emojiList = ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '🤔', '😑', '🙄', '😫', '😴', '😤', '😢', '😭', '😦', '😧', '😨', '😱', '😷', '🙈', '🙉', '🙊', '❤️'];
-  }
-
-  handleEmojiClick(emoji) {
-    this.emoji.selectedEmojiObserver.next(emoji);
   }
 
 }
