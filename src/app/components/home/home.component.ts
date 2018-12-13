@@ -28,12 +28,13 @@ export class HomeComponent implements OnInit {
   public socketConnected: boolean;
   public threads: Thread[];
   public userPhoneNumber: string;
+  public showSidebarOnMobile: boolean = true;
+  
   private getAppState: Observable<AppState>;
   private getThreadsState: Observable<ThreadsState>;
   private getMessagesState: Observable<MessagesState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
-  private showSidebarOnMobile: boolean = true;
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
