@@ -8,8 +8,21 @@ import { ElementRef, HostListener } from '@angular/core';
   styleUrls: ['./emoji-picker.component.css']
 })
 export class EmojiPickerComponent implements OnInit {
-  @Output() public emojiSelected: EventEmitter<string> = new EventEmitter<string>();
   public emojiList: string[];
+  @Input() public showEmojiPicker: boolean;
+  @Output() public emojiSelected: EventEmitter<string> = new EventEmitter<string>();
+  @HostListener('document:click', ['$event'])
+  private clickout(event: any) {
+
+    const clickedEl: HTMLElement = event.target;
+
+    if (this.showEmojiPicker && !clickedEl.classList.contains('emoji-picker-launcher')) {
+
+      // this will hide the emoji picker by triggering
+      // the togglePicker function on parent
+      this.emojiSelected.emit(''); 
+    }
+  }
 
   constructor(private elementRef: ElementRef) {
     this.createEmojiList();
