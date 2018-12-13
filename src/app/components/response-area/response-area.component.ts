@@ -45,7 +45,7 @@ export class ResponseAreaComponent implements OnInit {
   }
 
   public togglePicker(): void {
-
+    this.input.nativeElement.focus();
     this.showEmojiPicker = !this.showEmojiPicker;
   }
 
