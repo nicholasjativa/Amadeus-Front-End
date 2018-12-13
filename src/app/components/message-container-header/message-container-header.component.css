@@ -50,6 +50,7 @@ form {
     .title-name {
         font-weight: bold;
         margin: 0;
+        text-align: center;
     }
 
     .title-to {

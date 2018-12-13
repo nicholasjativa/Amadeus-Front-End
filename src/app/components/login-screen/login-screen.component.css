@@ -102,7 +102,7 @@ input {
     border-radius: 5px;
     box-shadow: 1px 1px 10px 5px #6b6d6f;
     height: 80%;
-    max-width: 50%;
+    max-width: 100%;
     padding: 10px;
 }
 
