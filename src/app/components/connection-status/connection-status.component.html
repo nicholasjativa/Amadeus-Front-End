@@ -1,4 +1,5 @@
-<div class="container" *ngIf="!connected">
+<div class="container" *ngIf="!connected && !hide">
   <span>Connection lost.. Attempting to reconnect</span>
-  <span class="icon" (click)="handleCloseClick()">X</span>
+  <amadeus-loading-spinner></amadeus-loading-spinner>
+  <span class="icon" (click)="handleHideClick()">X</span>
 </div>

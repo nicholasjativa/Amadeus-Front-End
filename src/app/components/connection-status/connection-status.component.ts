@@ -8,11 +8,16 @@ import { WebsocketService } from '../../shared/services/websocket.service';
 })
 export class ConnectionStatusComponent implements OnInit {
   @Input() public connected: boolean;
+  public hide: boolean = false;
 
   constructor() {
   }
 
   public ngOnInit(): void {
+  }
+
+  public handleHideClick(): void {
+    this.hide = true;
   }
 
 }
