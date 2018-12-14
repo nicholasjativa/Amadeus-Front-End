@@ -13,6 +13,22 @@ amadeus-response-area {
     width: 100%;
 }
 
+.bar {
+    background-color: #e9eaef;
+    border-right: 1px solid #dddddd;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 400px;
+    overflow-y: scroll;
+    width: 400px;
+
+}
+
+.bar::-webkit-scrollbar {
+    display: none;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -41,13 +57,13 @@ amadeus-response-area {
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 420px) {
 
-    amadeus-sidebar {
+    .bar {
         min-width: 0;
         position: absolute;
         width: 100%;
         z-index: 1;
     }
-    amadeus-sidebar.hide {
+    .bar.hide {
         display: none;
     }
 }

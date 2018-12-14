@@ -1,10 +1,12 @@
 <div class="container">
-    <amadeus-sidebar 
-        [class.hide]="!showSidebarOnMobile"
-        [currentlySelectedConversationPhoneNumber]="currentlySelectedConversationPhoneNumber"
-        [threads]="threads" 
-        (setThreadAsSelected)="setCurrentlySelectedThread($event);toggleSidebar()">
-    </amadeus-sidebar>
+    <div class="bar" [class.hide]="!showSidebarOnMobile">
+        <amadeus-searchbar></amadeus-searchbar>
+        <amadeus-thread-tab 
+        *ngFor="let thread of threads" 
+        [class.active]="thread.address === currentlySelectedConversationPhoneNumber"
+        [thread]="thread"
+        (click)="setCurrentlySelectedThread(thread);toggleSidebar()"></amadeus-thread-tab>
+    </div>      
     <div class="message-container">
         <div class="header-wrapper">
             <amadeus-message-container-header [headerInfo]="conversation">

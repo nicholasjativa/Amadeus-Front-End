@@ -14,7 +14,6 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { MessageContainerHeaderComponent } from './components/message-container-header/message-container-header.component';
 import { ResponseAreaComponent } from './components/response-area/response-area.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TextComponent } from './components/text/text.component';
 import { ThreadTabComponent } from './components/thread-tab/thread-tab.component';
 
@@ -42,7 +41,6 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     ThreadTabComponent,
     MessageContainerHeaderComponent,
     ResponseAreaComponent,
