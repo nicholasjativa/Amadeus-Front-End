@@ -6,10 +6,6 @@ form {
     display: inline;
 }
 
-input.messages-sidebar-toggle {
-    display: none;
-}
-
 .header {
     background-color: #f0f0f0;
     border-bottom: 1px solid #d6d6d6;
@@ -49,6 +45,10 @@ input.messages-sidebar-toggle {
         display: initial;
         float: left;
         font-weight: bold;
+    }
+
+    input {
+        width: 50%;
     }
     
     .title-name {

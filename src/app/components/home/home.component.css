@@ -32,6 +32,13 @@ amadeus-response-area {
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 420px) {
+
+    amadeus-sidebar {
+        min-width: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
     amadeus-sidebar.hide {
         display: none;
     }
