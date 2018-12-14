@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MessagesService } from '../../shared/services/messages.service';
 import { ThreadsService } from '../../shared/services/threads.service';
 
@@ -8,13 +8,11 @@ import { ThreadsService } from '../../shared/services/threads.service';
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-
+  @Output() public createNewConversationClick: EventEmitter<any> = new EventEmitter();
+  
   constructor(private cs: MessagesService, private threadsService: ThreadsService) { }
 
-  ngOnInit() {
-  }
-
-  public handleCreateNewConversationClick(): void {
+  public ngOnInit(): void {
   }
 
 }

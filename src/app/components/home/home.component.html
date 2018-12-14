@@ -1,6 +1,6 @@
 <div class="container">
     <div class="bar" [class.hide]="!showSidebarOnMobile">
-        <amadeus-searchbar></amadeus-searchbar>
+        <amadeus-searchbar (createNewConversationClick)="createNewConversation()"></amadeus-searchbar>
         <amadeus-thread-tab 
         *ngFor="let thread of threads" 
         [class.active]="thread.address === currentlySelectedConversationPhoneNumber"

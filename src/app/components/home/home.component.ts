@@ -70,6 +70,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public createNewConversation(): void {
+  }
+
   public sendMessage(body: string): void {
     const message: AmadeusMessage = {
       fromPhoneNumber: this.userPhoneNumber,
