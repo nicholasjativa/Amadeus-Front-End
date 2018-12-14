@@ -4,7 +4,7 @@ import { ThreadsActionTypes } from '../action-types/threads';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ThreadsService } from '../../shared/services/threads.service';
-import * as MessagesActions from '../actions/messages';
+import * as ConversationActions from '../actions/conversation';
 import * as ThreadsActions from '../actions/threads';
 import { Thread } from '../../models/thread';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -46,7 +46,7 @@ export class ThreadsEffects {
             map(action => action.payload),
             switchMap((thread: Thread) => {
 
-                return [new MessagesActions.LoadMessagesByThread(thread)];
+                return [new ConversationActions.LoadConversationByThread(thread)];
             })
         );
 }

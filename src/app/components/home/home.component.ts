@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { Store, select } from '@ngrx/store';
-import { AmadeusState, selectThreadsState, selectMessagesState, selectUserState, selectAppState } from '../../store/reducers/root';
+import { AmadeusState, selectThreadsState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
 import * as ThreadsActions from '../../store/actions/threads';
-import * as MessagesActions from '../../store/actions/messages';
+import * as ConversationActions from '../../store/actions/conversation';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
 import { Thread } from '../../models/thread';
 import { ThreadsState } from '../../store/reducers/threads';
-import { MessagesState } from '../../store/reducers/messages';
+import { ConversationsState } from '../../store/reducers/conversation';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { UserState } from '../../store/reducers/user';
@@ -33,14 +33,14 @@ export class HomeComponent implements OnInit {
   
   private getAppState: Observable<AppState>;
   private getThreadsState: Observable<ThreadsState>;
-  private getMessagesState: Observable<MessagesState>;
+  private getMessagesState: Observable<ConversationsState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
-    this.getMessagesState = this.store.pipe(select(selectMessagesState));
+    this.getMessagesState = this.store.pipe(select(selectConversationsState));
     this.getUserState = this.store.pipe(select(selectUserState));
     this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }

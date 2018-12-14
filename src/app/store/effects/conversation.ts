@@ -2,19 +2,19 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
-import { MessageActionTypes } from '../action-types/messages';
-import * as MessageActions from '../actions/messages';
+import { ConversationActionTypes } from '../action-types/conversation';
+import * as ConversationActions from '../actions/conversation';
 import { MessagesService } from '../../shared/services/messages.service';
 import { Thread } from '../../models/thread';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { AmadeusState, selectMessagesState } from '../reducers/root';
-import { MessagesState } from '../reducers/messages';
+import { AmadeusState, selectConversationsState } from '../reducers/root';
+import { ConversationsState } from '../reducers/conversation';
 
 
 @Injectable()
-export class MessagesEffects {
+export class ConversationsEffects {
 
     constructor(
         private actions$: Actions,
@@ -26,9 +26,9 @@ export class MessagesEffects {
     @Effect()
     public loadMessagesByThread: Observable<Action> = this.actions$
         .pipe(
-            ofType<any>(MessageActionTypes.LOAD_MESSAGES_BY_THREAD),
+            ofType<any>(ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD),
             map(action => action.payload),
-            withLatestFrom(this.store$.pipe(select(selectMessagesState))),
+            withLatestFrom(this.store$.pipe(select(selectConversationsState))),
             switchMap(([payload, state]) => {
 
                 const phoneNumber: string = payload.address;
@@ -38,11 +38,11 @@ export class MessagesEffects {
                     
                     return this.messagesService.getMessages(phoneNumber)
                     .pipe(
-                        map((conversation: Conversation) => new MessageActions.LoadMessagesByThreadSuccess(conversation))
+                        map((conversation: Conversation) => new ConversationActions.LoadConversationByThreadSuccess(conversation))
                     );
 
                 } else {
-                    return [new MessageActions.LoadMessagesByThreadSuccess(existingConversation)];
+                    return [new ConversationActions.LoadConversationByThreadSuccess(existingConversation)];
                 }
                 
             })

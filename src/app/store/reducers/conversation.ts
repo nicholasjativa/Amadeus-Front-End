@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
-import { MessageActionTypes } from '../action-types/messages';
+import { ConversationActionTypes } from '../action-types/conversation';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { Conversations } from '../../models/conversations';
@@ -7,7 +7,7 @@ import { AndroidMessagesActionTypes } from '../action-types/androidMessages';
 import { AndroidMessage } from '../../models/androidMessage';
 import { AmadeusMessageStatus } from '../../models/amadeusMessageStatus';
 
-export interface MessagesState {
+export interface ConversationsState {
     conversations: Conversations,
     currentlySelectedConversation: Conversation,
     currentlySelectedConversationPhoneNumber: string,
@@ -15,7 +15,7 @@ export interface MessagesState {
     loading: boolean
 }
 
-export const initialState: MessagesState = {
+export const initialState: ConversationsState = {
     conversations: {},
     currentlySelectedConversation: {
         name: "",
@@ -27,11 +27,11 @@ export const initialState: MessagesState = {
     loading: false
 };
 
-export function messagesReducer(state: MessagesState = initialState, action): MessagesState {
+export function conversationsReducer(state: ConversationsState = initialState, action): ConversationsState {
 
     switch(action.type) {
         
-        case MessageActionTypes.LOAD_MESSAGES_BY_THREAD: {
+        case ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD: {
 
             const currentlySelectedConversationPhoneNumber: string = action.payload.address;
             const loading: boolean = true;
@@ -39,7 +39,7 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
             return { ...state, currentlySelectedConversationPhoneNumber, loading };
         }
 
-        case MessageActionTypes.LOAD_MESSAGES_BY_THREAD_SUCCESS: {
+        case ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD_SUCCESS: {
             
             const conversation: Conversation = action.payload;
             const currentlySelectedConversation: Conversation = conversation;
