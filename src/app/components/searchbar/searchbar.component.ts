@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MessagesService } from '../../shared/services/messages.service';
-import { ThreadsService } from '../../shared/services/threads.service';
 
 @Component({
   selector: 'amadeus-searchbar',
@@ -10,7 +8,7 @@ import { ThreadsService } from '../../shared/services/threads.service';
 export class SearchbarComponent implements OnInit {
   @Output() public createNewConversationClick: EventEmitter<any> = new EventEmitter();
   
-  constructor(private cs: MessagesService, private threadsService: ThreadsService) { }
+  constructor() { }
 
   public ngOnInit(): void {
   }

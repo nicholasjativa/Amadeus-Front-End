@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewChecked } from '@angular/core';
-import { MessagesService } from '../../shared/services/messages.service';
 import { UserService } from '../../shared/services/user.service';
 import { Message } from '../../models/message';
 
@@ -15,7 +14,7 @@ export class ConversationComponent implements OnInit, AfterViewChecked {
   @Input() public userPhoneNumber: string;
   @ViewChild('container') public conversationEl: ElementRef; 
 
-  constructor(private cs: MessagesService, private user: UserService, private renderer: Renderer2) {
+  constructor(private user: UserService, private renderer: Renderer2) {
   
     // this.cs.listenForOwnMessageSentOnAndroid()
     //   .subscribe(text => {

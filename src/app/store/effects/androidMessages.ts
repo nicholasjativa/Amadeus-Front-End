@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MessagesService } from '../../shared/services/messages.service';
+import { ConversationService } from '../../shared/services/conversation.service';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AndroidMessagesActionTypes } from '../action-types/androidMessages';
 import { map, switchMap, catchError } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import * as AndroidMessagesActions from '../actions/androidMessages';
 @Injectable()
 export class AndroidMessagesEffects {
 
-    constructor(private actions$: Actions, private ms: MessagesService) {
+    constructor(private actions$: Actions, private cs: ConversationService) {
     }
 
     @Effect()
@@ -21,7 +21,7 @@ export class AndroidMessagesEffects {
             map(action => action.payload),
             switchMap((message: AmadeusMessage) => {
                 
-                return this.ms.sendMessageToServer(message)
+                return this.cs.sendMessageToServer(message)
                     .pipe(
                       map(res => new AndroidMessagesActions.SendAmadeusMessageSuccess(res)),
                       catchError(err => [new AndroidMessagesActions.SendAmadeusMessageError(err)])

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Action, Store, select } from '@ngrx/store';
 import { ConversationActionTypes } from '../action-types/conversation';
 import * as ConversationActions from '../actions/conversation';
-import { MessagesService } from '../../shared/services/messages.service';
+import { ConversationService } from '../../shared/services/conversation.service';
 import { Thread } from '../../models/thread';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
@@ -18,7 +18,7 @@ export class ConversationsEffects {
 
     constructor(
         private actions$: Actions,
-        private messagesService: MessagesService,
+        private cs: ConversationService,
         private store$: Store<AmadeusState>
     ) {
     }
@@ -36,7 +36,7 @@ export class ConversationsEffects {
 
                 if (!existingConversation) {
                     
-                    return this.messagesService.getMessages(phoneNumber)
+                    return this.cs.getConversationByPhoneNumber(phoneNumber)
                     .pipe(
                         map((conversation: Conversation) => new ConversationActions.LoadConversationByThreadSuccess(conversation))
                     );
