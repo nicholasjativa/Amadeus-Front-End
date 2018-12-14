@@ -36,6 +36,7 @@ import { ThreadsEffects } from './store/effects/threads';
 import { MessagesEffects } from './store/effects/messages';
 import { AppEffects } from './store/effects/app';
 import { AndroidMessagesEffects } from './store/effects/androidMessages';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AndroidMessagesEffects } from './store/effects/androidMessages';
     EmojiPickerComponent,
     SearchbarComponent,
     ConnectionStatusComponent,
-    SettingsButtonComponent
+    SettingsButtonComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

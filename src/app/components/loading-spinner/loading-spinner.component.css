@@ -1,0 +1,26 @@
+.spinner {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.spinner:after {
+    animation: spinner 1.2s linear infinite;
+    content: "";
+    border: 3px solid #156CD6;
+    border-color: #156CD6 transparent #156CD6 transparent;
+    border-radius: 50%;
+    display: block;
+    height: 10px;
+    margin: 1px;
+    width: 10px;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
