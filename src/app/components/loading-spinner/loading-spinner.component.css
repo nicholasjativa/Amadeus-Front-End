@@ -1,3 +1,7 @@
+:host {
+    position: relative;
+}
+
 .spinner {
     display: inline-block;
     margin: 0 5px;
@@ -13,6 +17,18 @@
     height: 10px;
     margin: 1px;
     width: 10px;
+}
+
+.large {
+    left: 50%;
+    position: absolute;
+}
+
+.large:after {
+    border: 10px solid #156cd6;
+    border-color: #156CD6 transparent #156CD6 transparent;
+    height: 100px;
+    width: 100px;
 }
 
 @keyframes spinner {

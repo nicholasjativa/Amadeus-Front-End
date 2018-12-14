@@ -24,6 +24,7 @@ import { AmadeusMessage } from '../../models/amadeusMessage';
 export class HomeComponent implements OnInit {
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";
+  public loadingConversation: boolean;
   public messages: any[];
   public socketConnected: boolean;
   public threads: Thread[];
@@ -58,7 +59,8 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getMessagesState.subscribe(state => {
-
+      
+      this.loadingConversation = state.loading;
       this.conversation = state.currentlySelectedConversation;
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
       this.messages = state.currentlySelectedConversation.messages;

@@ -47,7 +47,7 @@ export function messagesReducer(state: MessagesState = initialState, action): Me
             let conversations: Conversations = { ...state.conversations };
             conversations[phoneNumber] = conversation;
 
-            return { ...state, conversations, currentlySelectedConversation };
+            return { ...state, conversations, currentlySelectedConversation, loaded: true, loading: false };
         }
 
         case AndroidMessagesActionTypes.RECEIVED_ANDROID_MESSAGE: {
