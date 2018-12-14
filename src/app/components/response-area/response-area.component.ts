@@ -23,7 +23,7 @@ export class ResponseAreaComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public handleEmojiHasBeenSelected(emoji: string) {
+  public handleEmojiHasBeenSelected(emoji: string): void {
     this.message = this.message + emoji;
   }
 
