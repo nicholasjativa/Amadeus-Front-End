@@ -6,13 +6,15 @@
         (setThreadAsSelected)="setCurrentlySelectedThread($event);toggleSidebar()">
     </amadeus-sidebar>
     <div class="message-container">
-        <amadeus-message-container-header [headerInfo]="conversation">
-            <a class="title-messages" (click)="toggleSidebar()">Messages </a>
-        </amadeus-message-container-header>
+        <div class="header-wrapper">
+            <amadeus-message-container-header [headerInfo]="conversation">
+                <a class="title-messages" (click)="toggleSidebar()">Messages </a>
+            </amadeus-message-container-header>
+            <amadeus-settings-button></amadeus-settings-button>
+        </div>
         <amadeus-loading-spinner 
             type="large" 
             *ngIf="loadingConversation"></amadeus-loading-spinner>
-        <!-- <amadeus-settings-button></amadeus-settings-button> -->
         <amadeus-conversation 
             [messages]="messages"
             [userPhoneNumber]="userPhoneNumber">
