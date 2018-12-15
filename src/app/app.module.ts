@@ -15,7 +15,7 @@ import { LoginScreenComponent } from './components/login-screen/login-screen.com
 import { ConversationHeaderComponent } from './components/conversation-header/conversation-header.component';
 import { ResponseAreaComponent } from './components/response-area/response-area.component';
 import { TextComponent } from './components/text/text.component';
-import { ThreadTabComponent } from './components/thread-tab/thread-tab.component';
+import { ConversationPreviewTabComponent } from './components/conversation-preview-tab/conversation-preview-tab.component';
 
 
 import { AuthGuard } from './shared/services/auth.guard';
@@ -41,7 +41,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 @NgModule({
   declarations: [
     AppComponent,
-    ThreadTabComponent,
+    ConversationPreviewTabComponent,
     ConversationHeaderComponent,
     ResponseAreaComponent,
     ConversationComponent,
