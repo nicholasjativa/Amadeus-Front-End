@@ -3,6 +3,13 @@ import { ConversationActionTypes } from '../action-types/conversation';
 import { Conversation } from '../../models/conversation';
 import { ConversationPreview } from '../../models/conversation-preview';
 
+export class CreateNewConversation implements Action {
+    public readonly type: string = ConversationActionTypes.CREATE_NEW_CONVERSATION;
+
+    constructor() {
+    }
+}
+
 export class LoadConversationByConversationPreview implements Action {
     public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW;
 

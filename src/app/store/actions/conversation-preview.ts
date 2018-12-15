@@ -8,6 +8,12 @@ export class LoadAllConversationPreviews implements Action {
     constructor() {}
 }
 
+export class AddBlankConversationPreview implements Action {
+    public readonly type: string = ConversationPreviewActionTypes.ADD_BLANK_CONVERSATION_PREVIEW;
+
+    constructor(public payload: ConversationPreview) {}
+}
+
 export class LoadAllConversationPreviewsSuccess implements Action {
     public readonly type: string = ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS_SUCCESS;
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AmadeusState, selectConversationPreviewState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
+import * as ConversationActions from '../../store/actions/conversation';
 import * as ConversationPreviewActions from '../../store/actions/conversation-preview';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
@@ -22,6 +23,7 @@ import { AmadeusMessage } from '../../models/amadeusMessage';
 export class HomeComponent implements OnInit {
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";
+  public isEditing: boolean;
   public loadingConversation: boolean;
   public messages: any[];
   public socketConnected: boolean;
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
     });
     this.getConversationsState.subscribe(state => {
       
+      this.isEditing = state.isEditingHeader;
       this.loadingConversation = state.loading;
       this.conversation = state.currentlySelectedConversation;
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
@@ -69,6 +72,7 @@ export class HomeComponent implements OnInit {
   }
 
   public createNewConversation(): void {
+    this.store.dispatch(new ConversationActions.CreateNewConversation());
   }
 
   public sendMessage(body: string): void {

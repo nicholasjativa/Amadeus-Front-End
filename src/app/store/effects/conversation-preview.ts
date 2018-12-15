@@ -19,6 +19,17 @@ export class ConversationPreviewEffects {
     }
 
     @Effect()
+    public addBlankConversationPreview: Observable<Action> = this.actions$
+        .pipe(
+            ofType<any>(ConversationPreviewActionTypes.ADD_BLANK_CONVERSATION_PREVIEW),
+            map(action => action.payload),
+            switchMap((blankPreview: ConversationPreview) => {
+
+                return [new ConversationPreviewActions.SetCurrentlySelectedConversationPreview(blankPreview)];
+            })
+        ); 
+
+    @Effect()
     public loadAllConversationPreviews: Observable<Action> = this.actions$
         .pipe(
             ofType<any>(ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS),

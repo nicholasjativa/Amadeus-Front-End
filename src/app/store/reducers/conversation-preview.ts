@@ -19,6 +19,16 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
 
     switch (action.type) {
 
+        case ConversationPreviewActionTypes.ADD_BLANK_CONVERSATION_PREVIEW: {
+
+            const conversationPreviews = state.conversationPreviews;
+            const blankPreview = action.payload;
+
+            conversationPreviews.unshift(blankPreview);
+
+            return { ...state, conversationPreviews };
+        }
+
         case ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS: {
 
             return { ...state, loaded: false, loading: true };

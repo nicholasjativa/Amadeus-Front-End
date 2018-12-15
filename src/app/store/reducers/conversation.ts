@@ -9,6 +9,7 @@ export interface ConversationsState {
     conversations: Conversations,
     currentlySelectedConversation: Conversation,
     currentlySelectedConversationPhoneNumber: string,
+    isEditingHeader: boolean,
     loaded: boolean,
     loading: boolean
 }
@@ -16,11 +17,12 @@ export interface ConversationsState {
 export const initialState: ConversationsState = {
     conversations: {},
     currentlySelectedConversation: {
-        name: "",
-        address: "",
+        name: '',
+        address: '',
         messages: []
     },
-    currentlySelectedConversationPhoneNumber: "",
+    isEditingHeader: false,
+    currentlySelectedConversationPhoneNumber: '',
     loaded: false,
     loading: false
 };
@@ -28,6 +30,13 @@ export const initialState: ConversationsState = {
 export function conversationsReducer(state: ConversationsState = initialState, action): ConversationsState {
 
     switch(action.type) {
+
+        case ConversationActionTypes.CREATE_NEW_CONVERSATION: {
+
+            const isEditingHeader: boolean = true;
+
+            return { ...state, isEditingHeader }
+        }
         
         case ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW: {
 
