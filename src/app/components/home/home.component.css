@@ -5,7 +5,7 @@ amadeus-conversation {
     overflow-y: scroll;
 }
 
-amadeus-message-container-header {
+amadeus-conversation-header {
     width: 100%;
 }
 

@@ -12,7 +12,7 @@ import { ConversationComponent } from './components/conversation/conversation.co
 import { EmojiPickerComponent } from './components/emoji-picker/emoji-picker.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
-import { MessageContainerHeaderComponent } from './components/message-container-header/message-container-header.component';
+import { ConversationHeaderComponent } from './components/conversation-header/conversation-header.component';
 import { ResponseAreaComponent } from './components/response-area/response-area.component';
 import { TextComponent } from './components/text/text.component';
 import { ThreadTabComponent } from './components/thread-tab/thread-tab.component';
@@ -42,7 +42,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
   declarations: [
     AppComponent,
     ThreadTabComponent,
-    MessageContainerHeaderComponent,
+    ConversationHeaderComponent,
     ResponseAreaComponent,
     ConversationComponent,
     TextComponent,
