@@ -1,24 +1,24 @@
 import { Action } from '@ngrx/store';
 import { ConversationActionTypes } from '../action-types/conversation';
 import { Conversation } from '../../models/conversation';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 
-export class LoadConversationByThread implements Action {
-    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD;
+export class LoadConversationByConversationPreview implements Action {
+    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW;
 
-    constructor(public payload: Thread) {
+    constructor(public payload: ConversationPreview) {
     }
 } 
 
-export class LoadConversationByThreadSuccess implements Action {
-    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD_SUCCESS;
+export class LoadConversationByConversationPreviewSuccess implements Action {
+    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW_SUCCESS;
 
     constructor(public payload: Conversation) {
     }
 
 }
 
-export class LoadConversationByThreadError implements Action {
-    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD_ERROR;
+export class LoadConversationByConversationPreviewError implements Action {
+    public readonly type: string = ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW_ERROR;
 
 }

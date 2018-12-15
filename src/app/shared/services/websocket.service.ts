@@ -8,8 +8,8 @@ import { OpenWebSocketConnectionSuccess, OpenWebSocketConnectionError } from '..
 import { AndroidMessage } from '../../models/androidMessage';
 import { ReceivedAndroidMessage, ReceivedAmadeusMessageStatus, AndroidReceivedAmadeusMessage } from '../../store/actions/androidMessages';
 import { AmadeusMessageStatus } from '../../models/amadeusMessageStatus';
-import { Thread } from '../../models/thread';
-import { ReceivedThreadMessage } from '../../store/actions/conversation-preview';
+import { ConversationPreview } from '../../models/conversation-preview';
+import { ReceivedConversationPreview } from '../../store/actions/conversation-preview';
 
 @Injectable()
 export class WebsocketService {
@@ -37,8 +37,8 @@ export class WebsocketService {
       this.store.dispatch(new AndroidReceivedAmadeusMessage(message)));
     
     // TODO this may or may not need to have its own websocket message
-    this.socket.on('updateSnippetSidebar', (message: Thread) =>
-      this.store.dispatch(new ReceivedThreadMessage(message)));
+    this.socket.on('updateSnippetSidebar', (message: ConversationPreview) =>
+      this.store.dispatch(new ReceivedConversationPreview(message)));
   }
 
 }

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ThreadsService } from '../../shared/services/threads.service';
 import { Store, select } from '@ngrx/store';
 import { AmadeusState, selectConversationPreviewState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
-import * as ThreadsActions from '../../store/actions/conversation-preview';
+import * as ConversationPreviewActions from '../../store/actions/conversation-preview';
 import * as ConversationActions from '../../store/actions/conversation';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 import { ConversationPreviewState } from '../../store/reducers/conversation-preview';
 import { ConversationsState } from '../../store/reducers/conversation';
 import { Message } from '../../models/message';
@@ -27,35 +26,35 @@ export class HomeComponent implements OnInit {
   public loadingConversation: boolean;
   public messages: any[];
   public socketConnected: boolean;
-  public threads: Thread[];
+  public conversationPreviews: ConversationPreview[];
   public userPhoneNumber: string;
   public showSidebarOnMobile: boolean = true;
   
   private getAppState: Observable<AppState>;
-  private getThreadsState: Observable<ConversationPreviewState>;
+  private getConversationPreviewState: Observable<ConversationPreviewState>;
   private getConversationsState: Observable<ConversationsState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
-  constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
+  constructor(private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
-    this.getThreadsState = this.store.pipe(select(selectConversationPreviewState));
+    this.getConversationPreviewState = this.store.pipe(select(selectConversationPreviewState));
     this.getConversationsState = this.store.pipe(select(selectConversationsState));
     this.getUserState = this.store.pipe(select(selectUserState));
     this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(new ThreadsActions.LoadAllConversationPreviews());
+    this.store.dispatch(new ConversationPreviewActions.LoadAllConversationPreviews());
     this.getAppState.subscribe(state => {
       this.socketConnected = state.socketConnected;
     });
-    this.getThreadsState.subscribe(state => {
+    this.getConversationPreviewState.subscribe(state => {
 
-      this.threads = state.threads;
-      if (this.threads.length && !state.currentlySelectedThread) {
-        const mostRecentThread: Thread = this.threads[0];
-        this.store.dispatch(new ThreadsActions.SetCurrentlySelectedConversationPreview(mostRecentThread));
+      this.conversationPreviews = state.conversationPreviews;
+      if (this.conversationPreviews.length && !state.currentlySelectedConversationPreview) {
+        const mostRecentConversationPreview: ConversationPreview = this.conversationPreviews[0];
+        this.store.dispatch(new ConversationPreviewActions.SetCurrentlySelectedConversationPreview(mostRecentConversationPreview));
       }
     });
     this.getConversationsState.subscribe(state => {
@@ -83,8 +82,8 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new AndroidMessagesActions.SendAmadeusMessage(message));
   }
 
-  public setCurrentlySelectedThread(thread: Thread): void {
-    this.store.dispatch(new ThreadsActions.SetCurrentlySelectedConversationPreview(thread));
+  public setCurrentlySelectedConversationPreview(preview: ConversationPreview): void {
+    this.store.dispatch(new ConversationPreviewActions.SetCurrentlySelectedConversationPreview(preview));
   }
 
   public toggleSidebar(): void {

@@ -5,7 +5,7 @@ import { Action, Store, select } from '@ngrx/store';
 import { ConversationActionTypes } from '../action-types/conversation';
 import * as ConversationActions from '../actions/conversation';
 import { ConversationService } from '../../shared/services/conversation.service';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
@@ -24,9 +24,9 @@ export class ConversationsEffects {
     }
 
     @Effect()
-    public loadMessagesByThread: Observable<Action> = this.actions$
+    public loadConversationByConversationPreview: Observable<Action> = this.actions$
         .pipe(
-            ofType<any>(ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD),
+            ofType<any>(ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW),
             map(action => action.payload),
             withLatestFrom(this.store$.pipe(select(selectConversationsState))),
             switchMap(([payload, state]) => {
@@ -38,11 +38,11 @@ export class ConversationsEffects {
                     
                     return this.cs.getConversationByPhoneNumber(phoneNumber)
                     .pipe(
-                        map((conversation: Conversation) => new ConversationActions.LoadConversationByThreadSuccess(conversation))
+                        map((conversation: Conversation) => new ConversationActions.LoadConversationByConversationPreviewSuccess(conversation))
                     );
 
                 } else {
-                    return [new ConversationActions.LoadConversationByThreadSuccess(existingConversation)];
+                    return [new ConversationActions.LoadConversationByConversationPreviewSuccess(existingConversation)];
                 }
                 
             })

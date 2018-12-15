@@ -31,7 +31,7 @@ export function conversationsReducer(state: ConversationsState = initialState, a
 
     switch(action.type) {
         
-        case ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD: {
+        case ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW: {
 
             const currentlySelectedConversationPhoneNumber: string = action.payload.address;
             const loading: boolean = true;
@@ -39,7 +39,7 @@ export function conversationsReducer(state: ConversationsState = initialState, a
             return { ...state, currentlySelectedConversationPhoneNumber, loading };
         }
 
-        case ConversationActionTypes.LOAD_CONVERSATION_BY_THREAD_SUCCESS: {
+        case ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW_SUCCESS: {
             
             const conversation: Conversation = action.payload;
             const currentlySelectedConversation: Conversation = conversation;

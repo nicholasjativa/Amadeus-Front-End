@@ -24,7 +24,7 @@ import { ConversationService } from './shared/services/conversation.service';
 import { UserService } from './shared/services/user.service';
 import { WebsocketService } from './shared/services/websocket.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { ThreadsService } from './shared/services/threads.service';
+import { ConversationPreviewService } from './shared/services/conversation-preview.service';
 import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
 import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -72,9 +72,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     AuthGuard,
     AuthService,
     ConversationService,
+    ConversationPreviewService,
     UserService,
-    WebsocketService,
-    ThreadsService
+    WebsocketService
   ],
   bootstrap: [AppComponent]
 })

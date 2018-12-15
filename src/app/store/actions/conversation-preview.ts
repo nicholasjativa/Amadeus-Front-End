@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 
 export class LoadAllConversationPreviews implements Action {
     public readonly type: string = ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS;
@@ -23,13 +23,13 @@ export class LoadAllConversationPreviewsError implements Action {
 export class ReceivedConversationPreview implements Action {
     public readonly type: string = ConversationPreviewActionTypes.RECEIVED_CONVERSATION_PREVIEW;
 
-    constructor(public payload: Thread) {
+    constructor(public payload: ConversationPreview) {
     }
 }
 
 export class SetCurrentlySelectedConversationPreview implements Action {
     public readonly type: string = ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW;
 
-    constructor(public payload: Thread) {
+    constructor(public payload: ConversationPreview) {
     }
 }

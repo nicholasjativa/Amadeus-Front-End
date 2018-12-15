@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 
 @Component({
   selector: 'amadeus-conversation-preview-tab',
@@ -7,7 +7,7 @@ import { Thread } from '../../models/thread';
   styleUrls: ['./conversation-preview-tab.component.css']
 })
 export class ConversationPreviewTabComponent implements OnInit {
-  @Input() public thread: Thread;
+  @Input() public conversationPreview: ConversationPreview;
 
   constructor() {
   }

@@ -2,10 +2,10 @@
     <div class="bar" [class.hide]="!showSidebarOnMobile">
         <amadeus-searchbar (createNewConversationClick)="createNewConversation()"></amadeus-searchbar>
         <amadeus-conversation-preview-tab 
-        *ngFor="let thread of threads" 
-        [class.active]="thread.address === currentlySelectedConversationPhoneNumber"
-        [thread]="thread"
-        (click)="setCurrentlySelectedThread(thread);toggleSidebar()"></amadeus-conversation-preview-tab>
+        *ngFor="let preview of conversationPreviews" 
+        [class.active]="preview.address === currentlySelectedConversationPhoneNumber"
+        [conversationPreview]="preview"
+        (click)="setCurrentlySelectedConversationPreview(preview);toggleSidebar()"></amadeus-conversation-preview-tab>
     </div>      
     <div class="message-container">
         <div class="header-wrapper">

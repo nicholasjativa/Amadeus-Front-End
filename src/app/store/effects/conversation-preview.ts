@@ -3,10 +3,10 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { ThreadsService } from '../../shared/services/threads.service';
+import { ConversationPreviewService } from '../../shared/services/conversation-preview.service';
 import * as ConversationActions from '../actions/conversation';
 import * as ConversationPreviewActions from '../actions/conversation-preview';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class ConversationPreviewEffects {
 
     constructor(
         private actions$: Actions,
-        private threads: ThreadsService
+        private conversationPreviewService: ConversationPreviewService
     ) {
     }
 
@@ -24,11 +24,11 @@ export class ConversationPreviewEffects {
             ofType<any>(ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS),
             switchMap(() => {
 
-                return this.threads.getThreads()
+                return this.conversationPreviewService.getConversationPreviews()
                     .pipe(
-                        map((threads: Thread[]) => {
+                        map((previews: ConversationPreview[]) => {
 
-                            return new ConversationPreviewActions.LoadAllConversationPreviewsSuccess(threads);
+                            return new ConversationPreviewActions.LoadAllConversationPreviewsSuccess(previews);
                         }),
                         catchError((error) => {
     
@@ -40,13 +40,13 @@ export class ConversationPreviewEffects {
         );
 
     @Effect()
-    public setCurrentlySelectedThread: Observable<Action> = this.actions$
+    public setCurrentlySelectedConversationPreview: Observable<Action> = this.actions$
         .pipe(
             ofType<any>(ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW),
             map(action => action.payload),
-            switchMap((thread: Thread) => {
+            switchMap((preview: ConversationPreview) => {
 
-                return [new ConversationActions.LoadConversationByThread(thread)];
+                return [new ConversationActions.LoadConversationByConversationPreview(preview)];
             })
         );
 }

@@ -1,17 +1,17 @@
 import { Action } from '@ngrx/store';
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
-import { Thread } from '../../models/thread';
+import { ConversationPreview } from '../../models/conversation-preview';
 
 export interface ConversationPreviewState {
-    threads: Thread[],
-    currentlySelectedThread: Thread,
+    conversationPreviews: ConversationPreview[],
+    currentlySelectedConversationPreview: ConversationPreview,
     loaded: boolean,
     loading: boolean
 }
 
 export const initialState: ConversationPreviewState = {
-    threads: [],
-    currentlySelectedThread: undefined,
+    conversationPreviews: [],
+    currentlySelectedConversationPreview: undefined,
     loaded: false,
     loading: false
 };
@@ -29,38 +29,38 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
 
             // TODO adding the timeString in the reducer (as opposed to an effect)
             // may not be practice; research
-            const threads: Thread[] = action.payload;
-            addTimeString(threads);
+            const conversationPreviews: ConversationPreview[] = action.payload;
+            addTimeString(conversationPreviews);
 
-            return { ...state, threads, loaded: true, loading: false }
+            return { ...state, conversationPreviews, loaded: true, loading: false }
         }
 
         case ConversationPreviewActionTypes.RECEIVED_CONVERSATION_PREVIEW: {
             // this case may not be needed, depending on whether we let
             // other actions (which give us this info) perform the updating of the sidebar
 
-            const preview: Thread = action.payload;
+            const preview: ConversationPreview = action.payload;
             addTimeString([preview]);
-            // we may want to use an object for state.threads for easier access
-            let threads = state.threads;
-            let pos = threads.findIndex((thread: Thread) => thread.address === preview.address);
+            // we may want to use an object for state.conversationPreviews for easier access
+            let conversationPreviews = state.conversationPreviews;
+            let pos = conversationPreviews.findIndex((conversationPreview: ConversationPreview) => conversationPreview.address === preview.address);
 
             if (pos > -1) {
-                threads.splice(pos, 1);
-                threads.unshift(preview);
+                conversationPreviews.splice(pos, 1);
+                conversationPreviews.unshift(preview);
             } else {
-                threads.unshift(preview);
+                conversationPreviews.unshift(preview);
             }
 
-            return { ...state, threads };
+            return { ...state, conversationPreviews };
         }
 
         case ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW: {
 
-            const thread: Thread = action.payload;
-            const currentlySelectedThread: Thread = thread;
+            const conversationPreview: ConversationPreview = action.payload;
+            const currentlySelectedConversationPreview: ConversationPreview = conversationPreview;
 
-            return { ...state, currentlySelectedThread };
+            return { ...state, currentlySelectedConversationPreview };
         }
 
         default:
@@ -69,7 +69,7 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
     }
 }
 
-const addTimeString = (threads: Thread[]) => {
+const addTimeString = (conversationPreviews: ConversationPreview[]) => {
     const now: Date = new Date();
     const temp: Date = new Date();
     const temp1: Date = new Date();
@@ -77,19 +77,19 @@ const addTimeString = (threads: Thread[]) => {
     const oneWeekAgo: Date = new Date(temp1.setDate(temp1.getDate() - 7));
     const yesterday: Date = new Date(temp.setDate(temp.getDate() - 1));
 
-    threads.forEach(thread => {
+    conversationPreviews.forEach(preview => {
 
-        const timestamp: number = parseInt(thread.timestamp);
+        const timestamp: number = parseInt(preview.timestamp);
         const date: Date = new Date(timestamp);
 
         if (now.toDateString() === date.toDateString()) {
-            thread.timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            preview.timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         } else if (yesterday.toDateString() === date.toDateString()) {
-            thread.timeString = 'Yesterday';
+            preview.timeString = 'Yesterday';
         } else if (oneWeekAgo.getTime() > date.getTime()) {
-            thread.timeString = date.toLocaleDateString([], { month: '2-digit', day: '2-digit', year: '2-digit' });
+            preview.timeString = date.toLocaleDateString([], { month: '2-digit', day: '2-digit', year: '2-digit' });
         } else {
-            thread.timeString = date.toLocaleDateString([], { weekday: 'long' });
+            preview.timeString = date.toLocaleDateString([], { weekday: 'long' });
         }
     });
 }

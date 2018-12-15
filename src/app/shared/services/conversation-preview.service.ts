@@ -4,13 +4,13 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class ThreadsService {
+export class ConversationPreviewService {
 
   constructor(
     private http: HttpClient) {
   }
 
-  public getThreads(): Observable<any> {
+  public getConversationPreviews(): Observable<any> {
     return this.http.get(`${environment.API_URL}/snippets`);
   }
 
