@@ -31,7 +31,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user';
 import { StoreModule } from '@ngrx/store';
 import { AmadeusReducers } from './store/reducers/root';
-import { ThreadsEffects } from './store/effects/threads';
+import { ConversationPreviewEffects } from './store/effects/conversation-preview';
 import { ConversationsEffects } from './store/effects/conversation';
 import { AppEffects } from './store/effects/app';
 import { AndroidMessagesEffects } from './store/effects/androidMessages';
@@ -61,7 +61,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     ReactiveFormsModule,
     RoutingModule,
     StoreModule.forRoot(AmadeusReducers),
-    EffectsModule.forRoot([ThreadsEffects, UserEffects, ConversationsEffects, AppEffects, AndroidMessagesEffects])
+    EffectsModule.forRoot([ConversationPreviewEffects, UserEffects, ConversationsEffects, AppEffects, AndroidMessagesEffects])
   ],
   providers: [
     {

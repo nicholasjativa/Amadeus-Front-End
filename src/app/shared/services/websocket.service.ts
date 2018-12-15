@@ -9,7 +9,7 @@ import { AndroidMessage } from '../../models/androidMessage';
 import { ReceivedAndroidMessage, ReceivedAmadeusMessageStatus, AndroidReceivedAmadeusMessage } from '../../store/actions/androidMessages';
 import { AmadeusMessageStatus } from '../../models/amadeusMessageStatus';
 import { Thread } from '../../models/thread';
-import { ReceivedThreadMessage } from '../../store/actions/threads';
+import { ReceivedThreadMessage } from '../../store/actions/conversation-preview';
 
 @Injectable()
 export class WebsocketService {

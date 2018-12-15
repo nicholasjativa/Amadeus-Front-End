@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { ThreadsActionTypes } from '../action-types/threads';
+import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ThreadsService } from '../../shared/services/threads.service';
 import * as ConversationActions from '../actions/conversation';
-import * as ThreadsActions from '../actions/threads';
+import * as ConversationPreviewActions from '../actions/conversation-preview';
 import { Thread } from '../../models/thread';
 import { switchMap, map, catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ThreadsEffects {
+export class ConversationPreviewEffects {
 
     constructor(
         private actions$: Actions,
@@ -19,20 +19,20 @@ export class ThreadsEffects {
     }
 
     @Effect()
-    public loadAllThreads: Observable<Action> = this.actions$
+    public loadAllConversationPreviews: Observable<Action> = this.actions$
         .pipe(
-            ofType<any>(ThreadsActionTypes.LOAD_ALL_THREADS),
+            ofType<any>(ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS),
             switchMap(() => {
 
                 return this.threads.getThreads()
                     .pipe(
                         map((threads: Thread[]) => {
 
-                            return new ThreadsActions.LoadAllThreadsSuccess(threads);
+                            return new ConversationPreviewActions.LoadAllConversationPreviewsSuccess(threads);
                         }),
                         catchError((error) => {
     
-                            return [new ThreadsActions.LoadAllThreadsError(error)]
+                            return [new ConversationPreviewActions.LoadAllConversationPreviewsError(error)]
                         })
                     );
                     
@@ -42,7 +42,7 @@ export class ThreadsEffects {
     @Effect()
     public setCurrentlySelectedThread: Observable<Action> = this.actions$
         .pipe(
-            ofType<any>(ThreadsActionTypes.SET_CURRENTLY_SELECTED_THREAD),
+            ofType<any>(ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW),
             map(action => action.payload),
             switchMap((thread: Thread) => {
 

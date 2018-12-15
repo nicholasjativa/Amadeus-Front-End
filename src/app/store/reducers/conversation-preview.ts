@@ -1,31 +1,31 @@
 import { Action } from '@ngrx/store';
-import { ThreadsActionTypes } from '../action-types/threads';
+import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { Thread } from '../../models/thread';
 
-export interface ThreadsState {
+export interface ConversationPreviewState {
     threads: Thread[],
     currentlySelectedThread: Thread,
     loaded: boolean,
     loading: boolean
 }
 
-export const initialState: ThreadsState = {
+export const initialState: ConversationPreviewState = {
     threads: [],
     currentlySelectedThread: undefined,
     loaded: false,
     loading: false
 };
 
-export function threadsReducer(state: ThreadsState = initialState, action): ThreadsState {
+export function conversationPreviewReducer(state: ConversationPreviewState = initialState, action): ConversationPreviewState {
 
     switch (action.type) {
 
-        case ThreadsActionTypes.LOAD_ALL_THREADS: {
+        case ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS: {
 
             return { ...state, loaded: false, loading: true };
         }
 
-        case ThreadsActionTypes.LOAD_ALL_THREADS_SUCCESS: {
+        case ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS_SUCCESS: {
 
             // TODO adding the timeString in the reducer (as opposed to an effect)
             // may not be practice; research
@@ -35,7 +35,7 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
             return { ...state, threads, loaded: true, loading: false }
         }
 
-        case ThreadsActionTypes.RECEIVED_THREAD_MESSAGE: {
+        case ConversationPreviewActionTypes.RECEIVED_CONVERSATION_PREVIEW: {
             // this case may not be needed, depending on whether we let
             // other actions (which give us this info) perform the updating of the sidebar
 
@@ -55,7 +55,7 @@ export function threadsReducer(state: ThreadsState = initialState, action): Thre
             return { ...state, threads };
         }
 
-        case ThreadsActionTypes.SET_CURRENTLY_SELECTED_THREAD: {
+        case ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW: {
 
             const thread: Thread = action.payload;
             const currentlySelectedThread: Thread = thread;

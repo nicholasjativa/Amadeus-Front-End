@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ThreadsService } from '../../shared/services/threads.service';
 import { Store, select } from '@ngrx/store';
-import { AmadeusState, selectThreadsState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
-import * as ThreadsActions from '../../store/actions/threads';
+import { AmadeusState, selectConversationPreviewState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
+import * as ThreadsActions from '../../store/actions/conversation-preview';
 import * as ConversationActions from '../../store/actions/conversation';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
 import { Thread } from '../../models/thread';
-import { ThreadsState } from '../../store/reducers/threads';
+import { ConversationPreviewState } from '../../store/reducers/conversation-preview';
 import { ConversationsState } from '../../store/reducers/conversation';
 import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
@@ -32,21 +32,21 @@ export class HomeComponent implements OnInit {
   public showSidebarOnMobile: boolean = true;
   
   private getAppState: Observable<AppState>;
-  private getThreadsState: Observable<ThreadsState>;
+  private getThreadsState: Observable<ConversationPreviewState>;
   private getConversationsState: Observable<ConversationsState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
-    this.getThreadsState = this.store.pipe(select(selectThreadsState));
+    this.getThreadsState = this.store.pipe(select(selectConversationPreviewState));
     this.getConversationsState = this.store.pipe(select(selectConversationsState));
     this.getUserState = this.store.pipe(select(selectUserState));
     this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(new ThreadsActions.LoadAllThreads());
+    this.store.dispatch(new ThreadsActions.LoadAllConversationPreviews());
     this.getAppState.subscribe(state => {
       this.socketConnected = state.socketConnected;
     });
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
       this.threads = state.threads;
       if (this.threads.length && !state.currentlySelectedThread) {
         const mostRecentThread: Thread = this.threads[0];
-        this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(mostRecentThread));
+        this.store.dispatch(new ThreadsActions.SetCurrentlySelectedConversationPreview(mostRecentThread));
       }
     });
     this.getConversationsState.subscribe(state => {
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   public setCurrentlySelectedThread(thread: Thread): void {
-    this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(thread));
+    this.store.dispatch(new ThreadsActions.SetCurrentlySelectedConversationPreview(thread));
   }
 
   public toggleSidebar(): void {
