@@ -6,6 +6,7 @@ import { Message } from '../../models/message';
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.css']
 })
+
 export class TextComponent implements OnInit {
   @Input() shouldDisplayTime: boolean = false;
   @Input() shouldShowDelivered: boolean = false;

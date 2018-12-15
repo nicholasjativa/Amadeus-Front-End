@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AmadeusState, selectConversationPreviewState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
 import * as ConversationPreviewActions from '../../store/actions/conversation-preview';
-import * as ConversationActions from '../../store/actions/conversation';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
 import { ConversationPreview } from '../../models/conversation-preview';
 import { ConversationPreviewState } from '../../store/reducers/conversation-preview';
 import { ConversationsState } from '../../store/reducers/conversation';
-import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { UserState } from '../../store/reducers/user';
 import { AppState } from '../../store/reducers/app';
@@ -20,6 +18,7 @@ import { AmadeusMessage } from '../../models/amadeusMessage';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   public conversation: Conversation;
   public currentlySelectedConversationPhoneNumber: string = "";

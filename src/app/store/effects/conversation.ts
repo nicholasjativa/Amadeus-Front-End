@@ -5,12 +5,9 @@ import { Action, Store, select } from '@ngrx/store';
 import { ConversationActionTypes } from '../action-types/conversation';
 import * as ConversationActions from '../actions/conversation';
 import { ConversationService } from '../../shared/services/conversation.service';
-import { ConversationPreview } from '../../models/conversation-preview';
-import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { AmadeusState, selectConversationsState } from '../reducers/root';
-import { ConversationsState } from '../reducers/conversation';
 
 
 @Injectable()

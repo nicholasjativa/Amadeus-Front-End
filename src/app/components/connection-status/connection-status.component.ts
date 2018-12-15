@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WebsocketService } from '../../shared/services/websocket.service';
 
 @Component({
   selector: 'amadeus-connection-status',

@@ -1,6 +1,5 @@
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import * as SocketIOClient from 'socket.io-client';
 import { Store } from '@ngrx/store';
 import { AmadeusState } from '../../store/reducers/root';

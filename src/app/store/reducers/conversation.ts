@@ -1,6 +1,4 @@
-import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import { ConversationActionTypes } from '../action-types/conversation';
-import { Message } from '../../models/message';
 import { Conversation } from '../../models/conversation';
 import { Conversations } from '../../models/conversations';
 import { AndroidMessagesActionTypes } from '../action-types/androidMessages';

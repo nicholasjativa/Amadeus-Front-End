@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { ConversationPreview } from '../../models/conversation-preview';
 

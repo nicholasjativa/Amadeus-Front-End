@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AmadeusMessage } from '../../models/amadeusMessage';
