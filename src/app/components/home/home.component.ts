@@ -33,14 +33,14 @@ export class HomeComponent implements OnInit {
   
   private getAppState: Observable<AppState>;
   private getThreadsState: Observable<ThreadsState>;
-  private getMessagesState: Observable<ConversationsState>;
+  private getConversationsState: Observable<ConversationsState>;
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
   constructor(public threadsService: ThreadsService, private store: Store<AmadeusState>) {
     this.getAppState = this.store.pipe(select(selectAppState));
     this.getThreadsState = this.store.pipe(select(selectThreadsState));
-    this.getMessagesState = this.store.pipe(select(selectConversationsState));
+    this.getConversationsState = this.store.pipe(select(selectConversationsState));
     this.getUserState = this.store.pipe(select(selectUserState));
     this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
         this.store.dispatch(new ThreadsActions.SetCurrentlySelectedThread(mostRecentThread));
       }
     });
-    this.getMessagesState.subscribe(state => {
+    this.getConversationsState.subscribe(state => {
       
       this.loadingConversation = state.loading;
       this.conversation = state.currentlySelectedConversation;
