@@ -29,6 +29,23 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
             return { ...state, conversationPreviews };
         }
 
+        case ConversationPreviewActionTypes.UPDATE_BLANK_CONVERSATION_PREVIEW: {
+
+            const name: string = action.payload.name;
+            const address: string = action.payload.address;
+
+            const previews = [ ...state.conversationPreviews ];
+            const blankConversationPreviewPos = previews.findIndex(preview => preview.address === 'BLANK_ADDRESS');
+
+            let existingPreview = previews[blankConversationPreviewPos];
+            existingPreview.name = `New Message to ${name}`;
+            existingPreview.address = address;
+
+            // TODO this is mutating the state so figure out better way to do this
+
+            return { ...state, conversationPreviews: previews, currentlySelectedConversationPreview: existingPreview };
+        }
+
         case ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS: {
 
             return { ...state, loaded: false, loading: true };
@@ -50,7 +67,7 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
 
             const preview: ConversationPreview = action.payload;
             addTimeString([preview]);
-            // we may want to use an object for state.conversationPreviews for easier access
+            // TODO we may want to use an object for state.conversationPreviews for easier access
             let conversationPreviews = state.conversationPreviews;
             let pos = conversationPreviews.findIndex((conversationPreview: ConversationPreview) => conversationPreview.address === preview.address);
 

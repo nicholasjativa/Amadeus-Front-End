@@ -2,7 +2,12 @@
   <ng-content></ng-content>
   <span class="title-to">To:</span>
   <!-- <form [formGroup]="nameForm"> -->
-  <input class="title-name" #nameInput [value]="headerInfo.name" [readonly]="!isEditing">
+  <input 
+    class="title-name" 
+    #nameInput
+    (blur)="finishedEditing.emit()"
+    [(ngModel)]="headerInfo.name" 
+    [readonly]="!isEditing">
   <!-- </form> -->
   <a class="title-details">Details</a>
 </div>

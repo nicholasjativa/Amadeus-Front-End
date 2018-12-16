@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'amadeus-conversation-header',
@@ -9,6 +9,7 @@ export class ConversationHeaderComponent implements OnChanges, OnInit {
   @ViewChild('nameInput') public nameInput: ElementRef;
   @Input() public headerInfo: any;
   @Input() public isEditing: boolean;
+  @Output() public finishedEditing: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }

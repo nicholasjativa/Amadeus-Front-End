@@ -2,16 +2,23 @@ import { Action } from '@ngrx/store';
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { ConversationPreview } from '../../models/conversation-preview';
 
-export class LoadAllConversationPreviews implements Action {
-    public readonly type: string = ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS;
-
-    constructor() {}
-}
-
 export class AddBlankConversationPreview implements Action {
     public readonly type: string = ConversationPreviewActionTypes.ADD_BLANK_CONVERSATION_PREVIEW;
 
     constructor(public payload: ConversationPreview) {}
+}
+
+export class UpdateBlankConversationPreview implements Action {
+    public readonly type: string = ConversationPreviewActionTypes.UPDATE_BLANK_CONVERSATION_PREVIEW;
+
+    constructor(public payload: { name: string, address: string }) {
+    }
+}
+
+export class LoadAllConversationPreviews implements Action {
+    public readonly type: string = ConversationPreviewActionTypes.LOAD_ALL_CONVERSATION_PREVIEWS;
+
+    constructor() {}
 }
 
 export class LoadAllConversationPreviewsSuccess implements Action {

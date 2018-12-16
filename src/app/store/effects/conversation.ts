@@ -29,7 +29,7 @@ export class ConversationsEffects {
             switchMap(() => {
                 
                 const blankPreview: ConversationPreview = {
-                    address: '',
+                    address: 'BLANK_ADDRESS',
                     body: '',
                     name: 'New Message',
                     timestamp: '',
@@ -51,11 +51,10 @@ export class ConversationsEffects {
                 const phoneNumber: string = payload.address;
                 const existingConversation = state.conversations[phoneNumber];
 
-                if (!phoneNumber) {
+                if (phoneNumber === "BLANK_ADDRESS") {
                     
-                    // this must be a 'New Message' that the user is creating
                     const blankConversation: Conversation = {
-                        address: '',
+                        address: 'BLANK_ADDRESS',
                         messages: [],
                         name: ''
                     };

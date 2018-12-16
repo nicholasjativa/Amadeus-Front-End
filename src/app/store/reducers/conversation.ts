@@ -33,9 +33,31 @@ export function conversationsReducer(state: ConversationsState = initialState, a
 
         case ConversationActionTypes.CREATE_NEW_CONVERSATION: {
 
-            const isEditingHeader: boolean = true;
+            return { ...state, isEditingHeader: true }
+        }
 
-            return { ...state, isEditingHeader }
+        case ConversationActionTypes.UPDATE_NEW_CONVERSATION_WITH_INFO: {
+            
+            const name: string = action.payload.name;
+            const address: string = action.payload.address;
+
+            let conversations: Conversations = { ...state.conversations };
+            delete conversations['BLANK_ADDRESS'];
+
+            const newConversation: Conversation = {
+                address,
+                messages: [],
+                name
+            };
+            conversations[address] = newConversation;          
+
+            return { 
+                ...state, 
+                isEditingHeader: false, 
+                conversations, 
+                currentlySelectedConversation: newConversation,
+                currentlySelectedConversationPhoneNumber: address
+             };
         }
         
         case ConversationActionTypes.LOAD_CONVERSATION_BY_CONVERSATION_PREVIEW: {
@@ -50,9 +72,9 @@ export function conversationsReducer(state: ConversationsState = initialState, a
             
             const conversation: Conversation = action.payload;
             const currentlySelectedConversation: Conversation = conversation;
-            const phoneNumber: string = conversation.address;
+            const address: string = conversation.address;
             let conversations: Conversations = { ...state.conversations };
-            conversations[phoneNumber] = conversation;
+            conversations[address] = conversation;
 
             return { ...state, conversations, currentlySelectedConversation, loaded: true, loading: false };
         }

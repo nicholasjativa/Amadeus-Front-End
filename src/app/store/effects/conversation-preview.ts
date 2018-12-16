@@ -27,7 +27,21 @@ export class ConversationPreviewEffects {
 
                 return [new ConversationPreviewActions.SetCurrentlySelectedConversationPreview(blankPreview)];
             })
-        ); 
+        );
+    
+    @Effect()
+    public updateBlankConversationPreview: Observable<Action> = this.actions$
+            .pipe(
+                ofType<any>(ConversationPreviewActionTypes.UPDATE_BLANK_CONVERSATION_PREVIEW),
+                map(action => action.payload),
+                switchMap((updateInfo) => {
+                    
+                    const name: string = updateInfo.name;
+                    const address: string = updateInfo.address;
+
+                    return [new ConversationActions.UpdateNewConversationWithInfo({ name, address })];
+                })
+            )
 
     @Effect()
     public loadAllConversationPreviews: Observable<Action> = this.actions$

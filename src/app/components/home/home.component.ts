@@ -59,10 +59,10 @@ export class HomeComponent implements OnInit {
       }
     });
     this.getConversationsState.subscribe(state => {
-      
+
       this.isEditing = state.isEditingHeader;
       this.loadingConversation = state.loading;
-      this.conversation = state.currentlySelectedConversation;
+      this.conversation = Object.assign({}, state.currentlySelectedConversation);
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
       this.messages = state.currentlySelectedConversation.messages;
     });
@@ -71,8 +71,32 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public collectHeaderInfo(): void {
+    // when this fires, this.conversation.name will have
+    // the name that the user entered in the header component
+    // so set the address to that as well
+    // TODO refactor header component to populate contact list
+    if (this.conversation.name && this.isEditing) {
+      // they have provided a phone number (eventually TODO to work with name)
+      // so the blank conversation will be updated to that address
+      this.conversation.address = this.conversation.name;
+      
+      const payload = {
+        name: this.conversation.name,
+        address: this.conversation.address
+      };
+
+      this.store.dispatch(new ConversationPreviewActions.UpdateBlankConversationPreview(payload));
+    }
+  
+  }
+
   public createNewConversation(): void {
-    this.store.dispatch(new ConversationActions.CreateNewConversation());
+
+    if (!this.isEditing) {
+      this.store.dispatch(new ConversationActions.CreateNewConversation());
+    }
+
   }
 
   public sendMessage(body: string): void {
