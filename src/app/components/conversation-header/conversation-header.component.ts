@@ -14,6 +14,12 @@ export class ConversationHeaderComponent implements OnChanges, OnInit {
   constructor() {
   }
 
+  public emitIfNeeded(): void {
+    if (this.headerInfo.name) {
+      this.finishedEditing.emit();
+    }
+  }
+
   public ngOnChanges(): void {
     
     if (this.isEditing) {
@@ -21,7 +27,7 @@ export class ConversationHeaderComponent implements OnChanges, OnInit {
     }
 
   }
-
+  
   public ngOnInit(): void {
   }
 
