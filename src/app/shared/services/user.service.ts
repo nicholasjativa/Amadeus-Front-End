@@ -28,26 +28,4 @@ export class UserService {
     return this.http.get(`${environment.API_URL}/users/user`);
   }
 
-  // TODO: rename
-  public populate(): void {
-    if (this.auth.getCookie()) {
-      this.getUserInfo().subscribe(
-        (data) => this.setAuth(data['user']),
-        (err) => this.purgeAuth()
-      );
-    } else {
-      this.purgeAuth();
-    }
-  }
-
-  public purgeAuth(): void {
-    this.auth.destroyCookie();
-    this.isAuthenticatedSubject.next(false);
-  }
-
-  public setAuth(user: any): void {
-    this.isAuthenticatedSubject.next(true);
-  }
-
-
 }

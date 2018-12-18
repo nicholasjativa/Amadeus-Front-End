@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './shared/services/user.service';
+import { AuthService } from './shared/services/auth.service';
+import { AmadeusState } from './store/reducers/root';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,15 @@ import { UserService } from './shared/services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private user: UserService){
+  constructor(private authService: AuthService,
+              private store: Store<AmadeusState>){
   }
 
   ngOnInit(): void {
-    this.user.populate();
+    if (this.authService.getCookie()) {
+      
+    } else {
+
+    }
   }
 }
