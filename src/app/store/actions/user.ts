@@ -19,3 +19,9 @@ export class UserSignInError implements Action {
 
     constructor(public payload: {}) {}
 }
+
+export class AttemptUserAuth implements Action {
+    public readonly type: string = UserActionTypes.ATTEMPT_AUTH
+
+    constructor() {}
+}

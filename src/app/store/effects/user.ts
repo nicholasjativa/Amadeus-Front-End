@@ -53,4 +53,24 @@ export class UserEffects {
             })
         );
 
+    @Effect()
+    public attemptAuth: Observable<Action> = this.actions$
+        .pipe(
+            ofType<any>(UserActionTypes.ATTEMPT_AUTH),
+            switchMap(() => {
+
+                return this.userService.getUserInfo()
+                    .pipe(
+                        map((user: User) => {
+                            
+                            return new UserActions.UserSignInSuccess(user);
+                        }),
+                        catchError((error) => {
+                            console.log(error);
+                            return [new UserActions.UserSignInError({})]
+                        })
+                    );
+            })
+        );
+
 }
