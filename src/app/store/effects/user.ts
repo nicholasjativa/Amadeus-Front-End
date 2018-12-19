@@ -32,8 +32,9 @@ export class UserEffects {
 
                             return new UserActions.UserSignInSuccess(user);
                         }),
-                        catchError((error) => {
-                            console.log(error);
+                        catchError((res) => {
+
+                            const error: string = res.error;
                             return [new UserActions.UserSignInError({})];
                         })
                     );
@@ -66,7 +67,8 @@ export class UserEffects {
                             return new UserActions.UserSignInSuccess(user);
                         }),
                         catchError((error) => {
-                            console.log(error);
+                            // TODO should not use user sign in error here
+                            // because the issue is that the cookie expired (or something)
                             return [new UserActions.UserSignInError({})]
                         })
                     );

@@ -120,3 +120,10 @@ input {
         height: 100%;
     }
 }
+
+@media only screen and (max-height: 650px) {
+    .wrapper {
+        border-radius: 0;
+        height: 100%;
+    }
+}
