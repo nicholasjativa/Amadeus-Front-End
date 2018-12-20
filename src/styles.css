@@ -12,6 +12,8 @@ html, body {
 }
 
 a {
+    color: #156cd6;
+    font-weight: bold;
     cursor: pointer;
     text-decoration: none;
 }

@@ -147,11 +147,6 @@ input.ng-touched.ng-invalid {
     text-align: center;
 }
 
-.success-description a {
-    color: #156cd6;
-    font-weight: bold;
-}
-
 .submit:hover, .submit.loading {
     background-color: #0e478e;
 }
