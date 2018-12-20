@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     const cookie: string = this.authService.getCookie();
 
     if (cookie) {
-      this.store.dispatch(new UserActions.AttemptUserAuth());
+      // this.store.dispatch(new UserActions.AttemptUserAuth());
     }
     
   }

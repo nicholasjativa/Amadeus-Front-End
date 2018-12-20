@@ -76,15 +76,19 @@ input {
     margin: 50px 0;
 }
 
-.sign-in {
+.create-account, .sign-in {
     background: transparent;
     border: transparent;
     color: #58a6eb;
     font-size: 36px;
 }
 
-.sign-in:active {
+.create-account:active, .learn-more:active, .sign-in:active {
     color: #2d567b;
+}
+
+.create-account:hover, .learn-more:hover, .sign-in:hover {
+    text-decoration: underline;
 }
 
 

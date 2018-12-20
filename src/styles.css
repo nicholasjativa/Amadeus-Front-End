@@ -1,3 +1,10 @@
+* {
+    transition-property: all;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
 html, body {
     font-family: sans-serif;
     height: 100%;
@@ -5,6 +12,7 @@ html, body {
 }
 
 a {
+    cursor: pointer;
     text-decoration: none;
 }
 

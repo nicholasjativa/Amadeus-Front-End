@@ -8,6 +8,7 @@ import { UserService } from '../../shared/services/user.service';
 import * as UserActions from '../actions/user';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { AccountCreationData } from 'src/app/models/accountCreationData';
 
 @Injectable()
 export class UserEffects {
@@ -38,7 +39,7 @@ export class UserEffects {
                             return [new UserActions.UserSignInError({})];
                         })
                     );
-                    
+
             })
         );
 
@@ -63,13 +64,34 @@ export class UserEffects {
                 return this.userService.getUserInfo()
                     .pipe(
                         map((user: User) => {
-                            
+
                             return new UserActions.UserSignInSuccess(user);
                         }),
                         catchError((error) => {
                             // TODO should not use user sign in error here
                             // because the issue is that the cookie expired (or something)
-                            return [new UserActions.UserSignInError({})]
+                            return [new UserActions.UserSignInError({})];
+                        })
+                    );
+            })
+        );
+
+    @Effect()
+    public createNewAccount: Observable<Action> = this.actions$
+        .pipe(
+            ofType<any>(UserActionTypes.CREATE_NEW_ACCOUNT),
+            map(action => action.payload),
+            switchMap((data: AccountCreationData) => {
+
+                return this.userService.createNewAccount(data)
+                    .pipe(
+                        map((result) => {
+
+                            return new UserActions.CreateNewAccountSuccess();
+                        }),
+                        catchError((error) => {
+                            console.log(error)
+                            return [new UserActions.CreateNewAccountError({})];
                         })
                     );
             })

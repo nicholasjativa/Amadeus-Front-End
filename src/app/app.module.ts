@@ -36,6 +36,7 @@ import { ConversationsEffects } from './store/effects/conversation';
 import { AppEffects } from './store/effects/app';
 import { AndroidMessagesEffects } from './store/effects/androidMessages';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     SearchbarComponent,
     ConnectionStatusComponent,
     SettingsButtonComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

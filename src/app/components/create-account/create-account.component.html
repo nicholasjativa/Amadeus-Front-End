@@ -1,0 +1,95 @@
+<div class="wrapper">
+  <div class="container">
+
+    <nav class="top-bar">
+
+      <div class="logo">
+        <img src="assets/img/amadeuslogo.jpg" height="95px" width="95px">
+      </div>
+      <div>
+        <a>Login to Amadeus</a>
+      </div>
+
+    </nav>
+
+    <div class="main">
+      <h1 class="primary">Text with Amadeus</h1>
+      <h2 class="secondary">Send texts straight from your browser</h2>
+    </div>
+
+    <div class="account-form">
+
+      <form *ngIf="!accountCreationSuccess" [formGroup]="createAccountForm" (ngSubmit)="createAccount()">
+
+        <div class="form-title">
+          Create an account
+        </div>
+
+        <div class="control">
+          <input type="email" placeholder="Email" formControlName="email">
+        </div>
+
+        <div class="control">
+          <input type="text" placeholder="First Name" formControlName="firstName">
+        </div>
+
+        <div class="control">
+          <input type="text" placeholder="Last Name" formControlName="lastName">
+        </div>
+
+        <div class="control">
+          <input type="tel" placeholder="Phone" formControlName="phoneNumber">
+        </div>
+
+        <div class="control">
+          <input type="password" placeholder="Create Password" formControlName="password">
+        </div>
+
+        <div>
+          <button class="submit" type="submit" [class.loading]="accountCreationLoading">
+            Next
+            <amadeus-loading-spinner *ngIf="accountCreationLoading"></amadeus-loading-spinner>
+          </button>
+        </div>
+
+      </form>
+
+      <div *ngIf="accountCreationSuccess">
+        <div class="form-title success">
+          Amadeus account created
+        </div>
+
+        <p class="success-description">
+          You've successfully created an account with Amadeus.
+          The next and final step is to download the Amadeus Android app
+          and login there. From there, the Amadeus Android app will upload your contacts and
+          messages, and then you can start text messaging from the browser.
+          <br>
+          <a routerLink="/login">Click here to go back to the login page</a>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="demo-wrapper">
+      <div class="demo"></div>
+      <div class="decor"></div>
+    </div>
+
+    <div class="bottom-main">
+      <h1 class="primary">Text what you want</h1>
+      <h2 class="secondary">From where you want</h2>
+
+      <div class="reasons">
+
+        <div class="reason-container" *ngFor="let reason of reasons">
+          <h2 class="reason-subtitle">{{ reason.subtitle }}</h2>
+          <p class="reason-description">{{ reason.description }}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
