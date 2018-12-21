@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserActionTypes } from '../action-types/user';
 import { User } from '../../models/user';
-import { AccountCreationData } from 'src/app/models/accountCreationData';
+import { AccountCreationData } from '../../models/accountCreationData';
 
 export class UserSignIn implements Action {
     public readonly type: string = UserActionTypes.SIGN_IN;

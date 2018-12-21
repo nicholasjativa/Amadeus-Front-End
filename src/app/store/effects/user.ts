@@ -8,7 +8,7 @@ import { UserService } from '../../shared/services/user.service';
 import * as UserActions from '../actions/user';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import { AccountCreationData } from 'src/app/models/accountCreationData';
+import { AccountCreationData } from '../../models/accountCreationData';
 
 @Injectable()
 export class UserEffects {

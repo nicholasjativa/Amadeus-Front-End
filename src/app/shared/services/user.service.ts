@@ -6,7 +6,7 @@ import { ReplaySubject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AmadeusState } from '../../store/reducers/root';
 import * as UserActions from '../../store/actions/user';
-import { AccountCreationData } from 'src/app/models/accountCreationData';
+import { AccountCreationData } from '../../models/accountCreationData';
 
 @Injectable()
 export class UserService {
@@ -26,7 +26,7 @@ export class UserService {
 
   public login(emailAddress: string, password: string): Observable<any> {
     return this.http.post(`${environment.API_URL}/users/login`,
-      { user: { emailAddress, password } }, { withCredentials: true });
+      { emailAddress, password }, { withCredentials: true });
   }
 
   public getUserInfo(): Observable<any> {
