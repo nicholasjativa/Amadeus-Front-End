@@ -29,7 +29,7 @@ export function userReducer(state: UserState = initialState, action): UserState 
                 user: {
                     emailAddress: action.payload.emailAddress,
                     id: action.payload.id,
-                    phoneNumber: '6313360360' // TODO this needs to come from the login endpoint
+                    phoneNumber: action.payload.phoneNumber
                 }
             }
         }
