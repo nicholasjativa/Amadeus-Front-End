@@ -82,9 +82,11 @@ export function conversationsReducer(state: ConversationsState = initialState, a
         case AndroidMessagesActionTypes.RECEIVED_ANDROID_MESSAGE: {
 
             const androidMessage: AndroidMessage = action.payload;
-            const messagePhoneNumber: string = androidMessage.fromPhoneNumber;
+            const fromPhoneNumber: string = action.payload.fromPhoneNumber;
+            const toPhoneNumber: string = action.payload.toPhoneNumber;
 
-            if (state.currentlySelectedConversationPhoneNumber === messagePhoneNumber) {
+            if (state.currentlySelectedConversationPhoneNumber === fromPhoneNumber ||
+                state.currentlySelectedConversationPhoneNumber === toPhoneNumber) {
                 // TODO add additional logic to add the incoming message to a conversation
                 // in the conversations array IF that message is already cached (exists in the arr)
                 let currentlySelectedConversation = state.currentlySelectedConversation;
