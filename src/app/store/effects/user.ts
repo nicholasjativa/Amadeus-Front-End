@@ -64,8 +64,9 @@ export class UserEffects {
 
                 return this.userService.getUserInfo()
                     .pipe(
-                        map((user: User) => {
+                        map((payload) => {
 
+                            const user: User = payload.user;
                             return new UserActions.UserSignInSuccess(user);
                         }),
                         catchError((error) => {
