@@ -27,7 +27,8 @@ export class WebsocketService {
     this.socket.on('receivedMessageFromAndroid', (message: AndroidMessage) =>
       this.store.dispatch(new ReceivedAndroidMessage(message)));
     
-    this.socket.on('ownMessageSentOnAndroid', (message) => null);
+    this.socket.on('ownMessageSentOnAndroid', (message: AndroidMessage) =>
+      this.store.dispatch(new ReceivedAndroidMessage(message)));
     
     this.socket.on('sendOutgoingMessageUpstreamToWebsocketWithInitialState', (message: AmadeusMessageStatus) =>
       this.store.dispatch(new ReceivedAmadeusMessageStatus(message)));
