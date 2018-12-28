@@ -11,7 +11,7 @@ export class ConversationService {
   }
 
   public getConversationByPhoneNumber(phone_num_clean: string): Observable<any> {
-    return this.http.post(`${environment.API_URL}/texts/getConversationMessages`, {
+    return this.http.post(`${environment.API_URL}/texts/get-conversation-messages`, {
       phone_num_clean
     });
   }
