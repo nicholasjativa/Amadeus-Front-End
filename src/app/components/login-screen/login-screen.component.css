@@ -1,28 +1,4 @@
-div {
-    color: #434343;
-}
-
-form {
-    width: 100%;
-}
-
-img {
-    border-radius: 10px;
-}
-
-input {
-    background: transparent;
-    border: none;
-    font-size: 16px;
-    height: 100%;
-    width: 100%;
-}
-
-.button-wrapper {
-    text-align: center;
-}
-
-.container {
+.background {
     align-items: center;
     background-color: white;
     background-image: url("../../../assets/img/blurbackground.png");
@@ -33,19 +9,25 @@ input {
     justify-content: center;
 }
 
-.learn-more {
-    color: #58a6eb;
-    font-weight: bold;
-}
-
-.login-container {
+.container {
     align-items: center;
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: flex-start;
     margin: 0 auto;
+    text-align: center;
     width: 70%;
+}
+
+.floater {
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 5px #6b6d6f;
+    height: 80%;
+    max-width: 100%;
+    padding: 10px;
 }
 
 .login-fields {
@@ -72,61 +54,31 @@ input {
     border-bottom: 2px solid #cdcdcd;
 }
 
-.logo-row {
+.logo {
     margin: 50px 0;
 }
 
-.create-account, .sign-in {
-    background: transparent;
-    border: transparent;
-    color: #58a6eb;
-    font-size: 36px;
-}
-
-.create-account:active, .learn-more:active, .sign-in:active {
-    color: #2d567b;
-}
-
-.create-account:hover, .learn-more:hover, .sign-in:hover {
-    text-decoration: underline;
-}
-
-
-.subtitle {
-    text-align: center;
-}
-
-.title {
-    font-size: 48px;
-}
-
-.wrapper {
-    background-color: white;
-    box-sizing: border-box;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px 5px #6b6d6f;
-    height: 80%;
-    max-width: 100%;
-    padding: 10px;
+.logo img {
+    border-radius: 10px;
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 420px) {
-    .login-container {
+    .container {
         height: 100%;
         width: 100%;
     }
 }
 
 @media only screen and (max-width: 320px) {
-    .wrapper {
+    .floater {
         border-radius: 0;
         height: 100%;
     }
 }
 
 @media only screen and (max-height: 650px) {
-    .wrapper {
+    .floater {
         border-radius: 0;
         height: 100%;
     }

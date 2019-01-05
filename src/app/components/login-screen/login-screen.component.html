@@ -1,23 +1,23 @@
-<div class="container">
-  <div class="wrapper">
+<div class="background">
+  <div class="floater">
 
-    <div class="login-container">
-      
-      <div class="logo-row">
+    <div class="container">
+
+      <div class="logo">
         <img src="assets/img/amadeuslogo.jpg" height="95px" width="95px">
       </div>
 
 
-      <div class="title">
+      <h2>
         Amadeus
-      </div>
+      </h2>
 
 
-      <div class="subtitle">
+      <div>
         Amadeus messages can be sent between Android phones and the browser.
         <br>
         <br>
-        <a class="learn-more" routerLink="learn-more">Learn more about Amadeus</a>
+        <a class="link" routerLink="learn-more">Learn more about Amadeus</a>
       </div>
 
 
@@ -28,21 +28,21 @@
 
           <li class="field-name divider">Amadeus ID</li>
           <li class="field divider">
-            <input formControlName="emailAddress" type="text" />
+            <input class="input" formControlName="emailAddress" type="text" />
           </li>
 
           <li class="field-name">Password</li>
           <li class="field">
-            <input formControlName="password" type="password">
+            <input class="input" formControlName="password" type="password">
           </li>
 
         </ul>
 
-        <div class="button-wrapper">
-          <button class="sign-in" type="submit">Sign in</button>
+        <div class="">
+          <button type="submit">Sign in</button>
         </div>
-        <div class="button-wrapper">
-          <button class="create-account" routerLink="/create-account" type="button">Create an account</button>
+        <div class="">
+          <button routerLink="/create-account" type="button">Create an account</button>
         </div>
 
       </form>
