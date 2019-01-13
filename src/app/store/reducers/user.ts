@@ -1,5 +1,7 @@
 import { UserActionTypes } from '../action-types/user';
 import { User } from '../../models/user';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AmadeusState } from './root';
 
 export interface UserState {
     accountCreationLoading: boolean;
@@ -16,6 +18,8 @@ export const initialState: UserState = {
     isAuthenticated: false,
     user: { id: undefined, emailAddress: "", phoneNumber: "" }
 };
+
+export const selectUserState = createFeatureSelector<AmadeusState, UserState>('user');
 
 export function userReducer(state: UserState = initialState, action): UserState {
 

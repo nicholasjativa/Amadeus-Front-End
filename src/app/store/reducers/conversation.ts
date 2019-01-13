@@ -4,6 +4,8 @@ import { Conversations } from '../../models/conversations';
 import { AndroidMessagesActionTypes } from '../action-types/androidMessages';
 import { AndroidMessage } from '../../models/androidMessage';
 import { AmadeusMessageStatus } from '../../models/amadeusMessageStatus';
+import { createFeatureSelector } from '@ngrx/store';
+import { AmadeusState } from './root';
 
 export interface ConversationsState {
     conversations: Conversations,
@@ -26,6 +28,8 @@ export const initialState: ConversationsState = {
     loaded: false,
     loading: false
 };
+
+export const selectConversationsState = createFeatureSelector<AmadeusState, ConversationsState>('conversations');
 
 export function conversationsReducer(state: ConversationsState = initialState, action): ConversationsState {
 

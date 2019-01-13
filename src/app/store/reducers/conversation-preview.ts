@@ -1,9 +1,12 @@
 import { ConversationPreviewActionTypes } from '../action-types/conversation-preview';
 import { ConversationPreview } from '../../models/conversation-preview';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AmadeusState } from './root';
 
 export interface ConversationPreviewState {
     conversationPreviews: ConversationPreview[],
     currentlySelectedConversationPreview: ConversationPreview,
+    incomingConversationPreview: ConversationPreview,
     loaded: boolean,
     loading: boolean
 }
@@ -11,9 +14,13 @@ export interface ConversationPreviewState {
 export const initialState: ConversationPreviewState = {
     conversationPreviews: [],
     currentlySelectedConversationPreview: undefined,
+    incomingConversationPreview: undefined,
     loaded: false,
     loading: false
 };
+
+export const selectConversationPreviewState = createFeatureSelector<AmadeusState, ConversationPreviewState>('conversationPreview');
+export const selectIncomingConversationPreview = createSelector(selectConversationPreviewState, (state: ConversationPreviewState) => state.incomingConversationPreview);
 
 export function conversationPreviewReducer(state: ConversationPreviewState = initialState, action): ConversationPreviewState {
 
@@ -78,7 +85,7 @@ export function conversationPreviewReducer(state: ConversationPreviewState = ini
                 conversationPreviews.unshift(preview);
             }
 
-            return { ...state, conversationPreviews };
+            return { ...state, conversationPreviews, incomingConversationPreview: preview };
         }
 
         case ConversationPreviewActionTypes.SET_CURRENTLY_SELECTED_CONVERSATION_PREVIEW: {

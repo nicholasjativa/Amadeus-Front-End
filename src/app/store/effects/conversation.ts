@@ -8,8 +8,9 @@ import * as ConversationPreviewActions from '../actions/conversation-preview';
 import { ConversationService } from '../../shared/services/conversation.service';
 import { Conversation } from '../../models/conversation';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { AmadeusState, selectConversationsState } from '../reducers/root';
+import { AmadeusState } from '../reducers/root';
 import { ConversationPreview } from '../../models/conversation-preview';
+import { selectConversationsState } from '../reducers/conversation';
 
 
 @Injectable()

@@ -1,4 +1,6 @@
 import { AppActionTypes } from '../action-types/app';
+import { AmadeusState } from './root';
+import { createFeatureSelector } from '@ngrx/store';
 
 export interface AppState {
     socket: SocketIOClient.Socket,
@@ -11,6 +13,8 @@ export const initialState: AppState = {
     socketConnecting: false,
     socketConnected: false
 }
+
+export const selectAppState = createFeatureSelector<AmadeusState, AppState>('app');
 
 export function appReducer(state: AppState = initialState, action) {
 

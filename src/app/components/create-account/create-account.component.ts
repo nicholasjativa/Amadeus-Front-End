@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AmadeusState, selectUserState } from '../../store/reducers/root';
+import { AmadeusState } from '../../store/reducers/root';
 import { Store, select } from '@ngrx/store';
 import * as UserActions from '../../store/actions/user';
 import { AccountCreationData } from '../../models/accountCreationData';
 import { Observable } from 'rxjs';
-import { UserState } from '../../store/reducers/user';
+import { UserState, selectUserState } from '../../store/reducers/user';
 
 @Component({
   selector: 'amadeus-create-account',

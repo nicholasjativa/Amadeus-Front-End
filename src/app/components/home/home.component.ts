@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AmadeusState, selectConversationPreviewState, selectConversationsState, selectUserState, selectAppState } from '../../store/reducers/root';
+import { AmadeusState } from '../../store/reducers/root';
 import * as ConversationActions from '../../store/actions/conversation';
 import * as ConversationPreviewActions from '../../store/actions/conversation-preview';
 import * as AppActions from '../../store/actions/app';
 import * as AndroidMessagesActions from '../../store/actions/androidMessages';
 import { Observable } from 'rxjs';
 import { ConversationPreview } from '../../models/conversation-preview';
-import { ConversationPreviewState } from '../../store/reducers/conversation-preview';
-import { ConversationsState } from '../../store/reducers/conversation';
+import { ConversationPreviewState, selectConversationPreviewState, selectIncomingConversationPreview } from '../../store/reducers/conversation-preview';
+import { ConversationsState, selectConversationsState } from '../../store/reducers/conversation';
 import { Conversation } from '../../models/conversation';
-import { UserState } from '../../store/reducers/user';
-import { AppState } from '../../store/reducers/app';
+import { UserState, selectUserState } from '../../store/reducers/user';
+import { AppState, selectAppState } from '../../store/reducers/app';
 import { AmadeusMessage } from '../../models/amadeusMessage';
 
 @Component({
@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   private getAppState: Observable<AppState>;
   private getConversationPreviewState: Observable<ConversationPreviewState>;
   private getConversationsState: Observable<ConversationsState>;
+  private getIncomingConversationPreviewState: Observable<ConversationPreviewState['incomingConversationPreview']>
   private getUserState: Observable<UserState>;
   private messageReceivedNotification: HTMLAudioElement = new Audio('assets/audio/quite-impressed.mp3');
 
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit {
     this.getAppState = this.store.pipe(select(selectAppState));
     this.getConversationPreviewState = this.store.pipe(select(selectConversationPreviewState));
     this.getConversationsState = this.store.pipe(select(selectConversationsState));
+    this.getIncomingConversationPreviewState = this.store.pipe(select(selectIncomingConversationPreview));
     this.getUserState = this.store.pipe(select(selectUserState));
     this.store.dispatch(new AppActions.OpenWebSocketConnection());
   }
@@ -65,6 +67,12 @@ export class HomeComponent implements OnInit {
       this.conversation = Object.assign({}, state.currentlySelectedConversation);
       this.currentlySelectedConversationPhoneNumber = state.currentlySelectedConversationPhoneNumber;
       this.messages = state.currentlySelectedConversation.messages;
+    });
+    this.getIncomingConversationPreviewState.subscribe(preview => {
+
+      if (preview && preview.address !== this.currentlySelectedConversationPhoneNumber) {console.log(preview, this.currentlySelectedConversationPhoneNumber)
+        this.messageReceivedNotification.play();
+      }
     });
     this.getUserState.subscribe(state => {
       this.userPhoneNumber = state.user.phoneNumber;
