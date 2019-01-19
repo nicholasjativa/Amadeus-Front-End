@@ -4,6 +4,7 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,10 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent
     },
     {
         path: '**',

@@ -26,7 +26,6 @@ import { WebsocketService } from './shared/services/websocket.service';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ConversationPreviewService } from './shared/services/conversation-preview.service';
 import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
-import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user';
 import { StoreModule } from '@ngrx/store';
@@ -37,6 +36,7 @@ import { AppEffects } from './store/effects/app';
 import { AndroidMessagesEffects } from './store/effects/androidMessages';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
@@ -52,9 +52,9 @@ import { CreateAccountComponent } from './components/create-account/create-accou
     EmojiPickerComponent,
     SearchbarComponent,
     ConnectionStatusComponent,
-    SettingsButtonComponent,
     LoadingSpinnerComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,28 +1,23 @@
 <div class="container">
     <div class="bar" [class.hide]="!showSidebarOnMobile">
         <amadeus-searchbar (createNewConversationClick)="createNewConversation()"></amadeus-searchbar>
-        <amadeus-conversation-preview-tab 
-        *ngFor="let preview of conversationPreviews" 
-        [class.active]="preview.address === currentlySelectedConversationPhoneNumber"
-        [conversationPreview]="preview"
-        (click)="setCurrentlySelectedConversationPreview(preview);toggleSidebar()"></amadeus-conversation-preview-tab>
-    </div>      
+        <amadeus-conversation-preview-tab *ngFor="let preview of conversationPreviews" [class.active]="preview.address === currentlySelectedConversationPhoneNumber"
+            [conversationPreview]="preview" (click)="setCurrentlySelectedConversationPreview(preview);toggleSidebar()"></amadeus-conversation-preview-tab>
+    </div>
     <div class="message-container">
         <div class="header-wrapper">
-            <amadeus-conversation-header
-                (finishedEditing)="collectHeaderInfo()"
-                [headerInfo]="conversation" 
+            <amadeus-conversation-header (finishedEditing)="collectHeaderInfo()" [headerInfo]="conversation"
                 [isEditing]="isEditing">
                 <a class="title-messages" (click)="toggleSidebar()">Messages </a>
             </amadeus-conversation-header>
-            <amadeus-settings-button></amadeus-settings-button>
+            <div class="settings-btn-wrapper" [routerLink]="['/settings']">
+                <button class="amadeus-blue-motif settings-btn">
+                    <img src="../../../assets/icon/icon_menu.png">
+                </button>
+            </div>
         </div>
-        <amadeus-loading-spinner 
-            type="large" 
-            *ngIf="loadingConversation"></amadeus-loading-spinner>
-        <amadeus-conversation 
-            [messages]="messages"
-            [userPhoneNumber]="userPhoneNumber">
+        <amadeus-loading-spinner type="large" *ngIf="loadingConversation"></amadeus-loading-spinner>
+        <amadeus-conversation [messages]="messages" [userPhoneNumber]="userPhoneNumber">
         </amadeus-conversation>
         <amadeus-connection-status [connected]="socketConnected"></amadeus-connection-status>
         <amadeus-response-area (sendMessage)="sendMessage($event)"></amadeus-response-area>

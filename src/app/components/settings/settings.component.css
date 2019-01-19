@@ -1,0 +1,20 @@
+.settings-pane {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    border-right: 1px solid #dddddd;
+}
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.wrapper {
+    background-color: #e8e9ef;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}

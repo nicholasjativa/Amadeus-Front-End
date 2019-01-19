@@ -54,6 +54,21 @@ amadeus-response-area {
     height: 100%;
 }
 
+.settings-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.settings-btn {
+    border-radius: 15px;
+    height: 50px;
+}
+
+.settings-btn img {
+    height: 100%;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 420px) {
 
