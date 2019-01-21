@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BackPage } from '../../models/BackPage';
 
 @Component({
   selector: 'amadeus-header',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  public title: string;
+  @Input()
+  public backPage: BackPage;
 
   constructor() { }
 

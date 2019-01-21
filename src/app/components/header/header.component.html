@@ -1,3 +1,6 @@
 <div class="header">
+  <a *ngIf="backPage" [routerLink]="backPage?.route">&lt;{{backPage.name}}</a>
   <ng-content></ng-content>
+  <h2 *ngIf="title" class="title">{{title}}
+  </h2>
 </div>

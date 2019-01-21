@@ -2,10 +2,23 @@
     width: 100%;
 }
 
+a {
+    float: left;
+}
+
 .header {
     background-color: #f0f0f0;
     border-bottom: 1px solid #d6d6d6;
     color: #827d7a;
     height: 40px;
     padding: 16px 20px 0;
+}
+
+.title {
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackPage } from '../../models/BackPage';
 
 @Component({
   selector: 'amadeus-settings',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
+  public backPage: BackPage = {
+    name: "Messages",
+    route: "/home"
+  };
 
   constructor() { }
 
