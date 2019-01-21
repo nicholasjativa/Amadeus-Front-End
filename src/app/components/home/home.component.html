@@ -6,10 +6,13 @@
     </div>
     <div class="message-container">
         <div class="header-wrapper">
-            <amadeus-conversation-header (finishedEditing)="collectHeaderInfo()" [headerInfo]="conversation"
-                [isEditing]="isEditing">
+            <amadeus-header>
+                <span class="title-to">To:</span>
+                <input class="title-name" #nameInput (blur)="collectHeaderInfo()" (keydown.enter)="collectHeaderInfo()"
+                    [(ngModel)]="conversation.name" [readonly]="!isEditing">
+                <a class="title-details">Details</a>
                 <a class="title-messages" (click)="toggleSidebar()">Messages </a>
-            </amadeus-conversation-header>
+            </amadeus-header>
             <div class="settings-btn-wrapper" [routerLink]="['/settings']">
                 <button class="amadeus-blue-motif settings-btn">
                     <img src="../../../assets/icon/icon_menu.png">

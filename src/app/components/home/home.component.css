@@ -5,10 +5,6 @@ amadeus-conversation {
     overflow-y: scroll;
 }
 
-amadeus-conversation-header {
-    width: 100%;
-}
-
 amadeus-response-area {
     width: 100%;
 }
@@ -45,6 +41,29 @@ amadeus-response-area {
     padding-right: 5px;
 }
 
+.title-details {
+    color: #0083f1;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+}
+
+.title-details:hover {
+    text-decoration: underline;
+}
+
+.title-messages {
+    display: none;
+}
+
+.title-name {
+    background-color: transparent;
+    border: none;
+    color: #404040;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 .message-container {
     align-content: flex-start;
     display: flex;
@@ -79,6 +98,35 @@ amadeus-response-area {
         z-index: 1;
     }
     .bar.hide {
+        display: none;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 420px) {
+    .header {
+        text-align: center;
+    }
+
+    a.title-messages {
+        color: #3d80fd;
+        display: initial;
+        float: left;
+        font-weight: bold;
+    }
+
+    input {
+        text-overflow: ellipsis;
+        width: 40%;
+    }
+    
+    .title-name {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+
+    .title-to {
         display: none;
     }
 }

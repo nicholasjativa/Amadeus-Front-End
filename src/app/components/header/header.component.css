@@ -1,0 +1,11 @@
+:host {
+    width: 100%;
+}
+
+.header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #d6d6d6;
+    color: #827d7a;
+    height: 40px;
+    padding: 16px 20px 0;
+}

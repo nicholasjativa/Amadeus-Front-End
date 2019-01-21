@@ -12,7 +12,6 @@ import { ConversationComponent } from './components/conversation/conversation.co
 import { EmojiPickerComponent } from './components/emoji-picker/emoji-picker.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
-import { ConversationHeaderComponent } from './components/conversation-header/conversation-header.component';
 import { ResponseAreaComponent } from './components/response-area/response-area.component';
 import { TextComponent } from './components/text/text.component';
 import { ConversationPreviewTabComponent } from './components/conversation-preview-tab/conversation-preview-tab.component';
@@ -37,13 +36,13 @@ import { AndroidMessagesEffects } from './store/effects/androidMessages';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConversationPreviewTabComponent,
-    ConversationHeaderComponent,
     ResponseAreaComponent,
     ConversationComponent,
     TextComponent,
@@ -54,7 +53,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     ConnectionStatusComponent,
     LoadingSpinnerComponent,
     CreateAccountComponent,
-    SettingsComponent
+    SettingsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
